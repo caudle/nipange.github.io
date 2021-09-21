@@ -19,9 +19,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
-    yield* event.map(started: (e) async* {
-      final user = await iAuth.getCurrentUser();
-      yield state.copyWith(user: user);
-    });
+    yield* event.map(
+      started: (e) async* {
+        final user = await iAuth.getCurrentUser();
+        yield state.copyWith(user: user);
+      },
+    );
   }
 }

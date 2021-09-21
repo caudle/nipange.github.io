@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:nipange/application/auth/login_details/login_details_bloc.dart';
+import 'package:nipange/widgets/error.dart';
 import 'package:nipange/widgets/progress_indicator.dart';
 
 class LoginDetailsPage extends StatelessWidget {
-  final String firstname;
-  final String lastname;
   final String phone;
   final String email;
   final String route;
   LoginDetailsPage({
     Key? key,
-    required this.firstname,
-    required this.lastname,
     required this.phone,
     required this.email,
     required this.route,
@@ -22,7 +19,11 @@ class LoginDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0),
+      appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
+        elevation: 0,
+        backgroundColor: Colors.white,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: BlocConsumer<LoginDetailsBloc, LoginDetailsState>(
@@ -35,6 +36,11 @@ class LoginDetailsPage extends StatelessWidget {
             builder: (contet, state) {
               return Column(
                 children: [
+                  //progress indicator
+                  if (state.isSubmitting) KCircularProgressIndicator(),
+                  if (state.failuremessage.isNotEmpty)
+                    //error
+                    CustomErrorWidget(error: state.failuremessage),
                   //title
                   Container(
                       margin: EdgeInsets.only(top: 40),
@@ -69,6 +75,8 @@ class LoginDetailsPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8)),
                               errorBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8)),
+                              contentPadding:
+                                  EdgeInsets.symmetric(vertical: 15),
                             ),
                             cursorColor: Theme.of(context).primaryColorDark,
                             onChanged: (value) {
@@ -99,6 +107,8 @@ class LoginDetailsPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8)),
                               errorBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8)),
+                              contentPadding:
+                                  EdgeInsets.symmetric(vertical: 15),
                             ),
                             cursorColor: Theme.of(context).primaryColorDark,
                             onChanged: (value) {
@@ -129,6 +139,8 @@ class LoginDetailsPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8)),
                               errorBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8)),
+                              contentPadding:
+                                  EdgeInsets.symmetric(vertical: 15),
                             ),
                             cursorColor: Theme.of(context).primaryColorDark,
                             onChanged: (value) {
@@ -149,23 +161,25 @@ class LoginDetailsPage extends StatelessWidget {
                           ElevatedButton(
                             onPressed: state.username.length > 2 &&
                                     state.password.length > 5 &&
-                                    state.confirmPassword == state.password
+                                    state.confirmPassword == state.password &&
+                                    !state.isSubmitting
                                 ? () {
                                     context.read<LoginDetailsBloc>().add(
                                         LoginDetailsEvent
                                             .finishWithEmailAndPasswordPressed(
-                                                firstname: firstname,
-                                                lastname: lastname,
-                                                phone: phone,
-                                                email: email));
+                                                phone: phone, email: email));
                                   }
                                 : null,
                             child: Text('Finish'),
                             style: ButtonStyle(
                                 minimumSize: MaterialStateProperty.all(Size(
-                                    MediaQuery.of(context).size.width, 60)),
-                                backgroundColor: MaterialStateProperty.all(
-                                    Theme.of(context).primaryColorLight),
+                                    MediaQuery.of(context).size.width, 50)),
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith((states) {
+                                  if (states.contains(MaterialState.disabled))
+                                    return Colors.grey;
+                                  return Theme.of(context).primaryColorDark;
+                                }),
                                 elevation: MaterialStateProperty.all(6),
                                 shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
@@ -174,18 +188,6 @@ class LoginDetailsPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-
-                  //progress indicator
-                  if (state.isSubmitting) KCircularProgressIndicator(),
-
-                  //error
-                  Container(
-                    padding: EdgeInsets.all(8),
-                    child: Text(
-                      state.failuremessage,
-                      style: TextStyle(color: Colors.red),
                     ),
                   ),
                 ],

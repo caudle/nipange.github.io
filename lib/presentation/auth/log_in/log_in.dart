@@ -6,6 +6,7 @@ import 'package:nipange/application/auth/forgot_password/forgot_password_bloc.da
 import 'package:nipange/application/auth/log_in/log_in_bloc.dart';
 import 'package:nipange/injector.dart';
 import 'package:nipange/presentation/auth/log_in/forgot_password.dart';
+import 'package:nipange/widgets/error.dart';
 import 'package:nipange/widgets/progress_indicator.dart';
 
 class LoginPage extends StatelessWidget {
@@ -32,6 +33,12 @@ class LoginPage extends StatelessWidget {
             builder: (context, state) {
               return Column(
                 children: [
+                  //progress indicator
+                  if (state.isSubmitting) KCircularProgressIndicator(),
+
+                  //error
+                  if (state.failureMessage.isNotEmpty)
+                    CustomErrorWidget(error: state.failureMessage),
                   SizedBox(height: 160),
                   //form
                   Form(
@@ -42,6 +49,7 @@ class LoginPage extends StatelessWidget {
                           children: [
                             //email or username field
                             TextFormField(
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 labelText: "Email or Username",
                                 prefixIcon: Icon(
@@ -54,6 +62,8 @@ class LoginPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8)),
                                 errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8)),
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 15),
                               ),
                               cursorColor: Theme.of(context).primaryColorDark,
                               onChanged: (value) {
@@ -85,6 +95,8 @@ class LoginPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(8)),
                                 errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8)),
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 15),
                               ),
                               cursorColor: Theme.of(context).primaryColorDark,
                               onChanged: (value) {
@@ -105,7 +117,8 @@ class LoginPage extends StatelessWidget {
                             //sign up btn
                             ElevatedButton(
                               onPressed: state.email.isNotEmpty &&
-                                      state.password.isNotEmpty
+                                      state.password.isNotEmpty &&
+                                      !state.isSubmitting
                                   ? () {
                                       context.read<LogInBloc>().add(LogInEvent
                                           .logInWithEmailAndPasswordPressed());
@@ -114,32 +127,20 @@ class LoginPage extends StatelessWidget {
                               child: Text('Log in'),
                               style: ButtonStyle(
                                   minimumSize: MaterialStateProperty.all(Size(
-                                      MediaQuery.of(context).size.width, 60)),
-                                  backgroundColor: MaterialStateProperty.all(
-                                      Theme.of(context).primaryColorLight),
+                                      MediaQuery.of(context).size.width, 50)),
+                                  backgroundColor:
+                                      MaterialStateProperty.resolveWith(
+                                          (states) {
+                                    if (states.contains(MaterialState.disabled))
+                                      return Colors.grey;
+                                    return Theme.of(context).primaryColorDark;
+                                  }),
                                   elevation: MaterialStateProperty.all(6),
                                   shape: MaterialStateProperty.all(
                                       RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(8)))),
                             ),
-
-                            //progress indicator
-                            if (state.isSubmitting)
-                              KCircularProgressIndicator(),
-
-                            //error
-                            if (state.failureMessage.isNotEmpty)
-                              Container(
-                                padding: EdgeInsets.all(8),
-                                child: Text(
-                                  context
-                                      .read<LogInBloc>()
-                                      .state
-                                      .failureMessage,
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                              ),
                           ],
                         ),
                       )),
@@ -149,23 +150,25 @@ class LoginPage extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     padding: EdgeInsets.only(right: 18),
                     child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) {
-                            return BlocProvider(
-                                create: (context) =>
-                                    getIt<ForgotPasswordBloc>(),
-                                child: ForgotPasswordPage());
-                          }),
-                        );
-                      },
+                      onPressed: !state.isSubmitting
+                          ? () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) {
+                                  return BlocProvider(
+                                      create: (context) =>
+                                          getIt<ForgotPasswordBloc>(),
+                                      child: ForgotPasswordPage());
+                                }),
+                              );
+                            }
+                          : null,
                       child: Text('Forgot password?',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText2!
                               .copyWith(
-                                  color: Theme.of(context).primaryColorLight)),
+                                  color: Theme.of(context).primaryColorDark)),
                     ),
                   ),
 
@@ -185,7 +188,7 @@ class LoginPage extends StatelessWidget {
                                   .bodyText1!
                                   .copyWith(
                                       color:
-                                          Theme.of(context).primaryColorLight),
+                                          Theme.of(context).primaryColorDark),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () => Navigator.pop(context)),
                         ],

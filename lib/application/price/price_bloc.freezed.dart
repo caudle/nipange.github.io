@@ -46,6 +46,12 @@ class _$PriceEventTearOff {
     );
   }
 
+  _PerChanged perChanged(String value) {
+    return _PerChanged(
+      value,
+    );
+  }
+
   Save save() {
     return const Save();
   }
@@ -63,6 +69,7 @@ mixin _$PriceEvent {
     required TResult Function(String terms) termsChanged,
     required TResult Function(String fee) feeChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String value) perChanged,
     required TResult Function() save,
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +80,7 @@ mixin _$PriceEvent {
     TResult Function(String terms)? termsChanged,
     TResult Function(String fee)? feeChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String value)? perChanged,
     TResult Function()? save,
     required TResult orElse(),
   }) =>
@@ -84,6 +92,7 @@ mixin _$PriceEvent {
     required TResult Function(_TermsChanged value) termsChanged,
     required TResult Function(_FeeChanged value) feeChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PerChanged value) perChanged,
     required TResult Function(Save value) save,
   }) =>
       throw _privateConstructorUsedError;
@@ -94,6 +103,7 @@ mixin _$PriceEvent {
     TResult Function(_TermsChanged value)? termsChanged,
     TResult Function(_FeeChanged value)? feeChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PerChanged value)? perChanged,
     TResult Function(Save value)? save,
     required TResult orElse(),
   }) =>
@@ -190,6 +200,7 @@ class _$_Add with DiagnosticableTreeMixin implements _Add {
     required TResult Function(String terms) termsChanged,
     required TResult Function(String fee) feeChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String value) perChanged,
     required TResult Function() save,
   }) {
     return add(listing);
@@ -203,6 +214,7 @@ class _$_Add with DiagnosticableTreeMixin implements _Add {
     TResult Function(String terms)? termsChanged,
     TResult Function(String fee)? feeChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String value)? perChanged,
     TResult Function()? save,
     required TResult orElse(),
   }) {
@@ -220,6 +232,7 @@ class _$_Add with DiagnosticableTreeMixin implements _Add {
     required TResult Function(_TermsChanged value) termsChanged,
     required TResult Function(_FeeChanged value) feeChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PerChanged value) perChanged,
     required TResult Function(Save value) save,
   }) {
     return add(this);
@@ -233,6 +246,7 @@ class _$_Add with DiagnosticableTreeMixin implements _Add {
     TResult Function(_TermsChanged value)? termsChanged,
     TResult Function(_FeeChanged value)? feeChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PerChanged value)? perChanged,
     TResult Function(Save value)? save,
     required TResult orElse(),
   }) {
@@ -327,6 +341,7 @@ class _$_DescChanged with DiagnosticableTreeMixin implements _DescChanged {
     required TResult Function(String terms) termsChanged,
     required TResult Function(String fee) feeChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String value) perChanged,
     required TResult Function() save,
   }) {
     return descChanged(desc);
@@ -340,6 +355,7 @@ class _$_DescChanged with DiagnosticableTreeMixin implements _DescChanged {
     TResult Function(String terms)? termsChanged,
     TResult Function(String fee)? feeChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String value)? perChanged,
     TResult Function()? save,
     required TResult orElse(),
   }) {
@@ -357,6 +373,7 @@ class _$_DescChanged with DiagnosticableTreeMixin implements _DescChanged {
     required TResult Function(_TermsChanged value) termsChanged,
     required TResult Function(_FeeChanged value) feeChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PerChanged value) perChanged,
     required TResult Function(Save value) save,
   }) {
     return descChanged(this);
@@ -370,6 +387,7 @@ class _$_DescChanged with DiagnosticableTreeMixin implements _DescChanged {
     TResult Function(_TermsChanged value)? termsChanged,
     TResult Function(_FeeChanged value)? feeChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PerChanged value)? perChanged,
     TResult Function(Save value)? save,
     required TResult orElse(),
   }) {
@@ -465,6 +483,7 @@ class _$_TermsChanged with DiagnosticableTreeMixin implements _TermsChanged {
     required TResult Function(String terms) termsChanged,
     required TResult Function(String fee) feeChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String value) perChanged,
     required TResult Function() save,
   }) {
     return termsChanged(terms);
@@ -478,6 +497,7 @@ class _$_TermsChanged with DiagnosticableTreeMixin implements _TermsChanged {
     TResult Function(String terms)? termsChanged,
     TResult Function(String fee)? feeChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String value)? perChanged,
     TResult Function()? save,
     required TResult orElse(),
   }) {
@@ -495,6 +515,7 @@ class _$_TermsChanged with DiagnosticableTreeMixin implements _TermsChanged {
     required TResult Function(_TermsChanged value) termsChanged,
     required TResult Function(_FeeChanged value) feeChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PerChanged value) perChanged,
     required TResult Function(Save value) save,
   }) {
     return termsChanged(this);
@@ -508,6 +529,7 @@ class _$_TermsChanged with DiagnosticableTreeMixin implements _TermsChanged {
     TResult Function(_TermsChanged value)? termsChanged,
     TResult Function(_FeeChanged value)? feeChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PerChanged value)? perChanged,
     TResult Function(Save value)? save,
     required TResult orElse(),
   }) {
@@ -603,6 +625,7 @@ class _$_FeeChanged with DiagnosticableTreeMixin implements _FeeChanged {
     required TResult Function(String terms) termsChanged,
     required TResult Function(String fee) feeChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String value) perChanged,
     required TResult Function() save,
   }) {
     return feeChanged(fee);
@@ -616,6 +639,7 @@ class _$_FeeChanged with DiagnosticableTreeMixin implements _FeeChanged {
     TResult Function(String terms)? termsChanged,
     TResult Function(String fee)? feeChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String value)? perChanged,
     TResult Function()? save,
     required TResult orElse(),
   }) {
@@ -633,6 +657,7 @@ class _$_FeeChanged with DiagnosticableTreeMixin implements _FeeChanged {
     required TResult Function(_TermsChanged value) termsChanged,
     required TResult Function(_FeeChanged value) feeChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PerChanged value) perChanged,
     required TResult Function(Save value) save,
   }) {
     return feeChanged(this);
@@ -646,6 +671,7 @@ class _$_FeeChanged with DiagnosticableTreeMixin implements _FeeChanged {
     TResult Function(_TermsChanged value)? termsChanged,
     TResult Function(_FeeChanged value)? feeChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PerChanged value)? perChanged,
     TResult Function(Save value)? save,
     required TResult orElse(),
   }) {
@@ -741,6 +767,7 @@ class _$_PriceChanged with DiagnosticableTreeMixin implements _PriceChanged {
     required TResult Function(String terms) termsChanged,
     required TResult Function(String fee) feeChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String value) perChanged,
     required TResult Function() save,
   }) {
     return priceChanged(price);
@@ -754,6 +781,7 @@ class _$_PriceChanged with DiagnosticableTreeMixin implements _PriceChanged {
     TResult Function(String terms)? termsChanged,
     TResult Function(String fee)? feeChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String value)? perChanged,
     TResult Function()? save,
     required TResult orElse(),
   }) {
@@ -771,6 +799,7 @@ class _$_PriceChanged with DiagnosticableTreeMixin implements _PriceChanged {
     required TResult Function(_TermsChanged value) termsChanged,
     required TResult Function(_FeeChanged value) feeChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PerChanged value) perChanged,
     required TResult Function(Save value) save,
   }) {
     return priceChanged(this);
@@ -784,6 +813,7 @@ class _$_PriceChanged with DiagnosticableTreeMixin implements _PriceChanged {
     TResult Function(_TermsChanged value)? termsChanged,
     TResult Function(_FeeChanged value)? feeChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PerChanged value)? perChanged,
     TResult Function(Save value)? save,
     required TResult orElse(),
   }) {
@@ -800,6 +830,148 @@ abstract class _PriceChanged implements PriceEvent {
   String get price => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$PriceChangedCopyWith<_PriceChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$PerChangedCopyWith<$Res> {
+  factory _$PerChangedCopyWith(
+          _PerChanged value, $Res Function(_PerChanged) then) =
+      __$PerChangedCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$PerChangedCopyWithImpl<$Res> extends _$PriceEventCopyWithImpl<$Res>
+    implements _$PerChangedCopyWith<$Res> {
+  __$PerChangedCopyWithImpl(
+      _PerChanged _value, $Res Function(_PerChanged) _then)
+      : super(_value, (v) => _then(v as _PerChanged));
+
+  @override
+  _PerChanged get _value => super._value as _PerChanged;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_PerChanged(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_PerChanged with DiagnosticableTreeMixin implements _PerChanged {
+  const _$_PerChanged(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PriceEvent.perChanged(value: $value)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PriceEvent.perChanged'))
+      ..add(DiagnosticsProperty('value', value));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _PerChanged &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$PerChangedCopyWith<_PerChanged> get copyWith =>
+      __$PerChangedCopyWithImpl<_PerChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Listing listing) add,
+    required TResult Function(String desc) descChanged,
+    required TResult Function(String terms) termsChanged,
+    required TResult Function(String fee) feeChanged,
+    required TResult Function(String price) priceChanged,
+    required TResult Function(String value) perChanged,
+    required TResult Function() save,
+  }) {
+    return perChanged(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Listing listing)? add,
+    TResult Function(String desc)? descChanged,
+    TResult Function(String terms)? termsChanged,
+    TResult Function(String fee)? feeChanged,
+    TResult Function(String price)? priceChanged,
+    TResult Function(String value)? perChanged,
+    TResult Function()? save,
+    required TResult orElse(),
+  }) {
+    if (perChanged != null) {
+      return perChanged(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Add value) add,
+    required TResult Function(_DescChanged value) descChanged,
+    required TResult Function(_TermsChanged value) termsChanged,
+    required TResult Function(_FeeChanged value) feeChanged,
+    required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PerChanged value) perChanged,
+    required TResult Function(Save value) save,
+  }) {
+    return perChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Add value)? add,
+    TResult Function(_DescChanged value)? descChanged,
+    TResult Function(_TermsChanged value)? termsChanged,
+    TResult Function(_FeeChanged value)? feeChanged,
+    TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PerChanged value)? perChanged,
+    TResult Function(Save value)? save,
+    required TResult orElse(),
+  }) {
+    if (perChanged != null) {
+      return perChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PerChanged implements PriceEvent {
+  const factory _PerChanged(String value) = _$_PerChanged;
+
+  String get value => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$PerChangedCopyWith<_PerChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -850,6 +1022,7 @@ class _$Save with DiagnosticableTreeMixin implements Save {
     required TResult Function(String terms) termsChanged,
     required TResult Function(String fee) feeChanged,
     required TResult Function(String price) priceChanged,
+    required TResult Function(String value) perChanged,
     required TResult Function() save,
   }) {
     return save();
@@ -863,6 +1036,7 @@ class _$Save with DiagnosticableTreeMixin implements Save {
     TResult Function(String terms)? termsChanged,
     TResult Function(String fee)? feeChanged,
     TResult Function(String price)? priceChanged,
+    TResult Function(String value)? perChanged,
     TResult Function()? save,
     required TResult orElse(),
   }) {
@@ -880,6 +1054,7 @@ class _$Save with DiagnosticableTreeMixin implements Save {
     required TResult Function(_TermsChanged value) termsChanged,
     required TResult Function(_FeeChanged value) feeChanged,
     required TResult Function(_PriceChanged value) priceChanged,
+    required TResult Function(_PerChanged value) perChanged,
     required TResult Function(Save value) save,
   }) {
     return save(this);
@@ -893,6 +1068,7 @@ class _$Save with DiagnosticableTreeMixin implements Save {
     TResult Function(_TermsChanged value)? termsChanged,
     TResult Function(_FeeChanged value)? feeChanged,
     TResult Function(_PriceChanged value)? priceChanged,
+    TResult Function(_PerChanged value)? perChanged,
     TResult Function(Save value)? save,
     required TResult orElse(),
   }) {
@@ -914,8 +1090,10 @@ class _$PriceStateTearOff {
   _PriceState call(
       {required TextEditingController descController,
       required String desc,
-      required TextEditingController termsController,
-      required String terms,
+      required TextEditingController termsDurationController,
+      required String termsDuration,
+      required List<String> perValues,
+      required String perValue,
       required TextEditingController feeController,
       required String fee,
       required TextEditingController priceController,
@@ -923,13 +1101,16 @@ class _$PriceStateTearOff {
       double? complete,
       required bool isSubmitting,
       required bool isSuccess,
+      required bool isedited,
       required String failureMessage,
       required Listing listing}) {
     return _PriceState(
       descController: descController,
       desc: desc,
-      termsController: termsController,
-      terms: terms,
+      termsDurationController: termsDurationController,
+      termsDuration: termsDuration,
+      perValues: perValues,
+      perValue: perValue,
       feeController: feeController,
       fee: fee,
       priceController: priceController,
@@ -937,6 +1118,7 @@ class _$PriceStateTearOff {
       complete: complete,
       isSubmitting: isSubmitting,
       isSuccess: isSuccess,
+      isedited: isedited,
       failureMessage: failureMessage,
       listing: listing,
     );
@@ -951,9 +1133,12 @@ mixin _$PriceState {
   TextEditingController get descController =>
       throw _privateConstructorUsedError;
   String get desc => throw _privateConstructorUsedError;
-  TextEditingController get termsController =>
+  TextEditingController get termsDurationController =>
       throw _privateConstructorUsedError;
-  String get terms => throw _privateConstructorUsedError;
+  String get termsDuration => throw _privateConstructorUsedError; // 6 months
+  List<String> get perValues =>
+      throw _privateConstructorUsedError; // per night or per month
+  String get perValue => throw _privateConstructorUsedError;
   TextEditingController get feeController => throw _privateConstructorUsedError;
   String get fee => throw _privateConstructorUsedError;
   TextEditingController get priceController =>
@@ -962,6 +1147,7 @@ mixin _$PriceState {
   double? get complete => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get isSuccess => throw _privateConstructorUsedError;
+  bool get isedited => throw _privateConstructorUsedError;
   String get failureMessage => throw _privateConstructorUsedError;
   Listing get listing => throw _privateConstructorUsedError;
 
@@ -978,8 +1164,10 @@ abstract class $PriceStateCopyWith<$Res> {
   $Res call(
       {TextEditingController descController,
       String desc,
-      TextEditingController termsController,
-      String terms,
+      TextEditingController termsDurationController,
+      String termsDuration,
+      List<String> perValues,
+      String perValue,
       TextEditingController feeController,
       String fee,
       TextEditingController priceController,
@@ -987,6 +1175,7 @@ abstract class $PriceStateCopyWith<$Res> {
       double? complete,
       bool isSubmitting,
       bool isSuccess,
+      bool isedited,
       String failureMessage,
       Listing listing});
 }
@@ -1003,8 +1192,10 @@ class _$PriceStateCopyWithImpl<$Res> implements $PriceStateCopyWith<$Res> {
   $Res call({
     Object? descController = freezed,
     Object? desc = freezed,
-    Object? termsController = freezed,
-    Object? terms = freezed,
+    Object? termsDurationController = freezed,
+    Object? termsDuration = freezed,
+    Object? perValues = freezed,
+    Object? perValue = freezed,
     Object? feeController = freezed,
     Object? fee = freezed,
     Object? priceController = freezed,
@@ -1012,6 +1203,7 @@ class _$PriceStateCopyWithImpl<$Res> implements $PriceStateCopyWith<$Res> {
     Object? complete = freezed,
     Object? isSubmitting = freezed,
     Object? isSuccess = freezed,
+    Object? isedited = freezed,
     Object? failureMessage = freezed,
     Object? listing = freezed,
   }) {
@@ -1024,13 +1216,21 @@ class _$PriceStateCopyWithImpl<$Res> implements $PriceStateCopyWith<$Res> {
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
               as String,
-      termsController: termsController == freezed
-          ? _value.termsController
-          : termsController // ignore: cast_nullable_to_non_nullable
+      termsDurationController: termsDurationController == freezed
+          ? _value.termsDurationController
+          : termsDurationController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
-      terms: terms == freezed
-          ? _value.terms
-          : terms // ignore: cast_nullable_to_non_nullable
+      termsDuration: termsDuration == freezed
+          ? _value.termsDuration
+          : termsDuration // ignore: cast_nullable_to_non_nullable
+              as String,
+      perValues: perValues == freezed
+          ? _value.perValues
+          : perValues // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      perValue: perValue == freezed
+          ? _value.perValue
+          : perValue // ignore: cast_nullable_to_non_nullable
               as String,
       feeController: feeController == freezed
           ? _value.feeController
@@ -1059,6 +1259,10 @@ class _$PriceStateCopyWithImpl<$Res> implements $PriceStateCopyWith<$Res> {
       isSuccess: isSuccess == freezed
           ? _value.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isedited: isedited == freezed
+          ? _value.isedited
+          : isedited // ignore: cast_nullable_to_non_nullable
               as bool,
       failureMessage: failureMessage == freezed
           ? _value.failureMessage
@@ -1081,8 +1285,10 @@ abstract class _$PriceStateCopyWith<$Res> implements $PriceStateCopyWith<$Res> {
   $Res call(
       {TextEditingController descController,
       String desc,
-      TextEditingController termsController,
-      String terms,
+      TextEditingController termsDurationController,
+      String termsDuration,
+      List<String> perValues,
+      String perValue,
       TextEditingController feeController,
       String fee,
       TextEditingController priceController,
@@ -1090,6 +1296,7 @@ abstract class _$PriceStateCopyWith<$Res> implements $PriceStateCopyWith<$Res> {
       double? complete,
       bool isSubmitting,
       bool isSuccess,
+      bool isedited,
       String failureMessage,
       Listing listing});
 }
@@ -1108,8 +1315,10 @@ class __$PriceStateCopyWithImpl<$Res> extends _$PriceStateCopyWithImpl<$Res>
   $Res call({
     Object? descController = freezed,
     Object? desc = freezed,
-    Object? termsController = freezed,
-    Object? terms = freezed,
+    Object? termsDurationController = freezed,
+    Object? termsDuration = freezed,
+    Object? perValues = freezed,
+    Object? perValue = freezed,
     Object? feeController = freezed,
     Object? fee = freezed,
     Object? priceController = freezed,
@@ -1117,6 +1326,7 @@ class __$PriceStateCopyWithImpl<$Res> extends _$PriceStateCopyWithImpl<$Res>
     Object? complete = freezed,
     Object? isSubmitting = freezed,
     Object? isSuccess = freezed,
+    Object? isedited = freezed,
     Object? failureMessage = freezed,
     Object? listing = freezed,
   }) {
@@ -1129,13 +1339,21 @@ class __$PriceStateCopyWithImpl<$Res> extends _$PriceStateCopyWithImpl<$Res>
           ? _value.desc
           : desc // ignore: cast_nullable_to_non_nullable
               as String,
-      termsController: termsController == freezed
-          ? _value.termsController
-          : termsController // ignore: cast_nullable_to_non_nullable
+      termsDurationController: termsDurationController == freezed
+          ? _value.termsDurationController
+          : termsDurationController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
-      terms: terms == freezed
-          ? _value.terms
-          : terms // ignore: cast_nullable_to_non_nullable
+      termsDuration: termsDuration == freezed
+          ? _value.termsDuration
+          : termsDuration // ignore: cast_nullable_to_non_nullable
+              as String,
+      perValues: perValues == freezed
+          ? _value.perValues
+          : perValues // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      perValue: perValue == freezed
+          ? _value.perValue
+          : perValue // ignore: cast_nullable_to_non_nullable
               as String,
       feeController: feeController == freezed
           ? _value.feeController
@@ -1165,6 +1383,10 @@ class __$PriceStateCopyWithImpl<$Res> extends _$PriceStateCopyWithImpl<$Res>
           ? _value.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
               as bool,
+      isedited: isedited == freezed
+          ? _value.isedited
+          : isedited // ignore: cast_nullable_to_non_nullable
+              as bool,
       failureMessage: failureMessage == freezed
           ? _value.failureMessage
           : failureMessage // ignore: cast_nullable_to_non_nullable
@@ -1182,8 +1404,10 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
   const _$_PriceState(
       {required this.descController,
       required this.desc,
-      required this.termsController,
-      required this.terms,
+      required this.termsDurationController,
+      required this.termsDuration,
+      required this.perValues,
+      required this.perValue,
       required this.feeController,
       required this.fee,
       required this.priceController,
@@ -1191,6 +1415,7 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
       this.complete,
       required this.isSubmitting,
       required this.isSuccess,
+      required this.isedited,
       required this.failureMessage,
       required this.listing});
 
@@ -1199,9 +1424,13 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
   @override
   final String desc;
   @override
-  final TextEditingController termsController;
+  final TextEditingController termsDurationController;
   @override
-  final String terms;
+  final String termsDuration;
+  @override // 6 months
+  final List<String> perValues;
+  @override // per night or per month
+  final String perValue;
   @override
   final TextEditingController feeController;
   @override
@@ -1217,13 +1446,15 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
   @override
   final bool isSuccess;
   @override
+  final bool isedited;
+  @override
   final String failureMessage;
   @override
   final Listing listing;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PriceState(descController: $descController, desc: $desc, termsController: $termsController, terms: $terms, feeController: $feeController, fee: $fee, priceController: $priceController, price: $price, complete: $complete, isSubmitting: $isSubmitting, isSuccess: $isSuccess, failureMessage: $failureMessage, listing: $listing)';
+    return 'PriceState(descController: $descController, desc: $desc, termsDurationController: $termsDurationController, termsDuration: $termsDuration, perValues: $perValues, perValue: $perValue, feeController: $feeController, fee: $fee, priceController: $priceController, price: $price, complete: $complete, isSubmitting: $isSubmitting, isSuccess: $isSuccess, isedited: $isedited, failureMessage: $failureMessage, listing: $listing)';
   }
 
   @override
@@ -1233,8 +1464,11 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
       ..add(DiagnosticsProperty('type', 'PriceState'))
       ..add(DiagnosticsProperty('descController', descController))
       ..add(DiagnosticsProperty('desc', desc))
-      ..add(DiagnosticsProperty('termsController', termsController))
-      ..add(DiagnosticsProperty('terms', terms))
+      ..add(DiagnosticsProperty(
+          'termsDurationController', termsDurationController))
+      ..add(DiagnosticsProperty('termsDuration', termsDuration))
+      ..add(DiagnosticsProperty('perValues', perValues))
+      ..add(DiagnosticsProperty('perValue', perValue))
       ..add(DiagnosticsProperty('feeController', feeController))
       ..add(DiagnosticsProperty('fee', fee))
       ..add(DiagnosticsProperty('priceController', priceController))
@@ -1242,6 +1476,7 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
       ..add(DiagnosticsProperty('complete', complete))
       ..add(DiagnosticsProperty('isSubmitting', isSubmitting))
       ..add(DiagnosticsProperty('isSuccess', isSuccess))
+      ..add(DiagnosticsProperty('isedited', isedited))
       ..add(DiagnosticsProperty('failureMessage', failureMessage))
       ..add(DiagnosticsProperty('listing', listing));
   }
@@ -1255,11 +1490,19 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
                     .equals(other.descController, descController)) &&
             (identical(other.desc, desc) ||
                 const DeepCollectionEquality().equals(other.desc, desc)) &&
-            (identical(other.termsController, termsController) ||
+            (identical(
+                    other.termsDurationController, termsDurationController) ||
+                const DeepCollectionEquality().equals(
+                    other.termsDurationController, termsDurationController)) &&
+            (identical(other.termsDuration, termsDuration) ||
                 const DeepCollectionEquality()
-                    .equals(other.termsController, termsController)) &&
-            (identical(other.terms, terms) ||
-                const DeepCollectionEquality().equals(other.terms, terms)) &&
+                    .equals(other.termsDuration, termsDuration)) &&
+            (identical(other.perValues, perValues) ||
+                const DeepCollectionEquality()
+                    .equals(other.perValues, perValues)) &&
+            (identical(other.perValue, perValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.perValue, perValue)) &&
             (identical(other.feeController, feeController) ||
                 const DeepCollectionEquality()
                     .equals(other.feeController, feeController)) &&
@@ -1279,6 +1522,9 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
             (identical(other.isSuccess, isSuccess) ||
                 const DeepCollectionEquality()
                     .equals(other.isSuccess, isSuccess)) &&
+            (identical(other.isedited, isedited) ||
+                const DeepCollectionEquality()
+                    .equals(other.isedited, isedited)) &&
             (identical(other.failureMessage, failureMessage) ||
                 const DeepCollectionEquality()
                     .equals(other.failureMessage, failureMessage)) &&
@@ -1291,8 +1537,10 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(descController) ^
       const DeepCollectionEquality().hash(desc) ^
-      const DeepCollectionEquality().hash(termsController) ^
-      const DeepCollectionEquality().hash(terms) ^
+      const DeepCollectionEquality().hash(termsDurationController) ^
+      const DeepCollectionEquality().hash(termsDuration) ^
+      const DeepCollectionEquality().hash(perValues) ^
+      const DeepCollectionEquality().hash(perValue) ^
       const DeepCollectionEquality().hash(feeController) ^
       const DeepCollectionEquality().hash(fee) ^
       const DeepCollectionEquality().hash(priceController) ^
@@ -1300,6 +1548,7 @@ class _$_PriceState with DiagnosticableTreeMixin implements _PriceState {
       const DeepCollectionEquality().hash(complete) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(isSuccess) ^
+      const DeepCollectionEquality().hash(isedited) ^
       const DeepCollectionEquality().hash(failureMessage) ^
       const DeepCollectionEquality().hash(listing);
 
@@ -1313,8 +1562,10 @@ abstract class _PriceState implements PriceState {
   const factory _PriceState(
       {required TextEditingController descController,
       required String desc,
-      required TextEditingController termsController,
-      required String terms,
+      required TextEditingController termsDurationController,
+      required String termsDuration,
+      required List<String> perValues,
+      required String perValue,
       required TextEditingController feeController,
       required String fee,
       required TextEditingController priceController,
@@ -1322,6 +1573,7 @@ abstract class _PriceState implements PriceState {
       double? complete,
       required bool isSubmitting,
       required bool isSuccess,
+      required bool isedited,
       required String failureMessage,
       required Listing listing}) = _$_PriceState;
 
@@ -1331,10 +1583,14 @@ abstract class _PriceState implements PriceState {
   @override
   String get desc => throw _privateConstructorUsedError;
   @override
-  TextEditingController get termsController =>
+  TextEditingController get termsDurationController =>
       throw _privateConstructorUsedError;
   @override
-  String get terms => throw _privateConstructorUsedError;
+  String get termsDuration => throw _privateConstructorUsedError;
+  @override // 6 months
+  List<String> get perValues => throw _privateConstructorUsedError;
+  @override // per night or per month
+  String get perValue => throw _privateConstructorUsedError;
   @override
   TextEditingController get feeController => throw _privateConstructorUsedError;
   @override
@@ -1350,6 +1606,8 @@ abstract class _PriceState implements PriceState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   @override
   bool get isSuccess => throw _privateConstructorUsedError;
+  @override
+  bool get isedited => throw _privateConstructorUsedError;
   @override
   String get failureMessage => throw _privateConstructorUsedError;
   @override

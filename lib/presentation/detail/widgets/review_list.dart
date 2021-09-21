@@ -1,6 +1,11 @@
+/* author: caudle-misfit
+   @2021
+*/
+
 import 'package:flutter/material.dart';
 
 import 'package:nipange/domain/review/review.dart';
+import 'package:nipange/utils/api_conn.dart';
 import 'package:nipange/utils/extensions.dart';
 
 class ReviewList extends StatelessWidget {
@@ -9,11 +14,18 @@ class ReviewList extends StatelessWidget {
     Key? key,
     required this.reviews,
   }) : super(key: key);
-  final String api = "http://172.20.10.11:5000";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Reviews')),
+      appBar: AppBar(
+        elevation: 0,
+        iconTheme: Theme.of(context).iconTheme,
+        backgroundColor: Colors.white,
+        title: Text(
+          'Reviews',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
       body: ListView(children: [
         // reviews
         Column(
@@ -34,33 +46,39 @@ class ReviewList extends StatelessWidget {
                               child: CircleAvatar(
                                 radius: 30,
                                 backgroundImage:
-                                    NetworkImage('$api/${review.user['dp']}'),
+                                    reviews[0].user['dp'].isNotEmpty
+                                        ? NetworkImage(
+                                            '$api/${reviews[0].user['dp']}')
+                                        : null,
+                                child: reviews[0].user['dp'].isEmpty
+                                    ? Text(reviews[0]
+                                        .user['username'][0]
+                                        .toUpperCase())
+                                    : null,
                               ),
                             ),
                           ),
                           //names
-                          Flexible(
+                          Expanded(
+                            flex: 2,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(review.user['firstName'],
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1),
-                                Text(review.user['lastName'],
+                                Text(review.user['username'],
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
                               ],
                             ),
                           ),
-                          Spacer(
-                            flex: 1,
-                          ),
 
                           // date
-                          Flexible(
-                            fit: FlexFit.tight,
-                            flex: 1,
-                            child: Text(review.createdAt.toReadable()),
+                          Expanded(
+                            flex: 2,
+                            child: Text(review.createdAt.toReadable(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(fontSize: 12)),
                           )
                         ],
                       ),
@@ -76,7 +94,7 @@ class ReviewList extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 5),
                       width: MediaQuery.of(context).size.width,
-                      height: 20,
+                      height: 5,
                       color: Colors.grey[200],
                     ),
                   ],

@@ -17,13 +17,8 @@ class _$LoginDetailsEventTearOff {
   const _$LoginDetailsEventTearOff();
 
   _FinishWithEmailAndPasswordPressed finishWithEmailAndPasswordPressed(
-      {required String firstname,
-      required String lastname,
-      required String phone,
-      required String email}) {
+      {required String phone, required String email}) {
     return _FinishWithEmailAndPasswordPressed(
-      firstname: firstname,
-      lastname: lastname,
       phone: phone,
       email: email,
     );
@@ -55,8 +50,7 @@ const $LoginDetailsEvent = _$LoginDetailsEventTearOff();
 mixin _$LoginDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String firstname, String lastname, String phone, String email)
+    required TResult Function(String phone, String email)
         finishWithEmailAndPasswordPressed,
     required TResult Function(String value) usernameChanged,
     required TResult Function(String value) passwordChanged,
@@ -65,8 +59,7 @@ mixin _$LoginDetailsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String firstname, String lastname, String phone, String email)?
+    TResult Function(String phone, String email)?
         finishWithEmailAndPasswordPressed,
     TResult Function(String value)? usernameChanged,
     TResult Function(String value)? passwordChanged,
@@ -119,7 +112,7 @@ abstract class _$FinishWithEmailAndPasswordPressedCopyWith<$Res> {
           _FinishWithEmailAndPasswordPressed value,
           $Res Function(_FinishWithEmailAndPasswordPressed) then) =
       __$FinishWithEmailAndPasswordPressedCopyWithImpl<$Res>;
-  $Res call({String firstname, String lastname, String phone, String email});
+  $Res call({String phone, String email});
 }
 
 /// @nodoc
@@ -137,20 +130,10 @@ class __$FinishWithEmailAndPasswordPressedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? firstname = freezed,
-    Object? lastname = freezed,
     Object? phone = freezed,
     Object? email = freezed,
   }) {
     return _then(_FinishWithEmailAndPasswordPressed(
-      firstname: firstname == freezed
-          ? _value.firstname
-          : firstname // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastname: lastname == freezed
-          ? _value.lastname
-          : lastname // ignore: cast_nullable_to_non_nullable
-              as String,
       phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -167,15 +150,8 @@ class __$FinishWithEmailAndPasswordPressedCopyWithImpl<$Res>
 class _$_FinishWithEmailAndPasswordPressed
     implements _FinishWithEmailAndPasswordPressed {
   const _$_FinishWithEmailAndPasswordPressed(
-      {required this.firstname,
-      required this.lastname,
-      required this.phone,
-      required this.email});
+      {required this.phone, required this.email});
 
-  @override
-  final String firstname;
-  @override
-  final String lastname;
   @override
   final String phone;
   @override
@@ -183,19 +159,13 @@ class _$_FinishWithEmailAndPasswordPressed
 
   @override
   String toString() {
-    return 'LoginDetailsEvent.finishWithEmailAndPasswordPressed(firstname: $firstname, lastname: $lastname, phone: $phone, email: $email)';
+    return 'LoginDetailsEvent.finishWithEmailAndPasswordPressed(phone: $phone, email: $email)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _FinishWithEmailAndPasswordPressed &&
-            (identical(other.firstname, firstname) ||
-                const DeepCollectionEquality()
-                    .equals(other.firstname, firstname)) &&
-            (identical(other.lastname, lastname) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastname, lastname)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.email, email) ||
@@ -205,8 +175,6 @@ class _$_FinishWithEmailAndPasswordPressed
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(firstname) ^
-      const DeepCollectionEquality().hash(lastname) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(email);
 
@@ -220,21 +188,19 @@ class _$_FinishWithEmailAndPasswordPressed
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String firstname, String lastname, String phone, String email)
+    required TResult Function(String phone, String email)
         finishWithEmailAndPasswordPressed,
     required TResult Function(String value) usernameChanged,
     required TResult Function(String value) passwordChanged,
     required TResult Function(String value) confirmPasswordChanged,
   }) {
-    return finishWithEmailAndPasswordPressed(firstname, lastname, phone, email);
+    return finishWithEmailAndPasswordPressed(phone, email);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String firstname, String lastname, String phone, String email)?
+    TResult Function(String phone, String email)?
         finishWithEmailAndPasswordPressed,
     TResult Function(String value)? usernameChanged,
     TResult Function(String value)? passwordChanged,
@@ -242,8 +208,7 @@ class _$_FinishWithEmailAndPasswordPressed
     required TResult orElse(),
   }) {
     if (finishWithEmailAndPasswordPressed != null) {
-      return finishWithEmailAndPasswordPressed(
-          firstname, lastname, phone, email);
+      return finishWithEmailAndPasswordPressed(phone, email);
     }
     return orElse();
   }
@@ -280,13 +245,9 @@ class _$_FinishWithEmailAndPasswordPressed
 
 abstract class _FinishWithEmailAndPasswordPressed implements LoginDetailsEvent {
   const factory _FinishWithEmailAndPasswordPressed(
-      {required String firstname,
-      required String lastname,
-      required String phone,
+      {required String phone,
       required String email}) = _$_FinishWithEmailAndPasswordPressed;
 
-  String get firstname => throw _privateConstructorUsedError;
-  String get lastname => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -359,8 +320,7 @@ class _$_UsernameChanged implements _UsernameChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String firstname, String lastname, String phone, String email)
+    required TResult Function(String phone, String email)
         finishWithEmailAndPasswordPressed,
     required TResult Function(String value) usernameChanged,
     required TResult Function(String value) passwordChanged,
@@ -372,8 +332,7 @@ class _$_UsernameChanged implements _UsernameChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String firstname, String lastname, String phone, String email)?
+    TResult Function(String phone, String email)?
         finishWithEmailAndPasswordPressed,
     TResult Function(String value)? usernameChanged,
     TResult Function(String value)? passwordChanged,
@@ -489,8 +448,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String firstname, String lastname, String phone, String email)
+    required TResult Function(String phone, String email)
         finishWithEmailAndPasswordPressed,
     required TResult Function(String value) usernameChanged,
     required TResult Function(String value) passwordChanged,
@@ -502,8 +460,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String firstname, String lastname, String phone, String email)?
+    TResult Function(String phone, String email)?
         finishWithEmailAndPasswordPressed,
     TResult Function(String value)? usernameChanged,
     TResult Function(String value)? passwordChanged,
@@ -620,8 +577,7 @@ class _$_ConfirmPasswordChanged implements _ConfirmPasswordChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String firstname, String lastname, String phone, String email)
+    required TResult Function(String phone, String email)
         finishWithEmailAndPasswordPressed,
     required TResult Function(String value) usernameChanged,
     required TResult Function(String value) passwordChanged,
@@ -633,8 +589,7 @@ class _$_ConfirmPasswordChanged implements _ConfirmPasswordChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String firstname, String lastname, String phone, String email)?
+    TResult Function(String phone, String email)?
         finishWithEmailAndPasswordPressed,
     TResult Function(String value)? usernameChanged,
     TResult Function(String value)? passwordChanged,

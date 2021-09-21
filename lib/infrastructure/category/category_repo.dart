@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:nipange/domain/category/category.dart';
 import 'package:nipange/domain/category/i_category_repo.dart';
+import 'package:nipange/utils/api_conn.dart';
 
 @LazySingleton(as: ICategoryRepo)
 class CategoryRepo implements ICategoryRepo {
-  final String api = "http://172.20.10.11:5000";
   Future<List<Category>> getAll() async {
     List<Category> categories = [];
     // craete uri
-    final uri = Uri.parse('$api/api/category');
+    final uri = Uri.parse('$api/category');
     //http get req
     final response = await http.get(
       Uri.http(uri.authority, uri.path),
@@ -22,21 +22,18 @@ class CategoryRepo implements ICategoryRepo {
 
     // check if okay response
     if (response.statusCode == 200) {
-      print(response.body);
       // decode response to list
       List bodyList = json.decode(response.body);
-      print("decoded body $bodyList");
+
       // add response to cats
       categories.addAll(
           bodyList.map((category) => Category.fromJson(json.encode(category))));
-      print("categories $categories");
+
       return categories;
     }
 
     // bad response 400
     else {
-      print(response.statusCode);
-      print(response.body);
       final map = json.decode(response.body);
       throw Exception(map['error']);
     }

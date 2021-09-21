@@ -46,8 +46,8 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       clearAll: (e) async* {
         yield state.copyWith(
           type: 'any',
-          priceRange: ['100000', '2000000'],
-          sizeRange: ['50', '100'],
+          priceRange: ['50000', '2000000'],
+          sizeRange: ['150', '10000'],
           bedroom: "any",
           bathroom: "any",
           terms: "1",

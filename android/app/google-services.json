@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "125679399605",
+    "project_id": "nipange-77a21",
+    "storage_bucket": "nipange-77a21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125679399605:android:fd4e698de53e27e29084fc",
+        "android_client_info": {
+          "package_name": "com.example.nipange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125679399605-i3uppbjape4dbmfbrr58n12qacmoha24.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nipange",
+            "certificate_hash": "e10039ec7948b2387c6fb68417ab501153c8f360"
+          }
+        },
+        {
+          "client_id": "125679399605-n0i5kp0hdd6ho5gvnd72i8sbpca4fpfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCzfvtk14mzJtelJz5XM9xrwO-PsJB5dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125679399605-n0i5kp0hdd6ho5gvnd72i8sbpca4fpfk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

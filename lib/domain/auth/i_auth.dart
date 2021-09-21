@@ -8,11 +8,11 @@ abstract class IAuth {
     required String password,
   });
 
-  Future signInWithGoogle();
+  Future<User?> signInWithGoogle(String device);
 
-  Future signInWithTwitter();
+  Future<User?> signInWithTwitter();
 
-  Future signInWithFacebook();
+  Future<User?> signInWithFacebook(String device);
 
   Future signInWithInstagram();
 
@@ -22,6 +22,11 @@ abstract class IAuth {
   Future<bool> isPhoneValid(String phone);
   Future<bool> isEmailValid(String email);
   Future resetEmail(String email);
-
+  Future changePassword({required String userId, required String password});
+// current user or null frm db
   Future<User?> getCurrentUser();
+  // current user or just user frm api
+  Future<User> getUserApi(String id);
+  Future verifyEmail({required String id, required String email});
+  Future verifyPhone({required String id, required String phone});
 }

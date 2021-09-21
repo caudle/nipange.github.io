@@ -24,20 +24,12 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   ) async* {
     yield* event.map(
       started: (e) async* {
+        state.usernameController.text = e.username;
+        state.phoneController.text = e.phone;
+        state.emailController.text = e.email;
         yield state.copyWith(
-          fnameController: TextEditingController(text: e.fname),
-          lnameController: TextEditingController(text: e.lname),
-          usernameController: TextEditingController(text: e.username),
-          phoneController: TextEditingController(text: e.phone),
-          emailController: TextEditingController(text: e.email),
           id: e.id,
         );
-      },
-      fnameChanged: (e) async* {
-        yield state.copyWith(saved: false, isSuccess: false);
-      },
-      lnameChanged: (e) async* {
-        yield state.copyWith(saved: false, isSuccess: false);
       },
       phoneChanged: (e) async* {
         yield state.copyWith(saved: false, isSuccess: false);
@@ -48,6 +40,9 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
       emailChanged: (e) async* {
         yield state.copyWith(saved: false, isSuccess: false);
       },
+      discard: (e) async* {
+        yield state.copyWith(saved: true, isSuccess: false);
+      },
       edit: (e) async* {
         // loading state
         yield state.copyWith(isSubmit: true, saved: false, isSuccess: false);
@@ -56,8 +51,6 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
           // update user to server
           User user = await iUserRepo.updateUser(
             id: e.id,
-            fname: state.fnameController.value.text,
-            lname: state.lnameController.value.text,
             phone: state.phoneController.value.text,
             email: state.emailController.value.text,
             username: state.usernameController.value.text,
@@ -67,8 +60,6 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
           yield state.copyWith(
               isSubmit: false, isSuccess: true, saved: true, failure: '');
           // chng txt field
-          state.fnameController.text = user.firstName;
-          state.lnameController.text = user.lastName;
           state.phoneController.text = user.phone;
           state.emailController.text = user.email;
           state.usernameController.text = user.username;
@@ -82,8 +73,6 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   }
 
   void dispose() {
-    state.fnameController.dispose();
-    state.lnameController.dispose();
     state.usernameController.dispose();
     state.phoneController.dispose();
     state.emailController.dispose();

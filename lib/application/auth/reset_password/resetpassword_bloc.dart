@@ -19,6 +19,36 @@ class ResetpasswordBloc extends Bloc<ResetpasswordEvent, ResetpasswordState> {
   Stream<ResetpasswordState> mapEventToState(
     ResetpasswordEvent event,
   ) async* {
-    yield* event.map(reset: (e) async* {});
+    yield* event.map(
+      passwordChanged: (e) async* {
+        yield state.copyWith(
+            password: e.value, isSuccess: false, failureMessage: '');
+      },
+      confirmChanged: (e) async* {
+        yield state.copyWith(
+            confirm: e.value, isSuccess: false, failureMessage: '');
+      },
+      reset: (e) async* {
+        yield state.copyWith(
+            isLoading: true, isSuccess: false, failureMessage: '');
+        final result = await iAuth.changePassword(
+            userId: e.id, password: state.password.trim());
+        if (result == null) {
+          // success
+          yield state.copyWith(
+            isSuccess: true,
+            isLoading: false,
+            failureMessage: '',
+          );
+        } else {
+          // failed
+          yield state.copyWith(
+            isSuccess: false,
+            isLoading: false,
+            failureMessage: 'password change failed, please try again',
+          );
+        }
+      },
+    );
   }
 }

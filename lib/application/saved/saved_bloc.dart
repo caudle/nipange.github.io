@@ -5,8 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nipange/domain/auth/i_auth.dart';
 import 'package:nipange/domain/user/user.dart';
+import 'package:nipange/utils/api_conn.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 part 'saved_event.dart';
 part 'saved_state.dart';

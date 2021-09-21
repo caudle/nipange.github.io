@@ -20,19 +20,30 @@ class ForgotPasswordBloc
   Stream<ForgotPasswordState> mapEventToState(
     ForgotPasswordEvent event,
   ) async* {
-    yield* event.map(send: (e) async* {
-      print('event');
-      yield state.copyWith(isLoading: true);
+    yield* event.map(
+      emailChanged: (e) async* {
+        yield state.copyWith(
+          isSuccess: false,
+          email: e.email,
+          failureMessage: '',
+          isLoading: false,
+        );
+      },
+      send: (e) async* {
+        print('event');
+        yield state.copyWith(isLoading: true, isSuccess: false);
 
-      final result = await iAuth.resetEmail(state.emailController.value.text);
-      if (result == null) {
-        yield state.copyWith(
-            isSuccess: true, failureMessage: '', isLoading: false);
-      } else
-        yield state.copyWith(
-            isSuccess: false, failureMessage: "$result", isLoading: false);
-    }, timeOut: (e) async* {
-      yield state.copyWith(isSuccess: false);
-    });
+        final result = await iAuth.resetEmail(state.email);
+        if (result == null) {
+          yield state.copyWith(
+              isSuccess: true, failureMessage: '', isLoading: false);
+        } else
+          yield state.copyWith(
+              isSuccess: false, failureMessage: "$result", isLoading: false);
+      },
+      timeOut: (e) async* {
+        yield state.copyWith(isSuccess: false);
+      },
+    );
   }
 }

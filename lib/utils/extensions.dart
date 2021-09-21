@@ -4,7 +4,7 @@ extension StringExtension on String {
 
 extension DateTimeExtension on DateTime {
   String toReadable() {
-    return "${this.day}.${monthToString(this.month)}.${this.year}";
+    return "${this.day} . ${monthToString(this.month)} . ${this.year}";
   }
 
   String monthToString(int month) {

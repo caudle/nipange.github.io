@@ -3,17 +3,16 @@ import 'package:nipange/domain/search/i_search_repo.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:nipange/utils/api_conn.dart';
 
 @LazySingleton(as: ISearchRepo)
 class SearchRepo implements ISearchRepo {
-  final String api = "http://172.20.10.11:5000";
-
 // search
   @override
   Future<List<Listing>> search(String search) async {
     List<Listing> listings = [];
     //create uri
-    final uri = Uri.parse('$api/api/listing/search/$search');
+    final uri = Uri.parse('$api/listing/search/$search');
     //http get req
     final response = await http.get(
       Uri.http(uri.authority, uri.path),
@@ -48,7 +47,7 @@ class SearchRepo implements ISearchRepo {
   @override
   Future<List<String>> getFilter(String filter) async {
     //create uri
-    final uri = Uri.parse('$api/api/filter/$filter');
+    final uri = Uri.parse('$api/filter/$filter');
     //http get req
     final response = await http.get(
       Uri.http(uri.authority, uri.path),
@@ -92,7 +91,7 @@ class SearchRepo implements ISearchRepo {
     print("$type, $prices, $bed, $bath, $terms, $size, $amenities");
     List<Listing> listings = [];
     //create uri
-    final uri = Uri.parse('$api/api/listing/filter');
+    final uri = Uri.parse('$api/listing/filter');
     //http get req
     final response = await http.post(
       Uri.http(uri.authority, uri.path),

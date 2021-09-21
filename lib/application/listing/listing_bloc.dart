@@ -19,9 +19,26 @@ class ListingBloc extends Bloc<ListingEvent, ListingState> {
   Stream<ListingState> mapEventToState(
     ListingEvent event,
   ) async* {
-    yield* event.map(fetching: (e) async* {
-      yield state.copyWith(
-          listings: iListingRepo.getAllByUser(userId: e.userId));
-    });
+    yield* event.map(
+      fetching: (e) async* {
+        yield state.copyWith(
+            listings: iListingRepo.getAllByUser(userId: e.userId),
+            isdeleted: false);
+      },
+      deleted: (e) async* {
+        // delete listing
+        try {
+          await iListingRepo.delete(listingId: e.listingId, userId: e.userId);
+          yield state.copyWith(
+              listings: iListingRepo.getAllByUser(userId: e.userId),
+              isdeleted: true,
+              deletedmessage: 'Listing deleted successfully');
+        } catch (err) {
+          yield state.copyWith(
+              isdeleted: true,
+              deletedmessage: 'Something went wrong,try again');
+        }
+      },
+    );
   }
 }

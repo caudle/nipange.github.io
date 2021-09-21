@@ -26,35 +26,61 @@ class PriceBloc extends Bloc<PriceEvent, PriceState> {
         // add listing to state
         state.descController.text =
             e.listing.description != null ? e.listing.description! : '';
-        state.termsController.text =
-            e.listing.terms != null ? e.listing.terms.toString() : '';
+        state.termsDurationController.text =
+            e.listing.terms != null && e.listing.terms!['duration'] != null
+                ? e.listing.terms!['duration'].toString()
+                : '';
+        final value = e.listing.terms != null
+            ? e.listing.terms!['per'].toString()
+            : 'month';
         state.feeController.text =
             e.listing.fee != null ? e.listing.fee.toString() : '';
         state.priceController.text =
             e.listing.price != null ? e.listing.price!.toStringAsFixed(2) : '';
-        yield state.copyWith(listing: e.listing);
+        yield state.copyWith(
+            listing: e.listing,
+            perValue: value,
+            isSuccess: false,
+            isedited: false);
       },
       descChanged: (e) async* {
-        yield state.copyWith(desc: e.desc, isSuccess: false);
+        yield state.copyWith(desc: e.desc, isSuccess: false, isedited: true);
       },
       termsChanged: (e) async* {
-        yield state.copyWith(terms: e.terms, isSuccess: false);
+        yield state.copyWith(
+            termsDuration: e.terms, isSuccess: false, isedited: true);
+      },
+      perChanged: (e) async* {
+        yield state.copyWith(
+            perValue: e.value, isSuccess: false, isedited: true);
       },
       feeChanged: (e) async* {
-        yield state.copyWith(fee: e.fee, isSuccess: false);
+        yield state.copyWith(fee: e.fee, isSuccess: false, isedited: true);
       },
       priceChanged: (e) async* {
-        yield state.copyWith(price: e.price, isSuccess: false);
+        yield state.copyWith(price: e.price, isSuccess: false, isedited: true);
       },
       save: (e) async* {
-        yield state.copyWith(isSubmitting: true, isSuccess: false);
+        yield state.copyWith(
+            isSubmitting: true, isSuccess: false, failureMessage: '');
+        // terms
+        Map<dynamic, dynamic> terms = {
+          'per': state.perValue,
+          'duration': state.termsDurationController.value.text.isNotEmpty
+              ? int.parse(state.termsDurationController.value.text.trim())
+              : null,
+        };
         // add to db
         final result = await iListingRepo.addPrice(
           listingId: state.listing.id!,
-          desc: state.descController.value.text,
-          terms: int.parse(state.termsController.value.text),
-          fee: double.parse(state.feeController.value.text),
-          price: double.parse(state.priceController.value.text),
+          desc: state.descController.value.text.trim(),
+          terms: terms,
+          fee: state.feeController.value.text.isNotEmpty
+              ? double.parse(
+                  state.feeController.value.text.trim().replaceAll(',', ''))
+              : null,
+          price: double.parse(
+              state.priceController.value.text.trim().replaceAll(',', '')),
         );
 
         // check if success
@@ -65,6 +91,7 @@ class PriceBloc extends Bloc<PriceEvent, PriceState> {
             failureMessage: '',
             price: result.price.toString(),
             complete: result.complete,
+            isedited: false,
           );
         }
         // if failed
@@ -73,6 +100,7 @@ class PriceBloc extends Bloc<PriceEvent, PriceState> {
             isSuccess: false,
             isSubmitting: false,
             failureMessage: '$result',
+            isedited: true,
           );
       },
     );
@@ -80,7 +108,7 @@ class PriceBloc extends Bloc<PriceEvent, PriceState> {
 
   void dispose() {
     state.descController.dispose();
-    state.termsController.dispose();
+    state.termsDurationController.dispose();
     state.feeController.dispose();
     state.priceController.dispose();
   }

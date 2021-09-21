@@ -22,21 +22,61 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
   ) async* {
     yield* event.map(
       add: (e) async* {
-        if (e.listing.videos != null)
-          yield state.copyWith(
-              videos: e.listing.videos,
-              listing: e.listing,
-              isSuccess: false,
-              saved: false);
+        yield state.copyWith(
+          videos: e.listing.videos != null ? e.listing.videos! : [],
+          listing: e.listing,
+          isSuccess: false,
+          saved: false,
+          isedited: false,
+        );
       },
       video0changed: (e) async* {
         print('boc: video state before : ${state.video0}');
         print('boc: video passed: ${e.video0}');
-        yield state.copyWith(video0: e.video0, isSuccess: false, saved: false);
+        yield state.copyWith(
+          video0: e.video0,
+          isSuccess: false,
+          saved: false,
+          isedited: true,
+        );
         print('boc: video state after : ${state.video0}');
       },
       video1changed: (e) async* {
-        yield state.copyWith(video1: e.video1, isSuccess: false, saved: false);
+        yield state.copyWith(
+          video1: e.video1,
+          isSuccess: false,
+          saved: false,
+          isedited: true,
+        );
+      },
+      videoDeleted: (e) async* {
+        if (e.index == 0)
+          yield state.copyWith(
+            video0: null,
+            isSuccess: false,
+            saved: false,
+            isedited: true,
+          );
+        if (e.index == 1)
+          yield state.copyWith(
+            video1: null,
+            isSuccess: false,
+            saved: false,
+            isedited: true,
+          );
+      },
+      videosChanged: (e) async* {
+        final videos = <String>[];
+        videos.addAll(state.videos);
+        state.videostoDelete.add(videos[e.index]);
+        videos.removeAt(e.index);
+        print(state.videostoDelete);
+        yield state.copyWith(
+          videos: videos,
+          isSuccess: false,
+          saved: false,
+          isedited: true,
+        );
       },
       next: (e) async* {
         // submitting
@@ -56,15 +96,21 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
         final result = await iListingRepo.addVideos(
             listingId: state.listing.id!, videoFiles: newVideoFiles);
         print('price result: $result');
+        var delete;
+        if (state.videostoDelete.isNotEmpty) {
+          delete = await iListingRepo.deleteVideos(
+              listingId: state.listing.id!, videos: state.videostoDelete);
+        }
         // check if success
-        if (result is Listing) {
+        if (result is Listing && delete == null) {
           yield state.copyWith(
             isSuccess: true,
             saved: false,
             isSubmitting: false,
             failureMessage: '',
-            videos: result.videos,
+            videos: result.videos!,
             complete: result.complete,
+            isedited: false,
           );
         }
         // failed
@@ -74,6 +120,7 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
             saved: false,
             isSubmitting: false,
             failureMessage: '$result',
+            isedited: true,
           );
         }
       },
@@ -95,15 +142,21 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
         final result = await iListingRepo.addVideos(
             listingId: state.listing.id!, videoFiles: newVideoFiles);
         print('price result: $result');
+        var delete;
+        if (state.videostoDelete.isNotEmpty) {
+          delete = await iListingRepo.deleteVideos(
+              listingId: state.listing.id!, videos: state.videostoDelete);
+        }
         // check if success
-        if (result is Listing) {
+        if (result is Listing && delete == null) {
           yield state.copyWith(
             isSuccess: false,
             saved: true,
             isSubmitting: false,
             failureMessage: '',
-            videos: result.videos,
+            videos: result.videos!,
             complete: result.complete,
+            isedited: false,
           );
         }
         // failed
@@ -113,6 +166,7 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
             saved: false,
             isSubmitting: false,
             failureMessage: '$result',
+            isedited: true,
           );
         }
       },

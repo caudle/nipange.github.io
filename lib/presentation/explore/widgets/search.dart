@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nipange/application/detail/detail_bloc.dart';
 import 'package:nipange/application/listing_item/item_bloc.dart';
 
 import 'package:nipange/application/search/search_bloc.dart';
 import 'package:nipange/core/theme.dart';
 import 'package:nipange/domain/listing/listing.dart';
 import 'package:nipange/domain/user/user.dart';
+import 'package:nipange/presentation/detail/detail_page.dart';
 import 'package:nipange/presentation/explore/widgets/listing_item.dart';
 import 'package:nipange/widgets/error.dart';
 import 'package:nipange/widgets/progress_indicator.dart';
@@ -27,41 +29,52 @@ class SearchPage extends StatelessWidget {
           builder: (context, state) {
             return ListView(
               children: [
+                // close icon
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back),
+                  ),
+                  alignment: Alignment.topLeft,
+                ),
                 // search row
+
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 8.0, right: 8, bottom: 18, top: 18),
+                      left: 8.0, right: 2, bottom: 8, top: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       // search field
                       Flexible(
                         flex: 3,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: IconTheme(
-                                data: Theme.of(context).iconTheme,
-                                child: Icon(Icons.search)),
-                            labelText: 'name or location',
-                            contentPadding: EdgeInsets.all(8),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor),
+                        child: Container(
+                          height: 45,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              prefixIcon: IconTheme(
+                                  data: Theme.of(context).iconTheme,
+                                  child: Icon(Icons.search)),
+                              hintText: 'enter name or location',
+                              contentPadding: EdgeInsets.all(8),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              errorBorder: OutlineInputBorder(),
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor),
-                            ),
-                            errorBorder: OutlineInputBorder(),
+                            autofocus: true,
+                            onChanged: (value) {
+                              context
+                                  .read<SearchBloc>()
+                                  .add(SearchEvent.changed(value));
+                            },
                           ),
-                          autofocus: true,
-                          onChanged: (value) {
-                            context
-                                .read<SearchBloc>()
-                                .add(SearchEvent.changed(value));
-                          },
                         ),
                       ),
 
@@ -78,7 +91,13 @@ class SearchPage extends StatelessWidget {
                           child: Text('search'),
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
-                                  AppColor.kprimaryDarkColor)),
+                                  AppColor.kprimaryLightColor),
+                              minimumSize:
+                                  MaterialStateProperty.all(Size(68, 43)),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                              )),
                         ),
                       )
                     ],
@@ -87,6 +106,7 @@ class SearchPage extends StatelessWidget {
 
                 // searched listings
                 FutureBuilder<List<Listing>>(
+                    key: UniqueKey(),
                     future: state.futureListings,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
@@ -96,14 +116,47 @@ class SearchPage extends StatelessWidget {
                                 child: Column(
                                   children: snapshot.data!
                                       .map(
-                                        (listing) => BlocProvider(
-                                          key: UniqueKey(),
-                                          create: (context) =>
-                                              getIt<ItemBloc>(),
-                                          child: ListingItem(
-                                            listing: listing,
-                                            routeName: '/search',
+                                        (listing) => GestureDetector(
+                                          child: BlocProvider(
+                                            key: UniqueKey(),
+                                            create: (context) =>
+                                                getIt<ItemBloc>(),
+                                            child: ListingItem(
+                                              listing: listing,
+                                              routeName: '/search',
+                                            ),
                                           ),
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    settings: RouteSettings(
+                                                        name: '/details'),
+                                                    builder: (context) {
+                                                      return BlocProvider(
+                                                        create: (context) =>
+                                                            getIt<DetailBloc>()
+                                                              ..add(DetailEvent
+                                                                  .started(
+                                                                userId: listing
+                                                                    .hostId!,
+                                                                listingId:
+                                                                    listing.id!,
+                                                                type: listing
+                                                                    .propertyType!,
+                                                                district: listing
+                                                                        .location![
+                                                                    'district'],
+                                                              )),
+                                                        child: BlocProvider(
+                                                          create: (context) =>
+                                                              getIt<ItemBloc>(),
+                                                          child: DetailsPage(
+                                                              listing: listing),
+                                                        ),
+                                                      );
+                                                    }));
+                                          },
                                         ),
                                       )
                                       .toList(),
@@ -116,8 +169,9 @@ class SearchPage extends StatelessWidget {
                                     left: 18,
                                     right: 18),
                                 child: Text(
-                                  'NO listings found',
-                                  style: Theme.of(context).textTheme.bodyText1,
+                                  'Oops no listings found, try different words or use the filter option in home page',
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                  textAlign: TextAlign.center,
                                 ),
                               );
                       } else if (snapshot.hasError) {
@@ -125,11 +179,26 @@ class SearchPage extends StatelessWidget {
                             error: snapshot.error.toString());
                       } else if (snapshot.connectionState ==
                           ConnectionState.waiting) {
-                        return KCircularProgressIndicator();
+                        return Container(
+                            alignment: Alignment.center,
+                            margin: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height / 3,
+                              left: 18,
+                              right: 18,
+                            ),
+                            child: KCircularProgressIndicator());
                       }
                       return Container(
-                        color: Colors.grey[200],
-                        height: 300,
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 3,
+                          left: 18,
+                          right: 18,
+                        ),
+                        child: Text(
+                          'Search',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
                       );
                     }),
               ],

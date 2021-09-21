@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:nipange/domain/package/package.dart';
 
 class Listing {
   String? id;
@@ -14,16 +15,17 @@ class Listing {
   double? price;
   double? size;
   double? fee;
-  int? terms;
   int? likes;
   int? views;
   Map<dynamic, dynamic>? location;
+  Map<dynamic, dynamic>? terms;
   List<dynamic>? reviews;
   List<String>? photos;
   List<String>? videos;
   List<String>? amenities;
   DateTime? createdAt;
   double? complete;
+  Package? package;
   Listing({
     this.id,
     this.hostId,
@@ -46,6 +48,7 @@ class Listing {
     this.amenities,
     this.createdAt,
     this.complete,
+    this.package,
   });
 
   Listing copyWith({
@@ -60,7 +63,7 @@ class Listing {
     double? price,
     double? size,
     double? fee,
-    int? terms,
+    Map<dynamic, dynamic>? terms,
     int? likes,
     int? views,
     Map<dynamic, dynamic>? location,
@@ -70,6 +73,7 @@ class Listing {
     List<String>? amenities,
     DateTime? createdAt,
     double? complete,
+    Package? package,
   }) {
     return Listing(
       id: id ?? this.id,
@@ -93,6 +97,7 @@ class Listing {
       amenities: amenities ?? this.amenities,
       createdAt: createdAt ?? this.createdAt,
       complete: complete ?? this.complete,
+      package: package ?? this.package,
     );
   }
 
@@ -119,6 +124,7 @@ class Listing {
       'amenities': amenities,
       'createdAt': createdAt,
       'complete': complete,
+      'package': package,
     };
   }
 
@@ -145,6 +151,7 @@ class Listing {
       amenities: List<String>.from(map['amenities']),
       createdAt: DateTime.parse(map['createdAt']),
       complete: map['complete'].toDouble(),
+      package: Package.fromMap(map['package']),
     );
   }
 
@@ -155,7 +162,7 @@ class Listing {
 
   @override
   String toString() {
-    return 'Listing(id: $id, hostId: $hostId, name: $name, building: $building, propertyType: $propertyType, description: $description, bedroom: $bedroom, bathroom: $bathroom, price: $price, size: $size, fee: $fee, terms: $terms, likes: $likes, views: $views, location: $location, reviews: $reviews, photos: $photos, videos: $videos, amenities: $amenities, createdAt: $createdAt, complete: $complete)';
+    return 'Listing(id: $id, hostId: $hostId, name: $name, building: $building, propertyType: $propertyType, description: $description, bedroom: $bedroom, bathroom: $bathroom, price: $price, size: $size, fee: $fee, terms: $terms, likes: $likes, views: $views, location: $location, reviews: $reviews, photos: $photos, videos: $videos, amenities: $amenities, createdAt: $createdAt, complete: $complete, package: $package)';
   }
 
   @override
@@ -183,6 +190,7 @@ class Listing {
         listEquals(other.videos, videos) &&
         listEquals(other.amenities, amenities) &&
         other.createdAt == createdAt &&
+        other.package == package &&
         other.complete == complete;
   }
 
@@ -208,6 +216,7 @@ class Listing {
         videos.hashCode ^
         amenities.hashCode ^
         createdAt.hashCode ^
+        package.hashCode ^
         complete.hashCode;
   }
 }

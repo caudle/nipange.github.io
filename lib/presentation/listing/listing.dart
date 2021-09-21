@@ -7,27 +7,24 @@ import 'package:nipange/presentation/listing/widgets/listing_widget.dart';
 import 'package:nipange/widgets/signup_widget.dart';
 
 class ListingPage extends StatelessWidget {
-  static int index = 0;
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<AuthBloc>().state.user;
     return Scaffold(
-      body: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, state) {
-          if (state.user != null)
-            return BlocProvider(
-              create: (context) => getIt<ListingBloc>()
-                ..add(ListingEvent.fetching(state.user!.id)),
-              child: ListingWidget(),
-            );
-          else
-            return SignUpWidget(
-              gotoRoute: 'host',
-              title: 'listings',
-              caption: 'your listing will appear here',
-              icon: Icons.apartment,
-            );
-        },
-      ),
-    );
+        body: user != null
+            ? BlocProvider(
+                create: (context) =>
+                    getIt<ListingBloc>()..add(ListingEvent.fetching(user.id)),
+                child: ListingWidget(
+                  userId: user.id,
+                ),
+              )
+            : SignUpWidget(
+                gotoRoute: 'host',
+                title: 'listings',
+                caption: 'your listings will appear here',
+                icon: Icons.apartment,
+                isaction: false,
+              ));
   }
 }

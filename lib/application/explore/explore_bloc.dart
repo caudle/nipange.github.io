@@ -9,7 +9,6 @@ import 'package:nipange/domain/category/i_category_repo.dart';
 import 'package:nipange/domain/listing/i_listing_repo.dart';
 import 'package:nipange/domain/listing/listing.dart';
 import 'package:nipange/domain/user/i_user_repo.dart';
-import 'package:nipange/domain/user/user.dart';
 
 part 'explore_event.dart';
 part 'explore_state.dart';
@@ -38,7 +37,6 @@ class ExploreBloc extends Bloc<ExploreEvent, ExploreState> {
         yield state.copyWith(categories: categories, listings: apartments);
       },
       fetched: (e) async* {
-        // fetch listngs
         Future<List<Listing>> listings = iListingRepo.getAllByType(e.type);
         yield state.copyWith(listings: listings, property: e.type);
       },

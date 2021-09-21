@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:nipange/application/auth/auth_check/auth_bloc.dart';
 import 'package:nipange/application/listing_item/item_bloc.dart';
+
 import 'package:nipange/core/theme.dart';
 
 import 'package:nipange/domain/listing/listing.dart';
@@ -12,6 +15,8 @@ import 'package:nipange/injector.dart';
 
 import 'package:nipange/presentation/detail/widgets/report.dart';
 import 'package:nipange/presentation/detail/widgets/review_list.dart';
+import 'package:nipange/presentation/explore/widgets/listing_item.dart';
+import 'package:nipange/utils/api_conn.dart';
 import 'package:nipange/utils/common.dart';
 import 'package:nipange/widgets/error.dart';
 import 'package:nipange/widgets/progress_indicator.dart';
@@ -35,6 +40,7 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final detailBloc = context.read<DetailBloc>();
     final user = context.watch<AuthBloc>().state.user;
+
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -51,7 +57,7 @@ class DetailsPage extends StatelessWidget {
             // name
             _buildname(context: context, listing: listing),
             //star row
-            _buildStarRow(context: context, listing: listing),
+            _buildFirstRow(context: context, listing: listing),
             _buildShadowSpace(context),
             // propert type
             _buildPropertyType(context: context, listing: listing),
@@ -61,6 +67,12 @@ class DetailsPage extends StatelessWidget {
             if (listing.size != null)
               _buildSize(context: context, listing: listing),
             if (listing.size == null) _buildNoSize(context),
+            // price
+            _buildPrice(context: context, listing: listing),
+            // terms
+            if (listing.terms!['duration'] != null)
+              _buildTerms(context: context, listing: listing),
+
             _buildShadowSpace(context),
             // desc
             _buildDescription(context: context, listing: listing),
@@ -78,6 +90,10 @@ class DetailsPage extends StatelessWidget {
             _buildReportListing(context: context, listing: listing),
             _buildShadowSpace(context),
             _buildHostProfile(context: context, listing: listing),
+            _buildShadowSpace(context),
+            // more
+            _buildMoreTitle(context),
+            _buildMore(context: context),
           ],
         ),
       ),
@@ -96,16 +112,13 @@ Widget _buildVideos(
       SliverPadding(
     padding: EdgeInsets.only(top: 0),
     sliver: SliverToBoxAdapter(
-      child: Stack(
-        children: [
-          //player
-          ConstrainedBox(
-            constraints: BoxConstraints(
-                minWidth: MediaQuery.of(context).size.width,
-                maxWidth: MediaQuery.of(context).size.width,
-                minHeight: 230,
-                maxHeight: 230),
-            child: PageView.builder(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 230,
+        child: Stack(
+          children: [
+            //player
+            PageView.builder(
                 itemCount: listing.videos!.length,
                 itemBuilder: (context, index) {
                   return VideoWidget(
@@ -116,88 +129,81 @@ Widget _buildVideos(
                     autoplay: true,
                   );
                 }),
-          ),
 
-          // dots
-          if (listing.videos!.length > 1)
-            Positioned(
-              bottom: 10,
-              left: (MediaQuery.of(context).size.width / 2) -
-                  (listing.videos!.length * 5),
-              child: Row(
-                children: List.generate(
-                    listing.videos!.length,
-                    (index) => Container(
-                          width: 12,
-                          height: 12,
-                          margin: EdgeInsets.only(right: 5),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.white),
-                        )),
+            // dots
+            if (listing.videos!.length > 1)
+              Positioned(
+                bottom: 10,
+                left: (MediaQuery.of(context).size.width / 2) -
+                    (listing.videos!.length * 5),
+                child: Row(
+                  children: List.generate(
+                      listing.videos!.length,
+                      (index) => Container(
+                            width: 12,
+                            height: 12,
+                            margin: EdgeInsets.only(right: 5),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.white),
+                          )),
+                ),
               ),
+
+            // fav icon
+            Positioned(
+              top: 2,
+              right: 2,
+              child: StreamBuilder<dynamic>(
+                  stream:
+                      favStream(bloc: bloc, user: user, listingId: listing.id!),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      //print(jsonDecode(snapshot.data));
+                      bool exists = jsonDecode(snapshot.data);
+                      return IconButton(
+                        onPressed: user != null
+                            ? () {
+                                exists
+                                    ? bloc.add(DetailEvent.deleteListing(
+                                        listingId: listing.id!,
+                                        userId: user.id))
+                                    : bloc.add(DetailEvent.addListing(
+                                        listingId: listing.id!,
+                                        userId: user.id));
+                              }
+                            : () {
+                                // show alert
+                                showAlertDialog(
+                                    context: context, route: '/details');
+                              },
+                        icon: Icon(
+                          exists
+                              ? Icons.favorite_rounded
+                              : Icons.favorite_outline,
+                          color:
+                              exists ? AppColor.ksecondaryColor : Colors.white,
+                          size: 30,
+                        ),
+                      );
+                    }
+                    return Container();
+                  }),
             ),
-          // share icon
-          Positioned(
-            bottom: 20,
-            right: 2,
-            child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.share,
-                  size: 30,
-                  color: Colors.white,
-                )),
-          ),
-          // fav icon
-          Positioned(
-            bottom: 80,
-            right: 2,
-            child: StreamBuilder<dynamic>(
-                stream:
-                    favStream(bloc: bloc, user: user, listingId: listing.id!),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    //print(jsonDecode(snapshot.data));
-                    bool exists = jsonDecode(snapshot.data);
-                    return IconButton(
-                      onPressed: user != null
-                          ? () {
-                              exists
-                                  ? bloc.add(DetailEvent.deleteListing(
-                                      listingId: listing.id!, userId: user.id))
-                                  : bloc.add(DetailEvent.addListing(
-                                      listingId: listing.id!, userId: user.id));
-                            }
-                          : () {
-                              // show alert
-                              showAlertDialog(
-                                  context: context, route: '/details');
-                            },
-                      icon: Icon(
-                        exists
-                            ? Icons.favorite_rounded
-                            : Icons.favorite_outline,
-                        color: exists ? AppColor.ksecondaryColor : Colors.white,
-                      ),
-                    );
-                  }
-                  return Container();
-                }),
-          ),
-          // back icon
-          Align(
-            alignment: Alignment.topLeft,
-            child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 30,
-                  color: Colors.white,
-                )),
-          ),
-        ],
+            // back icon
+            Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                    color: Colors.white,
+                  )),
+            ),
+          ],
+        ),
       ),
     ),
   );
@@ -210,8 +216,10 @@ Widget _buildBuildingName(
     padding: EdgeInsets.only(left: 18, top: 20),
     child: Text(
       listing.building!.capitalize(),
-      style:
-          Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.black),
+      style: Theme.of(context)
+          .textTheme
+          .bodyText1!
+          .copyWith(color: Colors.black, fontSize: 15),
     ),
   ));
 }
@@ -228,64 +236,18 @@ Widget _buildname({required BuildContext context, required Listing listing}) {
   ));
 }
 
-Widget _buildStarRow(
+Widget _buildFirstRow(
     {required BuildContext context, required Listing listing}) {
   return SliverToBoxAdapter(
     child: BlocBuilder<DetailBloc, DetailState>(
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.only(left: 14, top: 5.0, bottom: 8),
+          padding: const EdgeInsets.only(left: 18, top: 5.0, bottom: 8),
           child: Row(
             children: [
-              IconTheme(
-                data: Theme.of(context)
-                    .iconTheme
-                    .copyWith(color: AppColor.ksecondaryColor),
-                child: Icon(
-                  Icons.star,
-                ),
-              ),
-              // rate
-              StreamBuilder<dynamic>(
-                  stream: reviewStream(state: state, listingId: listing.id!),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      // convert json data to reviews
-                      List<Review> reviews = <Review>[];
-                      List bodyList = jsonDecode(snapshot.data);
-                      reviews.addAll(bodyList.map(
-                          (review) => Review.fromJson(json.encode(review))));
-                      return Flexible(
-                        child: Text(
-                          "${getRating(reviews).toStringAsFixed(1)} (${reviews.length})",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1!
-                              .copyWith(color: Colors.black54),
-                        ),
-                      );
-                    } else if (snapshot.hasError) {
-                      return Flexible(
-                        child:
-                            CustomErrorWidget(error: snapshot.error.toString()),
-                      );
-                    }
-                    return Container();
-                  }),
-              // dot
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                width: 4,
-                height: 4,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.black),
-              ),
               Text(
                 "${listing.location!['region'].toString().capitalize()}",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(color: Colors.black54),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -296,10 +258,7 @@ Widget _buildStarRow(
               ),
               Text(
                 "${listing.location!['district'].toString().capitalize()}",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(color: Colors.black54),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
             ],
           ),
@@ -381,9 +340,9 @@ Widget _buildBathAndBed(
 Widget _buildShadowSpace(BuildContext context) {
   return SliverToBoxAdapter(
     child: Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: EdgeInsets.only(bottom: 5, top: 20),
       width: MediaQuery.of(context).size.width,
-      height: 20,
+      height: 15,
       color: Colors.grey[200],
     ),
   );
@@ -395,13 +354,58 @@ Widget _buildSize({required BuildContext context, required Listing listing}) {
       padding: const EdgeInsets.only(left: 18.0, top: 10, bottom: 10),
       child: RichText(
         text: TextSpan(
-            text: listing.size!.toString(),
+            text: listing.size!.toStringAsFixed(2),
             style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),
             children: [
               TextSpan(
-                text: "  square meter in size",
+                text: "  square feet in size",
                 style: TextStyle(
                     color: Colors.black, fontWeight: FontWeight.normal),
+              )
+            ]),
+      ),
+    ),
+  );
+}
+
+Widget _buildTerms({required BuildContext context, required Listing listing}) {
+  return SliverToBoxAdapter(
+    child: Padding(
+      padding: const EdgeInsets.only(left: 18.0, bottom: 10),
+      child: RichText(
+        text: TextSpan(
+            text: 'Terms is ',
+            style: TextStyle(color: Colors.black),
+            children: [
+              TextSpan(
+                text:
+                    '${listing.terms!['duration']} ${listing.terms!['per']} (s)',
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+              )
+            ]),
+      ),
+    ),
+  );
+}
+
+Widget _buildPrice({required BuildContext context, required Listing listing}) {
+  final currencyFormatter = NumberFormat('#,##0.00');
+  return SliverToBoxAdapter(
+    child: Padding(
+      padding: const EdgeInsets.only(left: 18.0, bottom: 10),
+      child: RichText(
+        text: TextSpan(
+            text: "${currencyFormatter.format(listing.price!)} TZS",
+            style: GoogleFonts.montserrat(
+                textStyle: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.w500)),
+            children: [
+              TextSpan(
+                text: " per ${listing.terms!['per']}",
+                style: GoogleFonts.montserrat(
+                    textStyle: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.normal)),
               )
             ]),
       ),
@@ -496,6 +500,7 @@ Widget _buildLocation(
             style: Theme.of(context).textTheme.headline6,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // location
               Expanded(
@@ -503,10 +508,9 @@ Widget _buildLocation(
                 child: Text(
                     "${listing.location!['country'].toString().capitalize()}, ${listing.location!['region'].toString().capitalize()}, ${listing.location!['district'].toString().capitalize()}, ${listing.location!['street'].toString().capitalize()}"),
               ),
-              //Spacer(),
-              SizedBox(width: 40),
+
               // map
-              Expanded(
+              Flexible(
                 child: CircleAvatar(
                   radius: 65,
                   backgroundImage: AssetImage('assets/images/map1.png'),
@@ -591,17 +595,22 @@ Widget _buildReview({required BuildContext context, required Listing listing}) {
                               padding: const EdgeInsets.only(right: 8.0),
                               child: CircleAvatar(
                                 radius: 30,
-                                backgroundImage: reviews[0].user['dp'] != null
-                                    ? NetworkImage(
-                                        '$api/${reviews[0].user['dp']}')
+                                backgroundImage:
+                                    reviews[0].user['dp'].isNotEmpty
+                                        ? NetworkImage(
+                                            '$api/${reviews[0].user['dp']}')
+                                        : null,
+                                child: reviews[0].user['dp'].isEmpty
+                                    ? Text(reviews[0]
+                                        .user['username'][0]
+                                        .toUpperCase())
                                     : null,
                               ),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(reviews[0].user['firstName']),
-                                Text(reviews[0].user['lastName']),
+                                Text(reviews[0].user['username']),
                               ],
                             )
                           ],
@@ -612,7 +621,7 @@ Widget _buildReview({required BuildContext context, required Listing listing}) {
                         padding: EdgeInsets.only(right: 18, left: 18),
                         child: Text(reviews[0].text.capitalize()),
                       ),
-                    if (reviews.length > 0)
+                    if (reviews.length > 1)
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 18, top: 28.0, right: 18, bottom: 18),
@@ -632,7 +641,7 @@ Widget _buildReview({required BuildContext context, required Listing listing}) {
                                   )),
                           style: ButtonStyle(
                               minimumSize: MaterialStateProperty.all<Size>(
-                                  Size(MediaQuery.of(context).size.width, 49)),
+                                  Size(MediaQuery.of(context).size.width, 43)),
                               shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
@@ -646,35 +655,70 @@ Widget _buildReview({required BuildContext context, required Listing listing}) {
                     // add review buttn
                     Container(
                       alignment: Alignment.center,
-                      padding: const EdgeInsets.only(right: 18, bottom: 20),
+                      padding: const EdgeInsets.only(top: 20, bottom: 8),
                       child: TextButton(
-                        onPressed: state.currentUser != null
-                            ? () {
-                                createBottomSheet(context).then((value) {
-                                  if (value != null) {
-                                    context.read<DetailBloc>().add(
-                                        DetailEvent.sendPressed(
-                                            star: value['star'],
-                                            comment: value['comment'],
-                                            listingId: listing.id!));
-                                  }
-                                });
+                        onPressed: () {
+                          if (state.currentUser != null) {
+                            createBottomSheet(context, state.commentController)
+                                .then((value) {
+                              if (value != null) {
+                                context.read<DetailBloc>().add(
+                                    DetailEvent.sendPressed(
+                                        star: value['star'],
+                                        comment: value['comment'],
+                                        listingId: listing.id!));
                               }
-                            : null,
+                            });
+                          } else {
+                            // show snackbar
+                            final snackBar = SnackBar(
+                              content: Text(
+                                'sign up to add a review',
+                                textAlign: TextAlign.center,
+                              ),
+                              duration: Duration(seconds: 10),
+                              backgroundColor:
+                                  Theme.of(context).primaryColorLight,
+                            );
+
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
+                        },
                         child: Text('Add review'),
                         style: ButtonStyle(
-                            foregroundColor:
-                                MaterialStateProperty.all(Colors.black),
-                            elevation: MaterialStateProperty.all(3),
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.white),
-                            minimumSize:
-                                MaterialStateProperty.all(Size(150, 40))),
+                          foregroundColor:
+                              MaterialStateProperty.all(Colors.black),
+                          elevation: MaterialStateProperty.all(1),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.white),
+                          minimumSize: MaterialStateProperty.all(Size(150, 40)),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                        ),
                       ),
                     ),
 
                     // loading
-                    if (state.isLoading) KCircularProgressIndicator(),
+                    if (state.isLoading)
+                      Center(child: KCircularProgressIndicator()),
+                    // error review
+                    if (state.isError)
+                      CustomErrorWidget(
+                          error: 'Adding review failed,try again'),
+                    // review sent
+                    if (state.issuccess)
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Review sent',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        color: Theme.of(context).primaryColorDark,
+                      ),
                   ],
                 );
               } else if (snapshot.hasError) {
@@ -774,8 +818,8 @@ Widget _buildReportListing(
 }
 
 //bottom sheet
-Future createBottomSheet(BuildContext context) {
-  TextEditingController commentController = TextEditingController();
+Future createBottomSheet(
+    BuildContext context, TextEditingController controller) {
   int starOne = 0;
   int starTwo = 0;
   int starThree = 0;
@@ -784,112 +828,148 @@ Future createBottomSheet(BuildContext context) {
 
   return showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
       builder: (context) {
         return StatefulBuilder(builder: (context, changeState) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Flexible(
-                flex: 3,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: commentController,
-                    keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                      hintText: 'Enter your comment here',
-                      contentPadding: EdgeInsets.all(8),
-                      enabledBorder: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
+          return Container(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: TextField(
+                      controller: controller,
+                      keyboardType: TextInputType.multiline,
+                      decoration: InputDecoration(
+                        hintText: 'Enter your comment here',
+                        contentPadding: EdgeInsets.all(15),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      maxLines: 4,
+                      onChanged: (value) {
+                        changeState(() {});
+                      },
                     ),
-                    maxLines: 6,
                   ),
                 ),
-              ),
-              Flexible(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        changeState(() {
-                          starOne = starOne == 0 ? 1 : 0;
-                        });
-                      },
-                      icon: starOne == 0
-                          ? Icon(Icons.star_border_outlined)
-                          : Icon(
-                              Icons.star,
-                            ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          color: Theme.of(context).accentColor,
+                          onPressed: () {
+                            changeState(() {
+                              starOne = starOne == 0 ? 1 : 0;
+                            });
+                          },
+                          icon: starOne == 0
+                              ? Icon(Icons.star_border_outlined, size: 50)
+                              : Icon(Icons.star, size: 50),
+                        ),
+                        IconButton(
+                          color: Theme.of(context).accentColor,
+                          onPressed: () {
+                            changeState(() {
+                              starTwo = starTwo == 0 ? 1 : 0;
+                            });
+                          },
+                          icon: starTwo == 0
+                              ? Icon(Icons.star_border_outlined, size: 50)
+                              : Icon(Icons.star, size: 50),
+                        ),
+                        IconButton(
+                          color: Theme.of(context).accentColor,
+                          onPressed: () {
+                            changeState(() {
+                              starThree = starThree == 0 ? 1 : 0;
+                            });
+                          },
+                          icon: starThree == 0
+                              ? Icon(Icons.star_border_outlined, size: 50)
+                              : Icon(Icons.star, size: 50),
+                        ),
+                        IconButton(
+                          color: Theme.of(context).accentColor,
+                          onPressed: () {
+                            changeState(() {
+                              starFour = starFour == 0 ? 1 : 0;
+                            });
+                          },
+                          icon: starFour == 0
+                              ? Icon(Icons.star_border_outlined, size: 50)
+                              : Icon(Icons.star, size: 50),
+                        ),
+                        IconButton(
+                          color: Theme.of(context).accentColor,
+                          onPressed: () {
+                            changeState(() {
+                              starFive = starFive == 0 ? 1 : 0;
+                            });
+                          },
+                          icon: starFive == 0
+                              ? Icon(Icons.star_border_outlined, size: 50)
+                              : Icon(Icons.star, size: 50),
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      onPressed: () {
-                        changeState(() {
-                          starTwo = starTwo == 0 ? 1 : 0;
-                        });
-                      },
-                      icon: starTwo == 0
-                          ? Icon(Icons.star_border_outlined)
-                          : Icon(
-                              Icons.star,
-                            ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        changeState(() {
-                          starThree = starThree == 0 ? 1 : 0;
-                        });
-                      },
-                      icon: starThree == 0
-                          ? Icon(Icons.star_border_outlined)
-                          : Icon(
-                              Icons.star,
-                            ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        changeState(() {
-                          starFour = starFour == 0 ? 1 : 0;
-                        });
-                      },
-                      icon: starFour == 0
-                          ? Icon(Icons.star_border_outlined)
-                          : Icon(
-                              Icons.star,
-                            ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        changeState(() {
-                          starFive = starFive == 0 ? 1 : 0;
-                        });
-                      },
-                      icon: starFive == 0
-                          ? Icon(Icons.star_border_outlined)
-                          : Icon(
-                              Icons.star,
-                            ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                onPressed: commentController.value.text.isNotEmpty
-                    ? () {
-                        // dismiss bottom
-                        Navigator.pop(context, {
-                          "star": starOne +
-                              starTwo +
-                              starThree +
-                              starFour +
-                              starFive,
-                          "comment": commentController.value.text,
-                        });
-                      }
-                    : null,
-                child: Text('Send'),
-              )
-            ],
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 16),
+                    child: ElevatedButton(
+                      onPressed: controller.value.text.isNotEmpty &&
+                              (starOne +
+                                      starTwo +
+                                      starThree +
+                                      starFour +
+                                      starFive) >
+                                  0
+                          ? () {
+                              // dismiss bottom
+                              Navigator.pop(context, {
+                                "star": starOne +
+                                    starTwo +
+                                    starThree +
+                                    starFour +
+                                    starFive,
+                                "comment": controller.value.text.trim(),
+                              });
+                            }
+                          : null,
+                      child: Text('Send'),
+                      style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(
+                              Size(MediaQuery.of(context).size.width, 50)),
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith((states) {
+                            if (states.contains(MaterialState.disabled))
+                              return Colors.grey;
+                            return Theme.of(context).primaryColorDark;
+                          }),
+                          elevation: MaterialStateProperty.all(6),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)))),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         });
       });
@@ -900,7 +980,8 @@ Widget _buildHostProfile(
   return // host profile
       SliverToBoxAdapter(
     child: Padding(
-      padding: const EdgeInsets.only(left: 18.0, top: 10, bottom: 30),
+      padding:
+          const EdgeInsets.only(left: 18.0, top: 10, bottom: 30, right: 18),
       child: BlocBuilder<DetailBloc, DetailState>(
         builder: (context, state) {
           return Column(
@@ -914,8 +995,10 @@ Widget _buildHostProfile(
                 ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
+                    flex: 2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -923,7 +1006,7 @@ Widget _buildHostProfile(
                           Padding(
                             padding: const EdgeInsets.only(bottom: 5),
                             child: Text(
-                              'Hosted by ${state.hostUser!.firstName.capitalize()} ${state.hostUser!.firstName.capitalize()}',
+                              'Hosted by ${state.hostUser!.username.capitalize()}',
                               style: Theme.of(context).textTheme.bodyText2,
                             ),
                           ),
@@ -938,7 +1021,7 @@ Widget _buildHostProfile(
 
                   // dp
                   if (state.hostUser != null)
-                    Expanded(
+                    Flexible(
                       child: CircleAvatar(
                         radius: 50,
                         backgroundImage: state.hostUser!.dp.isNotEmpty
@@ -952,22 +1035,7 @@ Widget _buildHostProfile(
               SizedBox(
                 height: 40,
               ),
-              // premium
-              // TODO CHECK IF USER IS PREMIUM
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(child: Icon(Icons.payment)),
-                  SizedBox(width: 40),
-                  Expanded(
-                      flex: 2,
-                      child: Text(
-                        'Premium membership',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      )),
-                  Expanded(child: Icon(Icons.done))
-                ],
-              ),
+
               // email verified
               Row(
                 children: [
@@ -1059,7 +1127,7 @@ Widget _buildBottomNav(BuildContext context) {
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(Size(100, 45)),
                     backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).primaryColorLight),
+                        Theme.of(context).primaryColorDark),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8))),
                   ),
@@ -1089,7 +1157,7 @@ Widget _buildBottomNav(BuildContext context) {
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(Size(100, 45)),
                     backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).primaryColorLight),
+                        Theme.of(context).primaryColorDark),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8))),
                   ),
@@ -1154,5 +1222,158 @@ showAlertDialog({required BuildContext context, required String route}) {
     builder: (BuildContext context) {
       return alert;
     },
+  );
+}
+
+Widget _buildMore({required BuildContext context}) {
+  return SliverToBoxAdapter(
+    child: BlocBuilder<DetailBloc, DetailState>(
+      builder: (context, state) {
+        return FutureBuilder<List<Listing>>(
+          future: state.moreListings,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final listings = snapshot.data!;
+              return listings.length > 0
+                  ? Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 450,
+                      margin: EdgeInsets.only(top: 20, bottom: 10),
+                      child: ListView.builder(
+                        itemCount: listings.length,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 450,
+                            child: GestureDetector(
+                              child: BlocProvider(
+                                create: (context) => getIt<ItemBloc>(),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: index == 0 ? 18 : 0, right: 18),
+                                  child: ListingItem(
+                                    listing: snapshot.data![index],
+                                    routeName: '/details',
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                // nav to detailspage
+                                Navigator.of(context, rootNavigator: true)
+                                    .pushReplacement(MaterialPageRoute(
+                                        settings:
+                                            RouteSettings(name: '/details'),
+                                        builder: (context) {
+                                          return BlocProvider(
+                                            create: (context) =>
+                                                getIt<DetailBloc>()
+                                                  ..add(DetailEvent.started(
+                                                    userId:
+                                                        listings[index].hostId!,
+                                                    listingId:
+                                                        listings[index].id!,
+                                                    type: listings[index]
+                                                        .propertyType!,
+                                                    district: listings[index]
+                                                        .location!['district'],
+                                                  )),
+                                            child: BlocProvider(
+                                              create: (context) =>
+                                                  getIt<ItemBloc>(),
+                                              child: DetailsPage(
+                                                  listing: listings[index]),
+                                            ),
+                                          );
+                                        }));
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  : Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 18, vertical: 20),
+                      // height: 50,
+                      //color: Colors.grey[200],
+                      child: Center(
+                        child: Text(
+                          "Oops sorry we couldn't find more like this, keep looking in explore page",
+                          style: Theme.of(context).textTheme.bodyText2,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+            } else if (snapshot.hasError) {
+              return CustomErrorWidget(error: snapshot.error!.toString());
+            }
+            return _buildListingShadow(context);
+          },
+        );
+      },
+    ),
+  );
+}
+
+Widget _buildListingShadow(BuildContext context) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: 200,
+        color: Colors.grey[200],
+        margin: const EdgeInsets.only(bottom: 5),
+      ),
+      Container(
+        width: 150,
+        height: 20,
+        color: Colors.grey[200],
+        margin: const EdgeInsets.only(bottom: 5),
+      ),
+      Container(
+        width: 100,
+        height: 20,
+        color: Colors.grey[200],
+        margin: const EdgeInsets.only(bottom: 5),
+      ),
+      Container(
+        width: 100,
+        height: 20,
+        color: Colors.grey[200],
+        margin: const EdgeInsets.only(bottom: 5),
+      ),
+      Container(
+        width: 150,
+        height: 20,
+        color: Colors.grey[200],
+        margin: const EdgeInsets.only(bottom: 5),
+      ),
+    ],
+  );
+}
+
+Widget _buildMoreTitle(BuildContext context) {
+  return SliverToBoxAdapter(
+    child: Padding(
+      padding: const EdgeInsets.only(left: 18.0, top: 30, bottom: 2, right: 2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            flex: 7,
+            child: Text(
+              'See more like this',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          Expanded(child: Icon(Icons.arrow_forward_ios))
+        ],
+      ),
+    ),
   );
 }

@@ -88,8 +88,7 @@ class AddReviewBloc extends Bloc<AddReviewEvent, AddReviewState> {
             rate: rate.toDouble(),
             user: {
               "id": state.currentUser!.id,
-              "firstName": state.currentUser!.firstName,
-              "lastName": state.currentUser!.lastName,
+              "username": state.currentUser!.username,
               "dp": state.currentUser!.dp,
             },
             createdAt: DateTime.now(),

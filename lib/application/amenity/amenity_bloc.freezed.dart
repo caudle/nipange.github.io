@@ -22,33 +22,15 @@ class _$AmenityEventTearOff {
     );
   }
 
-  _ElevatorChanged elevatorChanged(bool elevator) {
-    return _ElevatorChanged(
-      elevator,
+  _AmenityAdded amenityAdded(String amenity) {
+    return _AmenityAdded(
+      amenity,
     );
   }
 
-  _FenceChanged fenceChanged(bool fence) {
-    return _FenceChanged(
-      fence,
-    );
-  }
-
-  _ParkingChanged parkingChanged(bool parking) {
-    return _ParkingChanged(
-      parking,
-    );
-  }
-
-  _ElectricFenceChanged electricFenceChanged(bool electricFence) {
-    return _ElectricFenceChanged(
-      electricFence,
-    );
-  }
-
-  _AcChanged acChanged(bool ac) {
-    return _AcChanged(
-      ac,
+  _AmenityDeleted amenityDeleted(String amenity) {
+    return _AmenityDeleted(
+      amenity,
     );
   }
 
@@ -69,11 +51,8 @@ mixin _$AmenityEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
+    required TResult Function(String amenity) amenityAdded,
+    required TResult Function(String amenity) amenityDeleted,
     required TResult Function() save,
     required TResult Function() next,
   }) =>
@@ -81,11 +60,8 @@ mixin _$AmenityEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
+    TResult Function(String amenity)? amenityAdded,
+    TResult Function(String amenity)? amenityDeleted,
     TResult Function()? save,
     TResult Function()? next,
     required TResult orElse(),
@@ -94,11 +70,8 @@ mixin _$AmenityEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
+    required TResult Function(_AmenityAdded value) amenityAdded,
+    required TResult Function(_AmenityDeleted value) amenityDeleted,
     required TResult Function(_Save value) save,
     required TResult Function(_Next value) next,
   }) =>
@@ -106,11 +79,8 @@ mixin _$AmenityEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
+    TResult Function(_AmenityAdded value)? amenityAdded,
+    TResult Function(_AmenityDeleted value)? amenityDeleted,
     TResult Function(_Save value)? save,
     TResult Function(_Next value)? next,
     required TResult orElse(),
@@ -196,11 +166,8 @@ class _$_Add implements _Add {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
+    required TResult Function(String amenity) amenityAdded,
+    required TResult Function(String amenity) amenityDeleted,
     required TResult Function() save,
     required TResult Function() next,
   }) {
@@ -211,11 +178,8 @@ class _$_Add implements _Add {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
+    TResult Function(String amenity)? amenityAdded,
+    TResult Function(String amenity)? amenityDeleted,
     TResult Function()? save,
     TResult Function()? next,
     required TResult orElse(),
@@ -230,11 +194,8 @@ class _$_Add implements _Add {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
+    required TResult Function(_AmenityAdded value) amenityAdded,
+    required TResult Function(_AmenityDeleted value) amenityDeleted,
     required TResult Function(_Save value) save,
     required TResult Function(_Next value) next,
   }) {
@@ -245,11 +206,8 @@ class _$_Add implements _Add {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
+    TResult Function(_AmenityAdded value)? amenityAdded,
+    TResult Function(_AmenityDeleted value)? amenityDeleted,
     TResult Function(_Save value)? save,
     TResult Function(_Next value)? next,
     required TResult orElse(),
@@ -270,97 +228,216 @@ abstract class _Add implements AmenityEvent {
 }
 
 /// @nodoc
-abstract class _$ElevatorChangedCopyWith<$Res> {
-  factory _$ElevatorChangedCopyWith(
-          _ElevatorChanged value, $Res Function(_ElevatorChanged) then) =
-      __$ElevatorChangedCopyWithImpl<$Res>;
-  $Res call({bool elevator});
+abstract class _$AmenityAddedCopyWith<$Res> {
+  factory _$AmenityAddedCopyWith(
+          _AmenityAdded value, $Res Function(_AmenityAdded) then) =
+      __$AmenityAddedCopyWithImpl<$Res>;
+  $Res call({String amenity});
 }
 
 /// @nodoc
-class __$ElevatorChangedCopyWithImpl<$Res>
+class __$AmenityAddedCopyWithImpl<$Res> extends _$AmenityEventCopyWithImpl<$Res>
+    implements _$AmenityAddedCopyWith<$Res> {
+  __$AmenityAddedCopyWithImpl(
+      _AmenityAdded _value, $Res Function(_AmenityAdded) _then)
+      : super(_value, (v) => _then(v as _AmenityAdded));
+
+  @override
+  _AmenityAdded get _value => super._value as _AmenityAdded;
+
+  @override
+  $Res call({
+    Object? amenity = freezed,
+  }) {
+    return _then(_AmenityAdded(
+      amenity == freezed
+          ? _value.amenity
+          : amenity // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_AmenityAdded implements _AmenityAdded {
+  const _$_AmenityAdded(this.amenity);
+
+  @override
+  final String amenity;
+
+  @override
+  String toString() {
+    return 'AmenityEvent.amenityAdded(amenity: $amenity)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _AmenityAdded &&
+            (identical(other.amenity, amenity) ||
+                const DeepCollectionEquality().equals(other.amenity, amenity)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(amenity);
+
+  @JsonKey(ignore: true)
+  @override
+  _$AmenityAddedCopyWith<_AmenityAdded> get copyWith =>
+      __$AmenityAddedCopyWithImpl<_AmenityAdded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Listing listing) add,
+    required TResult Function(String amenity) amenityAdded,
+    required TResult Function(String amenity) amenityDeleted,
+    required TResult Function() save,
+    required TResult Function() next,
+  }) {
+    return amenityAdded(amenity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Listing listing)? add,
+    TResult Function(String amenity)? amenityAdded,
+    TResult Function(String amenity)? amenityDeleted,
+    TResult Function()? save,
+    TResult Function()? next,
+    required TResult orElse(),
+  }) {
+    if (amenityAdded != null) {
+      return amenityAdded(amenity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Add value) add,
+    required TResult Function(_AmenityAdded value) amenityAdded,
+    required TResult Function(_AmenityDeleted value) amenityDeleted,
+    required TResult Function(_Save value) save,
+    required TResult Function(_Next value) next,
+  }) {
+    return amenityAdded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Add value)? add,
+    TResult Function(_AmenityAdded value)? amenityAdded,
+    TResult Function(_AmenityDeleted value)? amenityDeleted,
+    TResult Function(_Save value)? save,
+    TResult Function(_Next value)? next,
+    required TResult orElse(),
+  }) {
+    if (amenityAdded != null) {
+      return amenityAdded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AmenityAdded implements AmenityEvent {
+  const factory _AmenityAdded(String amenity) = _$_AmenityAdded;
+
+  String get amenity => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$AmenityAddedCopyWith<_AmenityAdded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$AmenityDeletedCopyWith<$Res> {
+  factory _$AmenityDeletedCopyWith(
+          _AmenityDeleted value, $Res Function(_AmenityDeleted) then) =
+      __$AmenityDeletedCopyWithImpl<$Res>;
+  $Res call({String amenity});
+}
+
+/// @nodoc
+class __$AmenityDeletedCopyWithImpl<$Res>
     extends _$AmenityEventCopyWithImpl<$Res>
-    implements _$ElevatorChangedCopyWith<$Res> {
-  __$ElevatorChangedCopyWithImpl(
-      _ElevatorChanged _value, $Res Function(_ElevatorChanged) _then)
-      : super(_value, (v) => _then(v as _ElevatorChanged));
+    implements _$AmenityDeletedCopyWith<$Res> {
+  __$AmenityDeletedCopyWithImpl(
+      _AmenityDeleted _value, $Res Function(_AmenityDeleted) _then)
+      : super(_value, (v) => _then(v as _AmenityDeleted));
 
   @override
-  _ElevatorChanged get _value => super._value as _ElevatorChanged;
+  _AmenityDeleted get _value => super._value as _AmenityDeleted;
 
   @override
   $Res call({
-    Object? elevator = freezed,
+    Object? amenity = freezed,
   }) {
-    return _then(_ElevatorChanged(
-      elevator == freezed
-          ? _value.elevator
-          : elevator // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(_AmenityDeleted(
+      amenity == freezed
+          ? _value.amenity
+          : amenity // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-class _$_ElevatorChanged implements _ElevatorChanged {
-  const _$_ElevatorChanged(this.elevator);
+class _$_AmenityDeleted implements _AmenityDeleted {
+  const _$_AmenityDeleted(this.amenity);
 
   @override
-  final bool elevator;
+  final String amenity;
 
   @override
   String toString() {
-    return 'AmenityEvent.elevatorChanged(elevator: $elevator)';
+    return 'AmenityEvent.amenityDeleted(amenity: $amenity)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ElevatorChanged &&
-            (identical(other.elevator, elevator) ||
-                const DeepCollectionEquality()
-                    .equals(other.elevator, elevator)));
+        (other is _AmenityDeleted &&
+            (identical(other.amenity, amenity) ||
+                const DeepCollectionEquality().equals(other.amenity, amenity)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(elevator);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(amenity);
 
   @JsonKey(ignore: true)
   @override
-  _$ElevatorChangedCopyWith<_ElevatorChanged> get copyWith =>
-      __$ElevatorChangedCopyWithImpl<_ElevatorChanged>(this, _$identity);
+  _$AmenityDeletedCopyWith<_AmenityDeleted> get copyWith =>
+      __$AmenityDeletedCopyWithImpl<_AmenityDeleted>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
+    required TResult Function(String amenity) amenityAdded,
+    required TResult Function(String amenity) amenityDeleted,
     required TResult Function() save,
     required TResult Function() next,
   }) {
-    return elevatorChanged(elevator);
+    return amenityDeleted(amenity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
+    TResult Function(String amenity)? amenityAdded,
+    TResult Function(String amenity)? amenityDeleted,
     TResult Function()? save,
     TResult Function()? next,
     required TResult orElse(),
   }) {
-    if (elevatorChanged != null) {
-      return elevatorChanged(elevator);
+    if (amenityDeleted != null) {
+      return amenityDeleted(amenity);
     }
     return orElse();
   }
@@ -369,599 +446,37 @@ class _$_ElevatorChanged implements _ElevatorChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
+    required TResult Function(_AmenityAdded value) amenityAdded,
+    required TResult Function(_AmenityDeleted value) amenityDeleted,
     required TResult Function(_Save value) save,
     required TResult Function(_Next value) next,
   }) {
-    return elevatorChanged(this);
+    return amenityDeleted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
+    TResult Function(_AmenityAdded value)? amenityAdded,
+    TResult Function(_AmenityDeleted value)? amenityDeleted,
     TResult Function(_Save value)? save,
     TResult Function(_Next value)? next,
     required TResult orElse(),
   }) {
-    if (elevatorChanged != null) {
-      return elevatorChanged(this);
+    if (amenityDeleted != null) {
+      return amenityDeleted(this);
     }
     return orElse();
   }
 }
 
-abstract class _ElevatorChanged implements AmenityEvent {
-  const factory _ElevatorChanged(bool elevator) = _$_ElevatorChanged;
+abstract class _AmenityDeleted implements AmenityEvent {
+  const factory _AmenityDeleted(String amenity) = _$_AmenityDeleted;
 
-  bool get elevator => throw _privateConstructorUsedError;
+  String get amenity => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$ElevatorChangedCopyWith<_ElevatorChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$FenceChangedCopyWith<$Res> {
-  factory _$FenceChangedCopyWith(
-          _FenceChanged value, $Res Function(_FenceChanged) then) =
-      __$FenceChangedCopyWithImpl<$Res>;
-  $Res call({bool fence});
-}
-
-/// @nodoc
-class __$FenceChangedCopyWithImpl<$Res> extends _$AmenityEventCopyWithImpl<$Res>
-    implements _$FenceChangedCopyWith<$Res> {
-  __$FenceChangedCopyWithImpl(
-      _FenceChanged _value, $Res Function(_FenceChanged) _then)
-      : super(_value, (v) => _then(v as _FenceChanged));
-
-  @override
-  _FenceChanged get _value => super._value as _FenceChanged;
-
-  @override
-  $Res call({
-    Object? fence = freezed,
-  }) {
-    return _then(_FenceChanged(
-      fence == freezed
-          ? _value.fence
-          : fence // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_FenceChanged implements _FenceChanged {
-  const _$_FenceChanged(this.fence);
-
-  @override
-  final bool fence;
-
-  @override
-  String toString() {
-    return 'AmenityEvent.fenceChanged(fence: $fence)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _FenceChanged &&
-            (identical(other.fence, fence) ||
-                const DeepCollectionEquality().equals(other.fence, fence)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(fence);
-
-  @JsonKey(ignore: true)
-  @override
-  _$FenceChangedCopyWith<_FenceChanged> get copyWith =>
-      __$FenceChangedCopyWithImpl<_FenceChanged>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
-    required TResult Function() save,
-    required TResult Function() next,
-  }) {
-    return fenceChanged(fence);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
-    TResult Function()? save,
-    TResult Function()? next,
-    required TResult orElse(),
-  }) {
-    if (fenceChanged != null) {
-      return fenceChanged(fence);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
-    required TResult Function(_Save value) save,
-    required TResult Function(_Next value) next,
-  }) {
-    return fenceChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
-    TResult Function(_Save value)? save,
-    TResult Function(_Next value)? next,
-    required TResult orElse(),
-  }) {
-    if (fenceChanged != null) {
-      return fenceChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FenceChanged implements AmenityEvent {
-  const factory _FenceChanged(bool fence) = _$_FenceChanged;
-
-  bool get fence => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$FenceChangedCopyWith<_FenceChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$ParkingChangedCopyWith<$Res> {
-  factory _$ParkingChangedCopyWith(
-          _ParkingChanged value, $Res Function(_ParkingChanged) then) =
-      __$ParkingChangedCopyWithImpl<$Res>;
-  $Res call({bool parking});
-}
-
-/// @nodoc
-class __$ParkingChangedCopyWithImpl<$Res>
-    extends _$AmenityEventCopyWithImpl<$Res>
-    implements _$ParkingChangedCopyWith<$Res> {
-  __$ParkingChangedCopyWithImpl(
-      _ParkingChanged _value, $Res Function(_ParkingChanged) _then)
-      : super(_value, (v) => _then(v as _ParkingChanged));
-
-  @override
-  _ParkingChanged get _value => super._value as _ParkingChanged;
-
-  @override
-  $Res call({
-    Object? parking = freezed,
-  }) {
-    return _then(_ParkingChanged(
-      parking == freezed
-          ? _value.parking
-          : parking // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_ParkingChanged implements _ParkingChanged {
-  const _$_ParkingChanged(this.parking);
-
-  @override
-  final bool parking;
-
-  @override
-  String toString() {
-    return 'AmenityEvent.parkingChanged(parking: $parking)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _ParkingChanged &&
-            (identical(other.parking, parking) ||
-                const DeepCollectionEquality().equals(other.parking, parking)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(parking);
-
-  @JsonKey(ignore: true)
-  @override
-  _$ParkingChangedCopyWith<_ParkingChanged> get copyWith =>
-      __$ParkingChangedCopyWithImpl<_ParkingChanged>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
-    required TResult Function() save,
-    required TResult Function() next,
-  }) {
-    return parkingChanged(parking);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
-    TResult Function()? save,
-    TResult Function()? next,
-    required TResult orElse(),
-  }) {
-    if (parkingChanged != null) {
-      return parkingChanged(parking);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
-    required TResult Function(_Save value) save,
-    required TResult Function(_Next value) next,
-  }) {
-    return parkingChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
-    TResult Function(_Save value)? save,
-    TResult Function(_Next value)? next,
-    required TResult orElse(),
-  }) {
-    if (parkingChanged != null) {
-      return parkingChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ParkingChanged implements AmenityEvent {
-  const factory _ParkingChanged(bool parking) = _$_ParkingChanged;
-
-  bool get parking => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$ParkingChangedCopyWith<_ParkingChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$ElectricFenceChangedCopyWith<$Res> {
-  factory _$ElectricFenceChangedCopyWith(_ElectricFenceChanged value,
-          $Res Function(_ElectricFenceChanged) then) =
-      __$ElectricFenceChangedCopyWithImpl<$Res>;
-  $Res call({bool electricFence});
-}
-
-/// @nodoc
-class __$ElectricFenceChangedCopyWithImpl<$Res>
-    extends _$AmenityEventCopyWithImpl<$Res>
-    implements _$ElectricFenceChangedCopyWith<$Res> {
-  __$ElectricFenceChangedCopyWithImpl(
-      _ElectricFenceChanged _value, $Res Function(_ElectricFenceChanged) _then)
-      : super(_value, (v) => _then(v as _ElectricFenceChanged));
-
-  @override
-  _ElectricFenceChanged get _value => super._value as _ElectricFenceChanged;
-
-  @override
-  $Res call({
-    Object? electricFence = freezed,
-  }) {
-    return _then(_ElectricFenceChanged(
-      electricFence == freezed
-          ? _value.electricFence
-          : electricFence // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_ElectricFenceChanged implements _ElectricFenceChanged {
-  const _$_ElectricFenceChanged(this.electricFence);
-
-  @override
-  final bool electricFence;
-
-  @override
-  String toString() {
-    return 'AmenityEvent.electricFenceChanged(electricFence: $electricFence)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _ElectricFenceChanged &&
-            (identical(other.electricFence, electricFence) ||
-                const DeepCollectionEquality()
-                    .equals(other.electricFence, electricFence)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(electricFence);
-
-  @JsonKey(ignore: true)
-  @override
-  _$ElectricFenceChangedCopyWith<_ElectricFenceChanged> get copyWith =>
-      __$ElectricFenceChangedCopyWithImpl<_ElectricFenceChanged>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
-    required TResult Function() save,
-    required TResult Function() next,
-  }) {
-    return electricFenceChanged(electricFence);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
-    TResult Function()? save,
-    TResult Function()? next,
-    required TResult orElse(),
-  }) {
-    if (electricFenceChanged != null) {
-      return electricFenceChanged(electricFence);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
-    required TResult Function(_Save value) save,
-    required TResult Function(_Next value) next,
-  }) {
-    return electricFenceChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
-    TResult Function(_Save value)? save,
-    TResult Function(_Next value)? next,
-    required TResult orElse(),
-  }) {
-    if (electricFenceChanged != null) {
-      return electricFenceChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ElectricFenceChanged implements AmenityEvent {
-  const factory _ElectricFenceChanged(bool electricFence) =
-      _$_ElectricFenceChanged;
-
-  bool get electricFence => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$ElectricFenceChangedCopyWith<_ElectricFenceChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$AcChangedCopyWith<$Res> {
-  factory _$AcChangedCopyWith(
-          _AcChanged value, $Res Function(_AcChanged) then) =
-      __$AcChangedCopyWithImpl<$Res>;
-  $Res call({bool ac});
-}
-
-/// @nodoc
-class __$AcChangedCopyWithImpl<$Res> extends _$AmenityEventCopyWithImpl<$Res>
-    implements _$AcChangedCopyWith<$Res> {
-  __$AcChangedCopyWithImpl(_AcChanged _value, $Res Function(_AcChanged) _then)
-      : super(_value, (v) => _then(v as _AcChanged));
-
-  @override
-  _AcChanged get _value => super._value as _AcChanged;
-
-  @override
-  $Res call({
-    Object? ac = freezed,
-  }) {
-    return _then(_AcChanged(
-      ac == freezed
-          ? _value.ac
-          : ac // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_AcChanged implements _AcChanged {
-  const _$_AcChanged(this.ac);
-
-  @override
-  final bool ac;
-
-  @override
-  String toString() {
-    return 'AmenityEvent.acChanged(ac: $ac)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _AcChanged &&
-            (identical(other.ac, ac) ||
-                const DeepCollectionEquality().equals(other.ac, ac)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(ac);
-
-  @JsonKey(ignore: true)
-  @override
-  _$AcChangedCopyWith<_AcChanged> get copyWith =>
-      __$AcChangedCopyWithImpl<_AcChanged>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
-    required TResult Function() save,
-    required TResult Function() next,
-  }) {
-    return acChanged(ac);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
-    TResult Function()? save,
-    TResult Function()? next,
-    required TResult orElse(),
-  }) {
-    if (acChanged != null) {
-      return acChanged(ac);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
-    required TResult Function(_Save value) save,
-    required TResult Function(_Next value) next,
-  }) {
-    return acChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
-    TResult Function(_Save value)? save,
-    TResult Function(_Next value)? next,
-    required TResult orElse(),
-  }) {
-    if (acChanged != null) {
-      return acChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AcChanged implements AmenityEvent {
-  const factory _AcChanged(bool ac) = _$_AcChanged;
-
-  bool get ac => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$AcChangedCopyWith<_AcChanged> get copyWith =>
+  _$AmenityDeletedCopyWith<_AmenityDeleted> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1002,11 +517,8 @@ class _$_Save implements _Save {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
+    required TResult Function(String amenity) amenityAdded,
+    required TResult Function(String amenity) amenityDeleted,
     required TResult Function() save,
     required TResult Function() next,
   }) {
@@ -1017,11 +529,8 @@ class _$_Save implements _Save {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
+    TResult Function(String amenity)? amenityAdded,
+    TResult Function(String amenity)? amenityDeleted,
     TResult Function()? save,
     TResult Function()? next,
     required TResult orElse(),
@@ -1036,11 +545,8 @@ class _$_Save implements _Save {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
+    required TResult Function(_AmenityAdded value) amenityAdded,
+    required TResult Function(_AmenityDeleted value) amenityDeleted,
     required TResult Function(_Save value) save,
     required TResult Function(_Next value) next,
   }) {
@@ -1051,11 +557,8 @@ class _$_Save implements _Save {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
+    TResult Function(_AmenityAdded value)? amenityAdded,
+    TResult Function(_AmenityDeleted value)? amenityDeleted,
     TResult Function(_Save value)? save,
     TResult Function(_Next value)? next,
     required TResult orElse(),
@@ -1108,11 +611,8 @@ class _$_Next implements _Next {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Listing listing) add,
-    required TResult Function(bool elevator) elevatorChanged,
-    required TResult Function(bool fence) fenceChanged,
-    required TResult Function(bool parking) parkingChanged,
-    required TResult Function(bool electricFence) electricFenceChanged,
-    required TResult Function(bool ac) acChanged,
+    required TResult Function(String amenity) amenityAdded,
+    required TResult Function(String amenity) amenityDeleted,
     required TResult Function() save,
     required TResult Function() next,
   }) {
@@ -1123,11 +623,8 @@ class _$_Next implements _Next {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Listing listing)? add,
-    TResult Function(bool elevator)? elevatorChanged,
-    TResult Function(bool fence)? fenceChanged,
-    TResult Function(bool parking)? parkingChanged,
-    TResult Function(bool electricFence)? electricFenceChanged,
-    TResult Function(bool ac)? acChanged,
+    TResult Function(String amenity)? amenityAdded,
+    TResult Function(String amenity)? amenityDeleted,
     TResult Function()? save,
     TResult Function()? next,
     required TResult orElse(),
@@ -1142,11 +639,8 @@ class _$_Next implements _Next {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Add value) add,
-    required TResult Function(_ElevatorChanged value) elevatorChanged,
-    required TResult Function(_FenceChanged value) fenceChanged,
-    required TResult Function(_ParkingChanged value) parkingChanged,
-    required TResult Function(_ElectricFenceChanged value) electricFenceChanged,
-    required TResult Function(_AcChanged value) acChanged,
+    required TResult Function(_AmenityAdded value) amenityAdded,
+    required TResult Function(_AmenityDeleted value) amenityDeleted,
     required TResult Function(_Save value) save,
     required TResult Function(_Next value) next,
   }) {
@@ -1157,11 +651,8 @@ class _$_Next implements _Next {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Add value)? add,
-    TResult Function(_ElevatorChanged value)? elevatorChanged,
-    TResult Function(_FenceChanged value)? fenceChanged,
-    TResult Function(_ParkingChanged value)? parkingChanged,
-    TResult Function(_ElectricFenceChanged value)? electricFenceChanged,
-    TResult Function(_AcChanged value)? acChanged,
+    TResult Function(_AmenityAdded value)? amenityAdded,
+    TResult Function(_AmenityDeleted value)? amenityDeleted,
     TResult Function(_Save value)? save,
     TResult Function(_Next value)? next,
     required TResult orElse(),
@@ -1182,29 +673,21 @@ class _$AmenityStateTearOff {
   const _$AmenityStateTearOff();
 
   _AmenityState call(
-      {required bool elevator,
-      required bool parking,
-      required bool electricFence,
-      required bool fence,
-      required bool ac,
-      double? complete,
-      List<String>? amenities,
+      {required List<String> amenities,
+      Future<List<String>>? amenitiesFuture,
       required bool isSubmitting,
       required bool isSuccess,
       required bool saved,
+      required bool isedited,
       required String failureMessage,
       required Listing listing}) {
     return _AmenityState(
-      elevator: elevator,
-      parking: parking,
-      electricFence: electricFence,
-      fence: fence,
-      ac: ac,
-      complete: complete,
       amenities: amenities,
+      amenitiesFuture: amenitiesFuture,
       isSubmitting: isSubmitting,
       isSuccess: isSuccess,
       saved: saved,
+      isedited: isedited,
       failureMessage: failureMessage,
       listing: listing,
     );
@@ -1216,16 +699,13 @@ const $AmenityState = _$AmenityStateTearOff();
 
 /// @nodoc
 mixin _$AmenityState {
-  bool get elevator => throw _privateConstructorUsedError;
-  bool get parking => throw _privateConstructorUsedError;
-  bool get electricFence => throw _privateConstructorUsedError;
-  bool get fence => throw _privateConstructorUsedError;
-  bool get ac => throw _privateConstructorUsedError;
-  double? get complete => throw _privateConstructorUsedError;
-  List<String>? get amenities => throw _privateConstructorUsedError;
+  List<String> get amenities => throw _privateConstructorUsedError;
+  Future<List<String>>? get amenitiesFuture =>
+      throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get isSuccess => throw _privateConstructorUsedError;
   bool get saved => throw _privateConstructorUsedError;
+  bool get isedited => throw _privateConstructorUsedError;
   String get failureMessage => throw _privateConstructorUsedError;
   Listing get listing => throw _privateConstructorUsedError;
 
@@ -1240,16 +720,12 @@ abstract class $AmenityStateCopyWith<$Res> {
           AmenityState value, $Res Function(AmenityState) then) =
       _$AmenityStateCopyWithImpl<$Res>;
   $Res call(
-      {bool elevator,
-      bool parking,
-      bool electricFence,
-      bool fence,
-      bool ac,
-      double? complete,
-      List<String>? amenities,
+      {List<String> amenities,
+      Future<List<String>>? amenitiesFuture,
       bool isSubmitting,
       bool isSuccess,
       bool saved,
+      bool isedited,
       String failureMessage,
       Listing listing});
 }
@@ -1264,48 +740,24 @@ class _$AmenityStateCopyWithImpl<$Res> implements $AmenityStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? elevator = freezed,
-    Object? parking = freezed,
-    Object? electricFence = freezed,
-    Object? fence = freezed,
-    Object? ac = freezed,
-    Object? complete = freezed,
     Object? amenities = freezed,
+    Object? amenitiesFuture = freezed,
     Object? isSubmitting = freezed,
     Object? isSuccess = freezed,
     Object? saved = freezed,
+    Object? isedited = freezed,
     Object? failureMessage = freezed,
     Object? listing = freezed,
   }) {
     return _then(_value.copyWith(
-      elevator: elevator == freezed
-          ? _value.elevator
-          : elevator // ignore: cast_nullable_to_non_nullable
-              as bool,
-      parking: parking == freezed
-          ? _value.parking
-          : parking // ignore: cast_nullable_to_non_nullable
-              as bool,
-      electricFence: electricFence == freezed
-          ? _value.electricFence
-          : electricFence // ignore: cast_nullable_to_non_nullable
-              as bool,
-      fence: fence == freezed
-          ? _value.fence
-          : fence // ignore: cast_nullable_to_non_nullable
-              as bool,
-      ac: ac == freezed
-          ? _value.ac
-          : ac // ignore: cast_nullable_to_non_nullable
-              as bool,
-      complete: complete == freezed
-          ? _value.complete
-          : complete // ignore: cast_nullable_to_non_nullable
-              as double?,
       amenities: amenities == freezed
           ? _value.amenities
           : amenities // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
+      amenitiesFuture: amenitiesFuture == freezed
+          ? _value.amenitiesFuture
+          : amenitiesFuture // ignore: cast_nullable_to_non_nullable
+              as Future<List<String>>?,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -1317,6 +769,10 @@ class _$AmenityStateCopyWithImpl<$Res> implements $AmenityStateCopyWith<$Res> {
       saved: saved == freezed
           ? _value.saved
           : saved // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isedited: isedited == freezed
+          ? _value.isedited
+          : isedited // ignore: cast_nullable_to_non_nullable
               as bool,
       failureMessage: failureMessage == freezed
           ? _value.failureMessage
@@ -1338,16 +794,12 @@ abstract class _$AmenityStateCopyWith<$Res>
       __$AmenityStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool elevator,
-      bool parking,
-      bool electricFence,
-      bool fence,
-      bool ac,
-      double? complete,
-      List<String>? amenities,
+      {List<String> amenities,
+      Future<List<String>>? amenitiesFuture,
       bool isSubmitting,
       bool isSuccess,
       bool saved,
+      bool isedited,
       String failureMessage,
       Listing listing});
 }
@@ -1364,48 +816,24 @@ class __$AmenityStateCopyWithImpl<$Res> extends _$AmenityStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? elevator = freezed,
-    Object? parking = freezed,
-    Object? electricFence = freezed,
-    Object? fence = freezed,
-    Object? ac = freezed,
-    Object? complete = freezed,
     Object? amenities = freezed,
+    Object? amenitiesFuture = freezed,
     Object? isSubmitting = freezed,
     Object? isSuccess = freezed,
     Object? saved = freezed,
+    Object? isedited = freezed,
     Object? failureMessage = freezed,
     Object? listing = freezed,
   }) {
     return _then(_AmenityState(
-      elevator: elevator == freezed
-          ? _value.elevator
-          : elevator // ignore: cast_nullable_to_non_nullable
-              as bool,
-      parking: parking == freezed
-          ? _value.parking
-          : parking // ignore: cast_nullable_to_non_nullable
-              as bool,
-      electricFence: electricFence == freezed
-          ? _value.electricFence
-          : electricFence // ignore: cast_nullable_to_non_nullable
-              as bool,
-      fence: fence == freezed
-          ? _value.fence
-          : fence // ignore: cast_nullable_to_non_nullable
-              as bool,
-      ac: ac == freezed
-          ? _value.ac
-          : ac // ignore: cast_nullable_to_non_nullable
-              as bool,
-      complete: complete == freezed
-          ? _value.complete
-          : complete // ignore: cast_nullable_to_non_nullable
-              as double?,
       amenities: amenities == freezed
           ? _value.amenities
           : amenities // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
+      amenitiesFuture: amenitiesFuture == freezed
+          ? _value.amenitiesFuture
+          : amenitiesFuture // ignore: cast_nullable_to_non_nullable
+              as Future<List<String>>?,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -1417,6 +845,10 @@ class __$AmenityStateCopyWithImpl<$Res> extends _$AmenityStateCopyWithImpl<$Res>
       saved: saved == freezed
           ? _value.saved
           : saved // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isedited: isedited == freezed
+          ? _value.isedited
+          : isedited // ignore: cast_nullable_to_non_nullable
               as bool,
       failureMessage: failureMessage == freezed
           ? _value.failureMessage
@@ -1433,33 +865,19 @@ class __$AmenityStateCopyWithImpl<$Res> extends _$AmenityStateCopyWithImpl<$Res>
 /// @nodoc
 class _$_AmenityState implements _AmenityState {
   const _$_AmenityState(
-      {required this.elevator,
-      required this.parking,
-      required this.electricFence,
-      required this.fence,
-      required this.ac,
-      this.complete,
-      this.amenities,
+      {required this.amenities,
+      this.amenitiesFuture,
       required this.isSubmitting,
       required this.isSuccess,
       required this.saved,
+      required this.isedited,
       required this.failureMessage,
       required this.listing});
 
   @override
-  final bool elevator;
+  final List<String> amenities;
   @override
-  final bool parking;
-  @override
-  final bool electricFence;
-  @override
-  final bool fence;
-  @override
-  final bool ac;
-  @override
-  final double? complete;
-  @override
-  final List<String>? amenities;
+  final Future<List<String>>? amenitiesFuture;
   @override
   final bool isSubmitting;
   @override
@@ -1467,38 +885,27 @@ class _$_AmenityState implements _AmenityState {
   @override
   final bool saved;
   @override
+  final bool isedited;
+  @override
   final String failureMessage;
   @override
   final Listing listing;
 
   @override
   String toString() {
-    return 'AmenityState(elevator: $elevator, parking: $parking, electricFence: $electricFence, fence: $fence, ac: $ac, complete: $complete, amenities: $amenities, isSubmitting: $isSubmitting, isSuccess: $isSuccess, saved: $saved, failureMessage: $failureMessage, listing: $listing)';
+    return 'AmenityState(amenities: $amenities, amenitiesFuture: $amenitiesFuture, isSubmitting: $isSubmitting, isSuccess: $isSuccess, saved: $saved, isedited: $isedited, failureMessage: $failureMessage, listing: $listing)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AmenityState &&
-            (identical(other.elevator, elevator) ||
-                const DeepCollectionEquality()
-                    .equals(other.elevator, elevator)) &&
-            (identical(other.parking, parking) ||
-                const DeepCollectionEquality()
-                    .equals(other.parking, parking)) &&
-            (identical(other.electricFence, electricFence) ||
-                const DeepCollectionEquality()
-                    .equals(other.electricFence, electricFence)) &&
-            (identical(other.fence, fence) ||
-                const DeepCollectionEquality().equals(other.fence, fence)) &&
-            (identical(other.ac, ac) ||
-                const DeepCollectionEquality().equals(other.ac, ac)) &&
-            (identical(other.complete, complete) ||
-                const DeepCollectionEquality()
-                    .equals(other.complete, complete)) &&
             (identical(other.amenities, amenities) ||
                 const DeepCollectionEquality()
                     .equals(other.amenities, amenities)) &&
+            (identical(other.amenitiesFuture, amenitiesFuture) ||
+                const DeepCollectionEquality()
+                    .equals(other.amenitiesFuture, amenitiesFuture)) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 const DeepCollectionEquality()
                     .equals(other.isSubmitting, isSubmitting)) &&
@@ -1507,6 +914,9 @@ class _$_AmenityState implements _AmenityState {
                     .equals(other.isSuccess, isSuccess)) &&
             (identical(other.saved, saved) ||
                 const DeepCollectionEquality().equals(other.saved, saved)) &&
+            (identical(other.isedited, isedited) ||
+                const DeepCollectionEquality()
+                    .equals(other.isedited, isedited)) &&
             (identical(other.failureMessage, failureMessage) ||
                 const DeepCollectionEquality()
                     .equals(other.failureMessage, failureMessage)) &&
@@ -1517,16 +927,12 @@ class _$_AmenityState implements _AmenityState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(elevator) ^
-      const DeepCollectionEquality().hash(parking) ^
-      const DeepCollectionEquality().hash(electricFence) ^
-      const DeepCollectionEquality().hash(fence) ^
-      const DeepCollectionEquality().hash(ac) ^
-      const DeepCollectionEquality().hash(complete) ^
       const DeepCollectionEquality().hash(amenities) ^
+      const DeepCollectionEquality().hash(amenitiesFuture) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(isSuccess) ^
       const DeepCollectionEquality().hash(saved) ^
+      const DeepCollectionEquality().hash(isedited) ^
       const DeepCollectionEquality().hash(failureMessage) ^
       const DeepCollectionEquality().hash(listing);
 
@@ -1538,39 +944,28 @@ class _$_AmenityState implements _AmenityState {
 
 abstract class _AmenityState implements AmenityState {
   const factory _AmenityState(
-      {required bool elevator,
-      required bool parking,
-      required bool electricFence,
-      required bool fence,
-      required bool ac,
-      double? complete,
-      List<String>? amenities,
+      {required List<String> amenities,
+      Future<List<String>>? amenitiesFuture,
       required bool isSubmitting,
       required bool isSuccess,
       required bool saved,
+      required bool isedited,
       required String failureMessage,
       required Listing listing}) = _$_AmenityState;
 
   @override
-  bool get elevator => throw _privateConstructorUsedError;
+  List<String> get amenities => throw _privateConstructorUsedError;
   @override
-  bool get parking => throw _privateConstructorUsedError;
-  @override
-  bool get electricFence => throw _privateConstructorUsedError;
-  @override
-  bool get fence => throw _privateConstructorUsedError;
-  @override
-  bool get ac => throw _privateConstructorUsedError;
-  @override
-  double? get complete => throw _privateConstructorUsedError;
-  @override
-  List<String>? get amenities => throw _privateConstructorUsedError;
+  Future<List<String>>? get amenitiesFuture =>
+      throw _privateConstructorUsedError;
   @override
   bool get isSubmitting => throw _privateConstructorUsedError;
   @override
   bool get isSuccess => throw _privateConstructorUsedError;
   @override
   bool get saved => throw _privateConstructorUsedError;
+  @override
+  bool get isedited => throw _privateConstructorUsedError;
   @override
   String get failureMessage => throw _privateConstructorUsedError;
   @override

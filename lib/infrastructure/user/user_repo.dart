@@ -3,25 +3,23 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:nipange/domain/package/package.dart';
 import 'package:nipange/domain/user/user.dart';
+import 'package:nipange/utils/api_conn.dart';
 import 'package:path/path.dart';
 import 'package:nipange/domain/user/i_user_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IUserRepo)
 class UserRepo implements IUserRepo {
-  final String api = "http://172.20.10.11:5000";
   // update user info
   @override
   Future<User> updateUser({
     required String id,
-    required String fname,
-    required String lname,
     required String phone,
     required String email,
     required String username,
   }) async {
     //create uri
-    final uri = Uri.parse('$api/api/user/$id');
+    final uri = Uri.parse('$api/user/$id');
     //http get req
     final response = await http.patch(Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -29,8 +27,6 @@ class UserRepo implements IUserRepo {
           "Accept": "application/json",
         },
         body: jsonEncode(<String, String>{
-          "firstName": fname,
-          "lastName": lname,
           "phone": phone,
           "email": email,
           "username": username,
@@ -38,6 +34,8 @@ class UserRepo implements IUserRepo {
 
     // check if okay response
     if (response.statusCode == 200) {
+      //TODO
+      // update userdb
       return User.fromJson(response.body);
     }
 
@@ -52,7 +50,7 @@ class UserRepo implements IUserRepo {
   Future<User> switchAccount({required String id, required String type}) async {
     print("switching: $type");
     //create uri
-    final uri = Uri.parse('$api/api/user/type/$id');
+    final uri = Uri.parse('$api/user/type/$id');
     //http get req
     final response = await http.patch(Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -81,7 +79,7 @@ class UserRepo implements IUserRepo {
   @override
   Future<User> updateDp({required String id, required File image}) async {
     //create uri
-    final uri = Uri.parse('$api/api/user/dp/$id');
+    final uri = Uri.parse('$api/user/dp/$id');
     // create a multpart request
     http.MultipartRequest request = http.MultipartRequest('PATCH', uri);
     // multipartfile
@@ -109,7 +107,7 @@ class UserRepo implements IUserRepo {
   // get user
   Future<User> getUser(String id) async {
     //create uri
-    final uri = Uri.parse('$api/api/user/$id');
+    final uri = Uri.parse('$api/user/$id');
     //http get req
     final response = await http.get(
       Uri.http(uri.authority, uri.path),
@@ -135,7 +133,7 @@ class UserRepo implements IUserRepo {
   Future<void> addFavListing(
       {required String userId, required String listingId}) async {
     //create uri
-    final uri = Uri.parse('$api/api/user/saved/$userId');
+    final uri = Uri.parse('$api/user/saved/$userId');
     //http patch req
     final response = await http.patch(Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -157,7 +155,7 @@ class UserRepo implements IUserRepo {
   Future<void> deleteFavListing(
       {required String userId, required String listingId}) async {
     //create uri
-    final uri = Uri.parse('$api/api/user/saved/$userId');
+    final uri = Uri.parse('$api/user/saved/$userId');
     //http patch req
     final response = await http.delete(Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -178,7 +176,7 @@ class UserRepo implements IUserRepo {
   @override
   Future<Package> getUserPackage(String id) async {
     //create uri
-    final uri = Uri.parse('$api/api/user/$id/package');
+    final uri = Uri.parse('$api/user/$id/package');
     //http get req
     final response = await http.get(
       Uri.http(uri.authority, uri.path),
@@ -206,7 +204,7 @@ class UserRepo implements IUserRepo {
   Future<List<Package>> getPackages() async {
     List<Package> packages = [];
     //create uri
-    final uri = Uri.parse('$api/api/package');
+    final uri = Uri.parse('$api/package');
     //http get req
     final response = await http.get(
       Uri.http(uri.authority, uri.path),

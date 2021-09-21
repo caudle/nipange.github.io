@@ -12,7 +12,7 @@ class FilterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currencyFormatter = NumberFormat('#,##0.00');
+    final currencyFormatter = NumberFormat('#,##0');
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -34,9 +34,7 @@ class FilterPage extends StatelessWidget {
                     children: [
                       if (state.isLoading) KCircularProgressIndicator(),
                       if (state.isError)
-                        Container(
-                          child: Text('filter failed try again'),
-                        ),
+                        CustomErrorWidget(error: 'failed loading filters'),
                     ],
                   );
                 },
@@ -186,16 +184,16 @@ class FilterPage extends StatelessWidget {
                                 children: [
                                   Flexible(child: Icon(Icons.price_change)),
                                   Expanded(
-                                      flex: 2,
+                                      flex: 3,
                                       child: Text(
-                                        'Price Range',
+                                        'Price range ( TZS )',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1,
                                       )),
                                   //Spacer(),
                                   Expanded(
-                                    flex: 4,
+                                    flex: 3,
                                     child: Text(
                                         "${currencyFormatter.format(double.parse(state.priceRange[0]))} - ${currencyFormatter.format(double.parse(state.priceRange[1]))}"),
                                   ),
@@ -218,7 +216,6 @@ class FilterPage extends StatelessWidget {
                               },
                               min: double.parse(snapshot.data![0]),
                               max: double.parse(snapshot.data![1]),
-                              divisions: 100,
                               activeColor: Theme.of(context).primaryColorLight,
                               inactiveColor: Colors.grey[400],
                             ),
@@ -253,18 +250,19 @@ class FilterPage extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Flexible(child: Icon(Icons.room)),
+                                  Flexible(child: Icon(Icons.square_foot)),
                                   Expanded(
                                       flex: 4,
                                       child: Text(
-                                        'Size Range',
+                                        'Size range ( sqf )',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1,
                                       )),
                                   Expanded(
+                                    flex: 2,
                                     child: Text(
-                                        "${state.sizeRange[0]} - ${state.sizeRange[1]}"),
+                                        "${currencyFormatter.format(double.parse(state.sizeRange[0]))} - ${currencyFormatter.format(double.parse(state.sizeRange[1]))}"),
                                   ),
                                 ],
                               ),
@@ -285,7 +283,6 @@ class FilterPage extends StatelessWidget {
                               },
                               min: double.parse(snapshot.data![0]),
                               max: double.parse(snapshot.data![1]),
-                              divisions: 100,
                               activeColor: Theme.of(context).primaryColorLight,
                               inactiveColor: Colors.grey[400],
                             ),
@@ -496,11 +493,11 @@ class FilterPage extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Flexible(child: Icon(Icons.room)),
+                                  Flexible(child: Icon(Icons.date_range)),
                                   Expanded(
                                       flex: 5,
                                       child: Text(
-                                        'Terms',
+                                        'Terms ( months )',
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1,
@@ -539,7 +536,7 @@ class FilterPage extends StatelessWidget {
             // amenities
             SliverToBoxAdapter(
               child: Container(
-                height: 80,
+                height: 120,
                 child: BlocBuilder<FilterBloc, FilterState>(
                   builder: (context, state) {
                     return FutureBuilder<List<String>>(
@@ -582,7 +579,8 @@ class FilterPage extends StatelessWidget {
                               // values
                               Expanded(
                                 child: Container(
-                                  padding: EdgeInsets.only(left: 5, bottom: 20),
+                                  padding: EdgeInsets.only(
+                                      left: 5, bottom: 30, top: 0),
                                   height: 20,
                                   child: ListView(
                                     scrollDirection: Axis.horizontal,
@@ -619,7 +617,7 @@ class FilterPage extends StatelessWidget {
                           return CustomErrorWidget(
                               error: snapshot.error.toString());
                         }
-                        return _buildBoxShadow();
+                        return Container();
                       },
                     );
                   },
@@ -630,8 +628,8 @@ class FilterPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 2),
-        height: 50,
+        padding: EdgeInsets.only(left: 18, bottom: 10, right: 18, top: 2),
+        height: 60,
         child: ElevatedButton(
           onPressed: () {
             context.read<FilterBloc>().add(FilterEvent.send());
@@ -640,6 +638,8 @@ class FilterPage extends StatelessWidget {
           style: ButtonStyle(
             backgroundColor:
                 MaterialStateProperty.all(Theme.of(context).primaryColorLight),
+            shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
           ),
         ),
       ),

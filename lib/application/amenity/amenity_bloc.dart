@@ -21,60 +21,49 @@ class AmenityBloc extends Bloc<AmenityEvent, AmenityState> {
   ) async* {
     yield* event.map(
       add: (e) async* {
+        // get amenities 4rom api
+        final future = iListingRepo.getAmenities();
         // add listing state
-        if (e.listing.amenities != null) {
-          // convert all to string
-          List<String> newList =
-              e.listing.amenities!.map((e) => e.toString()).toList();
-          yield state.copyWith(
-            elevator: newList.contains('elevator'),
-            parking: newList.contains("parking"),
-            electricFence: newList.contains("electric fence"),
-            fence: newList.contains("fence"),
-            ac: newList.contains("ac"),
-            listing: e.listing,
-          );
-        }
-      },
-      elevatorChanged: (e) async* {
+        // add amenities to state
         yield state.copyWith(
-            elevator: e.elevator, isSuccess: false, saved: false);
+          amenitiesFuture: future,
+          amenities: e.listing.amenities != null ? e.listing.amenities! : [],
+          listing: e.listing,
+          isedited: false,
+          isSuccess: false,
+          saved: false,
+        );
       },
-      fenceChanged: (e) async* {
-        yield state.copyWith(fence: e.fence, isSuccess: false, saved: false);
-      },
-      parkingChanged: (e) async* {
+      amenityAdded: (e) async* {
+        final amenities = <String>[];
+        amenities.addAll(state.amenities);
+        amenities.add(e.amenity);
         yield state.copyWith(
-            parking: e.parking, isSuccess: false, saved: false);
+          amenities: amenities,
+          isSuccess: false,
+          saved: false,
+          isedited: true,
+        );
       },
-      electricFenceChanged: (e) async* {
+      amenityDeleted: (e) async* {
+        final amenities = <String>[];
+        amenities.addAll(state.amenities);
+        amenities.remove(e.amenity);
         yield state.copyWith(
-            electricFence: e.electricFence, isSuccess: false, saved: false);
-      },
-      acChanged: (e) async* {
-        yield state.copyWith(ac: e.ac, isSuccess: false, saved: false);
+          amenities: amenities,
+          isSuccess: false,
+          saved: false,
+          isedited: true,
+        );
       },
       next: (e) async* {
         yield state.copyWith(
             isSubmitting: true, isSuccess: false, saved: false);
-        // loading ind
-        // list from state
-        final amns = <String>[
-          state.parking ? 'parking' : '',
-          state.electricFence ? "electric fence" : '',
-          state.ac ? "ac" : '',
-          state.fence ? "fence" : '',
-          state.elevator ? 'elevator' : ''
-        ];
-        // list of only true values
-        final List<String> newList =
-            amns.where((element) => element.isNotEmpty).toList();
-        print("my list $newList");
 
-        // add to db
+        // add to api
         final result = await iListingRepo.addAmenity(
           listingId: state.listing.id!,
-          amenities: newList,
+          amenities: state.amenities,
         );
         // check if sucess
         if (result is Listing) {
@@ -83,8 +72,7 @@ class AmenityBloc extends Bloc<AmenityEvent, AmenityState> {
             saved: false,
             isSubmitting: false,
             failureMessage: '',
-            amenities: result.amenities,
-            complete: result.complete,
+            isedited: false,
           );
         }
         // if failed
@@ -94,28 +82,17 @@ class AmenityBloc extends Bloc<AmenityEvent, AmenityState> {
             saved: false,
             isSubmitting: false,
             failureMessage: '$result',
+            isedited: true,
           );
       },
       save: (e) async* {
         yield state.copyWith(
             isSubmitting: true, isSuccess: false, saved: false);
-        // loading ind
-        // list from state
-        final amns = <String>[
-          state.parking ? 'parking' : '',
-          state.electricFence ? "electric fence" : '',
-          state.ac ? "ac" : '',
-          state.fence ? "fence" : '',
-          state.elevator ? 'elevator' : ''
-        ];
-        // list of only true values
-        final List<String> newList =
-            amns.where((element) => element.isNotEmpty).toList();
-        print("my list $newList");
+
         // add to db
         final result = await iListingRepo.addAmenity(
           listingId: state.listing.id!,
-          amenities: newList,
+          amenities: state.amenities,
         );
         // check if sucess
         if (result is Listing) {
@@ -124,8 +101,7 @@ class AmenityBloc extends Bloc<AmenityEvent, AmenityState> {
             saved: true,
             isSubmitting: false,
             failureMessage: '',
-            amenities: result.amenities,
-            complete: result.complete,
+            isedited: false,
           );
         }
         // if failed
@@ -135,6 +111,7 @@ class AmenityBloc extends Bloc<AmenityEvent, AmenityState> {
             saved: false,
             isSubmitting: false,
             failureMessage: '$result',
+            isedited: true,
           );
       },
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:nipange/application/auth/auth_check/auth_bloc.dart';
+import 'package:nipange/presentation/host_account/settings.dart';
 import 'package:nipange/utils/extensions.dart';
 
 class SignUpWidget extends StatelessWidget {
@@ -9,20 +10,44 @@ class SignUpWidget extends StatelessWidget {
   final String title;
   final String caption;
   final IconData icon;
+  final bool isaction;
+  final String switchRoute;
   SignUpWidget({
     Key? key,
     required this.gotoRoute,
     required this.title,
     required this.caption,
     required this.icon,
+    required this.isaction,
+    this.switchRoute = '/',
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        toolbarHeight: 50,
+        actions: isaction
+            ? [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return SettingsWidget(route: switchRoute);
+                    }));
+                  },
+                  icon: IconTheme(
+                      data: Theme.of(context).iconTheme,
+                      child: Icon(Icons.more_horiz)),
+                )
+              ]
+            : null,
+      ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 60.0),
+            padding: const EdgeInsets.only(top: 15.0),
             child: Align(
               alignment: Alignment.topCenter,
               child: Text(
@@ -34,9 +59,7 @@ class SignUpWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
-          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.27),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

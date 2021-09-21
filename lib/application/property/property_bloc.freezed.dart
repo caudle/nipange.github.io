@@ -40,12 +40,6 @@ class _$PropertyEventTearOff {
     );
   }
 
-  _TypeChanged typeChanged(String type) {
-    return _TypeChanged(
-      type,
-    );
-  }
-
   _BedroomAdd bedroomAdd() {
     return const _BedroomAdd();
   }
@@ -62,16 +56,24 @@ class _$PropertyEventTearOff {
     return const _BathroomMinus();
   }
 
-  _Next next(String? listingId) {
-    return _Next(
-      listingId,
+  _CategoryChanged categoryChanged(String value) {
+    return _CategoryChanged(
+      value,
     );
   }
 
-  _Save save(String? listingId) {
-    return _Save(
-      listingId,
+  _DescChanged descChanged(String desc) {
+    return _DescChanged(
+      desc,
     );
+  }
+
+  _Next next() {
+    return const _Next();
+  }
+
+  _Save save() {
+    return const _Save();
   }
 }
 
@@ -86,13 +88,14 @@ mixin _$PropertyEvent {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,13 +104,14 @@ mixin _$PropertyEvent {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,11 +121,12 @@ mixin _$PropertyEvent {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) =>
@@ -132,11 +137,12 @@ mixin _$PropertyEvent {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -226,13 +232,14 @@ class _$_Add implements _Add {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
     return add(listing);
   }
@@ -244,13 +251,14 @@ class _$_Add implements _Add {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -266,11 +274,12 @@ class _$_Add implements _Add {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -284,11 +293,12 @@ class _$_Add implements _Add {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -375,13 +385,14 @@ class _$_NameChanged implements _NameChanged {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
     return nameChanged(name);
   }
@@ -393,13 +404,14 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (nameChanged != null) {
@@ -415,11 +427,12 @@ class _$_NameChanged implements _NameChanged {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -433,11 +446,12 @@ class _$_NameChanged implements _NameChanged {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -527,13 +541,14 @@ class _$_BuildingChanged implements _BuildingChanged {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
     return buildingChanged(building);
   }
@@ -545,13 +560,14 @@ class _$_BuildingChanged implements _BuildingChanged {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (buildingChanged != null) {
@@ -567,11 +583,12 @@ class _$_BuildingChanged implements _BuildingChanged {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -585,11 +602,12 @@ class _$_BuildingChanged implements _BuildingChanged {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -677,13 +695,14 @@ class _$_SizeChanged implements _SizeChanged {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
     return sizeChanged(size);
   }
@@ -695,13 +714,14 @@ class _$_SizeChanged implements _SizeChanged {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (sizeChanged != null) {
@@ -717,11 +737,12 @@ class _$_SizeChanged implements _SizeChanged {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -735,11 +756,12 @@ class _$_SizeChanged implements _SizeChanged {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -757,156 +779,6 @@ abstract class _SizeChanged implements PropertyEvent {
   String get size => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$SizeChangedCopyWith<_SizeChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$TypeChangedCopyWith<$Res> {
-  factory _$TypeChangedCopyWith(
-          _TypeChanged value, $Res Function(_TypeChanged) then) =
-      __$TypeChangedCopyWithImpl<$Res>;
-  $Res call({String type});
-}
-
-/// @nodoc
-class __$TypeChangedCopyWithImpl<$Res> extends _$PropertyEventCopyWithImpl<$Res>
-    implements _$TypeChangedCopyWith<$Res> {
-  __$TypeChangedCopyWithImpl(
-      _TypeChanged _value, $Res Function(_TypeChanged) _then)
-      : super(_value, (v) => _then(v as _TypeChanged));
-
-  @override
-  _TypeChanged get _value => super._value as _TypeChanged;
-
-  @override
-  $Res call({
-    Object? type = freezed,
-  }) {
-    return _then(_TypeChanged(
-      type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_TypeChanged implements _TypeChanged {
-  const _$_TypeChanged(this.type);
-
-  @override
-  final String type;
-
-  @override
-  String toString() {
-    return 'PropertyEvent.typeChanged(type: $type)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _TypeChanged &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(type);
-
-  @JsonKey(ignore: true)
-  @override
-  _$TypeChangedCopyWith<_TypeChanged> get copyWith =>
-      __$TypeChangedCopyWithImpl<_TypeChanged>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Listing listing) add,
-    required TResult Function(String name) nameChanged,
-    required TResult Function(String building) buildingChanged,
-    required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
-    required TResult Function() bedroomAdd,
-    required TResult Function() bedroomMinus,
-    required TResult Function() bathroomAdd,
-    required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
-  }) {
-    return typeChanged(type);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Listing listing)? add,
-    TResult Function(String name)? nameChanged,
-    TResult Function(String building)? buildingChanged,
-    TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
-    TResult Function()? bedroomAdd,
-    TResult Function()? bedroomMinus,
-    TResult Function()? bathroomAdd,
-    TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
-    required TResult orElse(),
-  }) {
-    if (typeChanged != null) {
-      return typeChanged(type);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Add value) add,
-    required TResult Function(_NameChanged value) nameChanged,
-    required TResult Function(_BuildingChanged value) buildingChanged,
-    required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
-    required TResult Function(_BedroomAdd value) bedroomAdd,
-    required TResult Function(_BedroomMinus value) bedroomMinus,
-    required TResult Function(_BathroomAdd value) bathroomAdd,
-    required TResult Function(_BathroomMinus value) bathroomMinus,
-    required TResult Function(_Next value) next,
-    required TResult Function(_Save value) save,
-  }) {
-    return typeChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Add value)? add,
-    TResult Function(_NameChanged value)? nameChanged,
-    TResult Function(_BuildingChanged value)? buildingChanged,
-    TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
-    TResult Function(_BedroomAdd value)? bedroomAdd,
-    TResult Function(_BedroomMinus value)? bedroomMinus,
-    TResult Function(_BathroomAdd value)? bathroomAdd,
-    TResult Function(_BathroomMinus value)? bathroomMinus,
-    TResult Function(_Next value)? next,
-    TResult Function(_Save value)? save,
-    required TResult orElse(),
-  }) {
-    if (typeChanged != null) {
-      return typeChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _TypeChanged implements PropertyEvent {
-  const factory _TypeChanged(String type) = _$_TypeChanged;
-
-  String get type => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$TypeChangedCopyWith<_TypeChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -952,13 +824,14 @@ class _$_BedroomAdd implements _BedroomAdd {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
     return bedroomAdd();
   }
@@ -970,13 +843,14 @@ class _$_BedroomAdd implements _BedroomAdd {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (bedroomAdd != null) {
@@ -992,11 +866,12 @@ class _$_BedroomAdd implements _BedroomAdd {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1010,11 +885,12 @@ class _$_BedroomAdd implements _BedroomAdd {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1073,13 +949,14 @@ class _$_BedroomMinus implements _BedroomMinus {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
     return bedroomMinus();
   }
@@ -1091,13 +968,14 @@ class _$_BedroomMinus implements _BedroomMinus {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (bedroomMinus != null) {
@@ -1113,11 +991,12 @@ class _$_BedroomMinus implements _BedroomMinus {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1131,11 +1010,12 @@ class _$_BedroomMinus implements _BedroomMinus {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1193,13 +1073,14 @@ class _$_BathroomAdd implements _BathroomAdd {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
     return bathroomAdd();
   }
@@ -1211,13 +1092,14 @@ class _$_BathroomAdd implements _BathroomAdd {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (bathroomAdd != null) {
@@ -1233,11 +1115,12 @@ class _$_BathroomAdd implements _BathroomAdd {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1251,11 +1134,12 @@ class _$_BathroomAdd implements _BathroomAdd {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1314,13 +1198,14 @@ class _$_BathroomMinus implements _BathroomMinus {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
     return bathroomMinus();
   }
@@ -1332,13 +1217,14 @@ class _$_BathroomMinus implements _BathroomMinus {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (bathroomMinus != null) {
@@ -1354,11 +1240,12 @@ class _$_BathroomMinus implements _BathroomMinus {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1372,11 +1259,12 @@ class _$_BathroomMinus implements _BathroomMinus {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1393,63 +1281,65 @@ abstract class _BathroomMinus implements PropertyEvent {
 }
 
 /// @nodoc
-abstract class _$NextCopyWith<$Res> {
-  factory _$NextCopyWith(_Next value, $Res Function(_Next) then) =
-      __$NextCopyWithImpl<$Res>;
-  $Res call({String? listingId});
+abstract class _$CategoryChangedCopyWith<$Res> {
+  factory _$CategoryChangedCopyWith(
+          _CategoryChanged value, $Res Function(_CategoryChanged) then) =
+      __$CategoryChangedCopyWithImpl<$Res>;
+  $Res call({String value});
 }
 
 /// @nodoc
-class __$NextCopyWithImpl<$Res> extends _$PropertyEventCopyWithImpl<$Res>
-    implements _$NextCopyWith<$Res> {
-  __$NextCopyWithImpl(_Next _value, $Res Function(_Next) _then)
-      : super(_value, (v) => _then(v as _Next));
+class __$CategoryChangedCopyWithImpl<$Res>
+    extends _$PropertyEventCopyWithImpl<$Res>
+    implements _$CategoryChangedCopyWith<$Res> {
+  __$CategoryChangedCopyWithImpl(
+      _CategoryChanged _value, $Res Function(_CategoryChanged) _then)
+      : super(_value, (v) => _then(v as _CategoryChanged));
 
   @override
-  _Next get _value => super._value as _Next;
+  _CategoryChanged get _value => super._value as _CategoryChanged;
 
   @override
   $Res call({
-    Object? listingId = freezed,
+    Object? value = freezed,
   }) {
-    return _then(_Next(
-      listingId == freezed
-          ? _value.listingId
-          : listingId // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_CategoryChanged(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-class _$_Next implements _Next {
-  const _$_Next(this.listingId);
+class _$_CategoryChanged implements _CategoryChanged {
+  const _$_CategoryChanged(this.value);
 
   @override
-  final String? listingId;
+  final String value;
 
   @override
   String toString() {
-    return 'PropertyEvent.next(listingId: $listingId)';
+    return 'PropertyEvent.categoryChanged(value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Next &&
-            (identical(other.listingId, listingId) ||
-                const DeepCollectionEquality()
-                    .equals(other.listingId, listingId)));
+        (other is _CategoryChanged &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(listingId);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
 
   @JsonKey(ignore: true)
   @override
-  _$NextCopyWith<_Next> get copyWith =>
-      __$NextCopyWithImpl<_Next>(this, _$identity);
+  _$CategoryChangedCopyWith<_CategoryChanged> get copyWith =>
+      __$CategoryChangedCopyWithImpl<_CategoryChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1458,15 +1348,16 @@ class _$_Next implements _Next {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
-    return next(listingId);
+    return categoryChanged(value);
   }
 
   @override
@@ -1476,17 +1367,18 @@ class _$_Next implements _Next {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
-    if (next != null) {
-      return next(listingId);
+    if (categoryChanged != null) {
+      return categoryChanged(value);
     }
     return orElse();
   }
@@ -1498,11 +1390,293 @@ class _$_Next implements _Next {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
+    required TResult Function(_Next value) next,
+    required TResult Function(_Save value) save,
+  }) {
+    return categoryChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Add value)? add,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_BuildingChanged value)? buildingChanged,
+    TResult Function(_SizeChanged value)? sizeChanged,
+    TResult Function(_BedroomAdd value)? bedroomAdd,
+    TResult Function(_BedroomMinus value)? bedroomMinus,
+    TResult Function(_BathroomAdd value)? bathroomAdd,
+    TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
+    TResult Function(_Next value)? next,
+    TResult Function(_Save value)? save,
+    required TResult orElse(),
+  }) {
+    if (categoryChanged != null) {
+      return categoryChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CategoryChanged implements PropertyEvent {
+  const factory _CategoryChanged(String value) = _$_CategoryChanged;
+
+  String get value => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$CategoryChangedCopyWith<_CategoryChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$DescChangedCopyWith<$Res> {
+  factory _$DescChangedCopyWith(
+          _DescChanged value, $Res Function(_DescChanged) then) =
+      __$DescChangedCopyWithImpl<$Res>;
+  $Res call({String desc});
+}
+
+/// @nodoc
+class __$DescChangedCopyWithImpl<$Res> extends _$PropertyEventCopyWithImpl<$Res>
+    implements _$DescChangedCopyWith<$Res> {
+  __$DescChangedCopyWithImpl(
+      _DescChanged _value, $Res Function(_DescChanged) _then)
+      : super(_value, (v) => _then(v as _DescChanged));
+
+  @override
+  _DescChanged get _value => super._value as _DescChanged;
+
+  @override
+  $Res call({
+    Object? desc = freezed,
+  }) {
+    return _then(_DescChanged(
+      desc == freezed
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_DescChanged implements _DescChanged {
+  const _$_DescChanged(this.desc);
+
+  @override
+  final String desc;
+
+  @override
+  String toString() {
+    return 'PropertyEvent.descChanged(desc: $desc)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DescChanged &&
+            (identical(other.desc, desc) ||
+                const DeepCollectionEquality().equals(other.desc, desc)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(desc);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DescChangedCopyWith<_DescChanged> get copyWith =>
+      __$DescChangedCopyWithImpl<_DescChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Listing listing) add,
+    required TResult Function(String name) nameChanged,
+    required TResult Function(String building) buildingChanged,
+    required TResult Function(String size) sizeChanged,
+    required TResult Function() bedroomAdd,
+    required TResult Function() bedroomMinus,
+    required TResult Function() bathroomAdd,
+    required TResult Function() bathroomMinus,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
+  }) {
+    return descChanged(desc);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Listing listing)? add,
+    TResult Function(String name)? nameChanged,
+    TResult Function(String building)? buildingChanged,
+    TResult Function(String size)? sizeChanged,
+    TResult Function()? bedroomAdd,
+    TResult Function()? bedroomMinus,
+    TResult Function()? bathroomAdd,
+    TResult Function()? bathroomMinus,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
+    required TResult orElse(),
+  }) {
+    if (descChanged != null) {
+      return descChanged(desc);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Add value) add,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_BuildingChanged value) buildingChanged,
+    required TResult Function(_SizeChanged value) sizeChanged,
+    required TResult Function(_BedroomAdd value) bedroomAdd,
+    required TResult Function(_BedroomMinus value) bedroomMinus,
+    required TResult Function(_BathroomAdd value) bathroomAdd,
+    required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
+    required TResult Function(_Next value) next,
+    required TResult Function(_Save value) save,
+  }) {
+    return descChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Add value)? add,
+    TResult Function(_NameChanged value)? nameChanged,
+    TResult Function(_BuildingChanged value)? buildingChanged,
+    TResult Function(_SizeChanged value)? sizeChanged,
+    TResult Function(_BedroomAdd value)? bedroomAdd,
+    TResult Function(_BedroomMinus value)? bedroomMinus,
+    TResult Function(_BathroomAdd value)? bathroomAdd,
+    TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
+    TResult Function(_Next value)? next,
+    TResult Function(_Save value)? save,
+    required TResult orElse(),
+  }) {
+    if (descChanged != null) {
+      return descChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DescChanged implements PropertyEvent {
+  const factory _DescChanged(String desc) = _$_DescChanged;
+
+  String get desc => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$DescChangedCopyWith<_DescChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$NextCopyWith<$Res> {
+  factory _$NextCopyWith(_Next value, $Res Function(_Next) then) =
+      __$NextCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$NextCopyWithImpl<$Res> extends _$PropertyEventCopyWithImpl<$Res>
+    implements _$NextCopyWith<$Res> {
+  __$NextCopyWithImpl(_Next _value, $Res Function(_Next) _then)
+      : super(_value, (v) => _then(v as _Next));
+
+  @override
+  _Next get _value => super._value as _Next;
+}
+
+/// @nodoc
+class _$_Next implements _Next {
+  const _$_Next();
+
+  @override
+  String toString() {
+    return 'PropertyEvent.next()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Next);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Listing listing) add,
+    required TResult Function(String name) nameChanged,
+    required TResult Function(String building) buildingChanged,
+    required TResult Function(String size) sizeChanged,
+    required TResult Function() bedroomAdd,
+    required TResult Function() bedroomMinus,
+    required TResult Function() bathroomAdd,
+    required TResult Function() bathroomMinus,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
+  }) {
+    return next();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Listing listing)? add,
+    TResult Function(String name)? nameChanged,
+    TResult Function(String building)? buildingChanged,
+    TResult Function(String size)? sizeChanged,
+    TResult Function()? bedroomAdd,
+    TResult Function()? bedroomMinus,
+    TResult Function()? bathroomAdd,
+    TResult Function()? bathroomMinus,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
+    required TResult orElse(),
+  }) {
+    if (next != null) {
+      return next();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Add value) add,
+    required TResult Function(_NameChanged value) nameChanged,
+    required TResult Function(_BuildingChanged value) buildingChanged,
+    required TResult Function(_SizeChanged value) sizeChanged,
+    required TResult Function(_BedroomAdd value) bedroomAdd,
+    required TResult Function(_BedroomMinus value) bedroomMinus,
+    required TResult Function(_BathroomAdd value) bathroomAdd,
+    required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1516,11 +1690,12 @@ class _$_Next implements _Next {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1533,18 +1708,13 @@ class _$_Next implements _Next {
 }
 
 abstract class _Next implements PropertyEvent {
-  const factory _Next(String? listingId) = _$_Next;
-
-  String? get listingId => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$NextCopyWith<_Next> get copyWith => throw _privateConstructorUsedError;
+  const factory _Next() = _$_Next;
 }
 
 /// @nodoc
 abstract class _$SaveCopyWith<$Res> {
   factory _$SaveCopyWith(_Save value, $Res Function(_Save) then) =
       __$SaveCopyWithImpl<$Res>;
-  $Res call({String? listingId});
 }
 
 /// @nodoc
@@ -1555,49 +1725,24 @@ class __$SaveCopyWithImpl<$Res> extends _$PropertyEventCopyWithImpl<$Res>
 
   @override
   _Save get _value => super._value as _Save;
-
-  @override
-  $Res call({
-    Object? listingId = freezed,
-  }) {
-    return _then(_Save(
-      listingId == freezed
-          ? _value.listingId
-          : listingId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
 class _$_Save implements _Save {
-  const _$_Save(this.listingId);
-
-  @override
-  final String? listingId;
+  const _$_Save();
 
   @override
   String toString() {
-    return 'PropertyEvent.save(listingId: $listingId)';
+    return 'PropertyEvent.save()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _Save &&
-            (identical(other.listingId, listingId) ||
-                const DeepCollectionEquality()
-                    .equals(other.listingId, listingId)));
+    return identical(this, other) || (other is _Save);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(listingId);
-
-  @JsonKey(ignore: true)
-  @override
-  _$SaveCopyWith<_Save> get copyWith =>
-      __$SaveCopyWithImpl<_Save>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -1606,15 +1751,16 @@ class _$_Save implements _Save {
     required TResult Function(String name) nameChanged,
     required TResult Function(String building) buildingChanged,
     required TResult Function(String size) sizeChanged,
-    required TResult Function(String type) typeChanged,
     required TResult Function() bedroomAdd,
     required TResult Function() bedroomMinus,
     required TResult Function() bathroomAdd,
     required TResult Function() bathroomMinus,
-    required TResult Function(String? listingId) next,
-    required TResult Function(String? listingId) save,
+    required TResult Function(String value) categoryChanged,
+    required TResult Function(String desc) descChanged,
+    required TResult Function() next,
+    required TResult Function() save,
   }) {
-    return save(listingId);
+    return save();
   }
 
   @override
@@ -1624,17 +1770,18 @@ class _$_Save implements _Save {
     TResult Function(String name)? nameChanged,
     TResult Function(String building)? buildingChanged,
     TResult Function(String size)? sizeChanged,
-    TResult Function(String type)? typeChanged,
     TResult Function()? bedroomAdd,
     TResult Function()? bedroomMinus,
     TResult Function()? bathroomAdd,
     TResult Function()? bathroomMinus,
-    TResult Function(String? listingId)? next,
-    TResult Function(String? listingId)? save,
+    TResult Function(String value)? categoryChanged,
+    TResult Function(String desc)? descChanged,
+    TResult Function()? next,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (save != null) {
-      return save(listingId);
+      return save();
     }
     return orElse();
   }
@@ -1646,11 +1793,12 @@ class _$_Save implements _Save {
     required TResult Function(_NameChanged value) nameChanged,
     required TResult Function(_BuildingChanged value) buildingChanged,
     required TResult Function(_SizeChanged value) sizeChanged,
-    required TResult Function(_TypeChanged value) typeChanged,
     required TResult Function(_BedroomAdd value) bedroomAdd,
     required TResult Function(_BedroomMinus value) bedroomMinus,
     required TResult Function(_BathroomAdd value) bathroomAdd,
     required TResult Function(_BathroomMinus value) bathroomMinus,
+    required TResult Function(_CategoryChanged value) categoryChanged,
+    required TResult Function(_DescChanged value) descChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1664,11 +1812,12 @@ class _$_Save implements _Save {
     TResult Function(_NameChanged value)? nameChanged,
     TResult Function(_BuildingChanged value)? buildingChanged,
     TResult Function(_SizeChanged value)? sizeChanged,
-    TResult Function(_TypeChanged value)? typeChanged,
     TResult Function(_BedroomAdd value)? bedroomAdd,
     TResult Function(_BedroomMinus value)? bedroomMinus,
     TResult Function(_BathroomAdd value)? bathroomAdd,
     TResult Function(_BathroomMinus value)? bathroomMinus,
+    TResult Function(_CategoryChanged value)? categoryChanged,
+    TResult Function(_DescChanged value)? descChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1681,11 +1830,7 @@ class _$_Save implements _Save {
 }
 
 abstract class _Save implements PropertyEvent {
-  const factory _Save(String? listingId) = _$_Save;
-
-  String? get listingId => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$SaveCopyWith<_Save> get copyWith => throw _privateConstructorUsedError;
+  const factory _Save() = _$_Save;
 }
 
 /// @nodoc
@@ -1697,10 +1842,12 @@ class _$PropertyStateTearOff {
       required String name,
       required TextEditingController buildingController,
       required String building,
-      required String? type,
       required int? bedroom,
       required int? bathroom,
       required TextEditingController sizeController,
+      Future<List<Category>>? categories,
+      required String categoryValue,
+      required String desc,
       required String size,
       required String hostId,
       required bool isSubmitting,
@@ -1709,16 +1856,19 @@ class _$PropertyStateTearOff {
       required double complete,
       required Listing listing,
       required String listingId,
-      required bool saved}) {
+      required bool saved,
+      required bool isedited}) {
     return _PropertyState(
       nameController: nameController,
       name: name,
       buildingController: buildingController,
       building: building,
-      type: type,
       bedroom: bedroom,
       bathroom: bathroom,
       sizeController: sizeController,
+      categories: categories,
+      categoryValue: categoryValue,
+      desc: desc,
       size: size,
       hostId: hostId,
       isSubmitting: isSubmitting,
@@ -1728,6 +1878,7 @@ class _$PropertyStateTearOff {
       listing: listing,
       listingId: listingId,
       saved: saved,
+      isedited: isedited,
     );
   }
 }
@@ -1743,11 +1894,13 @@ mixin _$PropertyState {
   TextEditingController get buildingController =>
       throw _privateConstructorUsedError;
   String get building => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
   int? get bedroom => throw _privateConstructorUsedError;
   int? get bathroom => throw _privateConstructorUsedError;
   TextEditingController get sizeController =>
       throw _privateConstructorUsedError;
+  Future<List<Category>>? get categories => throw _privateConstructorUsedError;
+  String get categoryValue => throw _privateConstructorUsedError;
+  String get desc => throw _privateConstructorUsedError; // cat desc
   String get size => throw _privateConstructorUsedError;
   String get hostId => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
@@ -1759,6 +1912,7 @@ mixin _$PropertyState {
   String get listingId =>
       throw _privateConstructorUsedError; // listing id aftr save
   bool get saved => throw _privateConstructorUsedError;
+  bool get isedited => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PropertyStateCopyWith<PropertyState> get copyWith =>
@@ -1775,10 +1929,12 @@ abstract class $PropertyStateCopyWith<$Res> {
       String name,
       TextEditingController buildingController,
       String building,
-      String? type,
       int? bedroom,
       int? bathroom,
       TextEditingController sizeController,
+      Future<List<Category>>? categories,
+      String categoryValue,
+      String desc,
       String size,
       String hostId,
       bool isSubmitting,
@@ -1787,7 +1943,8 @@ abstract class $PropertyStateCopyWith<$Res> {
       double complete,
       Listing listing,
       String listingId,
-      bool saved});
+      bool saved,
+      bool isedited});
 }
 
 /// @nodoc
@@ -1805,10 +1962,12 @@ class _$PropertyStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? buildingController = freezed,
     Object? building = freezed,
-    Object? type = freezed,
     Object? bedroom = freezed,
     Object? bathroom = freezed,
     Object? sizeController = freezed,
+    Object? categories = freezed,
+    Object? categoryValue = freezed,
+    Object? desc = freezed,
     Object? size = freezed,
     Object? hostId = freezed,
     Object? isSubmitting = freezed,
@@ -1818,6 +1977,7 @@ class _$PropertyStateCopyWithImpl<$Res>
     Object? listing = freezed,
     Object? listingId = freezed,
     Object? saved = freezed,
+    Object? isedited = freezed,
   }) {
     return _then(_value.copyWith(
       nameController: nameController == freezed
@@ -1836,10 +1996,6 @@ class _$PropertyStateCopyWithImpl<$Res>
           ? _value.building
           : building // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
       bedroom: bedroom == freezed
           ? _value.bedroom
           : bedroom // ignore: cast_nullable_to_non_nullable
@@ -1852,6 +2008,18 @@ class _$PropertyStateCopyWithImpl<$Res>
           ? _value.sizeController
           : sizeController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
+      categories: categories == freezed
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as Future<List<Category>>?,
+      categoryValue: categoryValue == freezed
+          ? _value.categoryValue
+          : categoryValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      desc: desc == freezed
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as String,
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -1888,6 +2056,10 @@ class _$PropertyStateCopyWithImpl<$Res>
           ? _value.saved
           : saved // ignore: cast_nullable_to_non_nullable
               as bool,
+      isedited: isedited == freezed
+          ? _value.isedited
+          : isedited // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1904,10 +2076,12 @@ abstract class _$PropertyStateCopyWith<$Res>
       String name,
       TextEditingController buildingController,
       String building,
-      String? type,
       int? bedroom,
       int? bathroom,
       TextEditingController sizeController,
+      Future<List<Category>>? categories,
+      String categoryValue,
+      String desc,
       String size,
       String hostId,
       bool isSubmitting,
@@ -1916,7 +2090,8 @@ abstract class _$PropertyStateCopyWith<$Res>
       double complete,
       Listing listing,
       String listingId,
-      bool saved});
+      bool saved,
+      bool isedited});
 }
 
 /// @nodoc
@@ -1936,10 +2111,12 @@ class __$PropertyStateCopyWithImpl<$Res>
     Object? name = freezed,
     Object? buildingController = freezed,
     Object? building = freezed,
-    Object? type = freezed,
     Object? bedroom = freezed,
     Object? bathroom = freezed,
     Object? sizeController = freezed,
+    Object? categories = freezed,
+    Object? categoryValue = freezed,
+    Object? desc = freezed,
     Object? size = freezed,
     Object? hostId = freezed,
     Object? isSubmitting = freezed,
@@ -1949,6 +2126,7 @@ class __$PropertyStateCopyWithImpl<$Res>
     Object? listing = freezed,
     Object? listingId = freezed,
     Object? saved = freezed,
+    Object? isedited = freezed,
   }) {
     return _then(_PropertyState(
       nameController: nameController == freezed
@@ -1967,10 +2145,6 @@ class __$PropertyStateCopyWithImpl<$Res>
           ? _value.building
           : building // ignore: cast_nullable_to_non_nullable
               as String,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
       bedroom: bedroom == freezed
           ? _value.bedroom
           : bedroom // ignore: cast_nullable_to_non_nullable
@@ -1983,6 +2157,18 @@ class __$PropertyStateCopyWithImpl<$Res>
           ? _value.sizeController
           : sizeController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
+      categories: categories == freezed
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as Future<List<Category>>?,
+      categoryValue: categoryValue == freezed
+          ? _value.categoryValue
+          : categoryValue // ignore: cast_nullable_to_non_nullable
+              as String,
+      desc: desc == freezed
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as String,
       size: size == freezed
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -2019,6 +2205,10 @@ class __$PropertyStateCopyWithImpl<$Res>
           ? _value.saved
           : saved // ignore: cast_nullable_to_non_nullable
               as bool,
+      isedited: isedited == freezed
+          ? _value.isedited
+          : isedited // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -2030,10 +2220,12 @@ class _$_PropertyState implements _PropertyState {
       required this.name,
       required this.buildingController,
       required this.building,
-      required this.type,
       required this.bedroom,
       required this.bathroom,
       required this.sizeController,
+      this.categories,
+      required this.categoryValue,
+      required this.desc,
       required this.size,
       required this.hostId,
       required this.isSubmitting,
@@ -2042,7 +2234,8 @@ class _$_PropertyState implements _PropertyState {
       required this.complete,
       required this.listing,
       required this.listingId,
-      required this.saved});
+      required this.saved,
+      required this.isedited});
 
   @override
   final TextEditingController nameController;
@@ -2053,14 +2246,18 @@ class _$_PropertyState implements _PropertyState {
   @override
   final String building;
   @override
-  final String? type;
-  @override
   final int? bedroom;
   @override
   final int? bathroom;
   @override
   final TextEditingController sizeController;
   @override
+  final Future<List<Category>>? categories;
+  @override
+  final String categoryValue;
+  @override
+  final String desc;
+  @override // cat desc
   final String size;
   @override
   final String hostId;
@@ -2078,10 +2275,12 @@ class _$_PropertyState implements _PropertyState {
   final String listingId;
   @override // listing id aftr save
   final bool saved;
+  @override
+  final bool isedited;
 
   @override
   String toString() {
-    return 'PropertyState(nameController: $nameController, name: $name, buildingController: $buildingController, building: $building, type: $type, bedroom: $bedroom, bathroom: $bathroom, sizeController: $sizeController, size: $size, hostId: $hostId, isSubmitting: $isSubmitting, isSuccess: $isSuccess, failureMessage: $failureMessage, complete: $complete, listing: $listing, listingId: $listingId, saved: $saved)';
+    return 'PropertyState(nameController: $nameController, name: $name, buildingController: $buildingController, building: $building, bedroom: $bedroom, bathroom: $bathroom, sizeController: $sizeController, categories: $categories, categoryValue: $categoryValue, desc: $desc, size: $size, hostId: $hostId, isSubmitting: $isSubmitting, isSuccess: $isSuccess, failureMessage: $failureMessage, complete: $complete, listing: $listing, listingId: $listingId, saved: $saved, isedited: $isedited)';
   }
 
   @override
@@ -2099,8 +2298,6 @@ class _$_PropertyState implements _PropertyState {
             (identical(other.building, building) ||
                 const DeepCollectionEquality()
                     .equals(other.building, building)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.bedroom, bedroom) ||
                 const DeepCollectionEquality()
                     .equals(other.bedroom, bedroom)) &&
@@ -2110,6 +2307,14 @@ class _$_PropertyState implements _PropertyState {
             (identical(other.sizeController, sizeController) ||
                 const DeepCollectionEquality()
                     .equals(other.sizeController, sizeController)) &&
+            (identical(other.categories, categories) ||
+                const DeepCollectionEquality()
+                    .equals(other.categories, categories)) &&
+            (identical(other.categoryValue, categoryValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryValue, categoryValue)) &&
+            (identical(other.desc, desc) ||
+                const DeepCollectionEquality().equals(other.desc, desc)) &&
             (identical(other.size, size) ||
                 const DeepCollectionEquality().equals(other.size, size)) &&
             (identical(other.hostId, hostId) ||
@@ -2133,7 +2338,10 @@ class _$_PropertyState implements _PropertyState {
                 const DeepCollectionEquality()
                     .equals(other.listingId, listingId)) &&
             (identical(other.saved, saved) ||
-                const DeepCollectionEquality().equals(other.saved, saved)));
+                const DeepCollectionEquality().equals(other.saved, saved)) &&
+            (identical(other.isedited, isedited) ||
+                const DeepCollectionEquality()
+                    .equals(other.isedited, isedited)));
   }
 
   @override
@@ -2143,10 +2351,12 @@ class _$_PropertyState implements _PropertyState {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(buildingController) ^
       const DeepCollectionEquality().hash(building) ^
-      const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(bedroom) ^
       const DeepCollectionEquality().hash(bathroom) ^
       const DeepCollectionEquality().hash(sizeController) ^
+      const DeepCollectionEquality().hash(categories) ^
+      const DeepCollectionEquality().hash(categoryValue) ^
+      const DeepCollectionEquality().hash(desc) ^
       const DeepCollectionEquality().hash(size) ^
       const DeepCollectionEquality().hash(hostId) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
@@ -2155,7 +2365,8 @@ class _$_PropertyState implements _PropertyState {
       const DeepCollectionEquality().hash(complete) ^
       const DeepCollectionEquality().hash(listing) ^
       const DeepCollectionEquality().hash(listingId) ^
-      const DeepCollectionEquality().hash(saved);
+      const DeepCollectionEquality().hash(saved) ^
+      const DeepCollectionEquality().hash(isedited);
 
   @JsonKey(ignore: true)
   @override
@@ -2169,10 +2380,12 @@ abstract class _PropertyState implements PropertyState {
       required String name,
       required TextEditingController buildingController,
       required String building,
-      required String? type,
       required int? bedroom,
       required int? bathroom,
       required TextEditingController sizeController,
+      Future<List<Category>>? categories,
+      required String categoryValue,
+      required String desc,
       required String size,
       required String hostId,
       required bool isSubmitting,
@@ -2181,7 +2394,8 @@ abstract class _PropertyState implements PropertyState {
       required double complete,
       required Listing listing,
       required String listingId,
-      required bool saved}) = _$_PropertyState;
+      required bool saved,
+      required bool isedited}) = _$_PropertyState;
 
   @override
   TextEditingController get nameController =>
@@ -2194,8 +2408,6 @@ abstract class _PropertyState implements PropertyState {
   @override
   String get building => throw _privateConstructorUsedError;
   @override
-  String? get type => throw _privateConstructorUsedError;
-  @override
   int? get bedroom => throw _privateConstructorUsedError;
   @override
   int? get bathroom => throw _privateConstructorUsedError;
@@ -2203,6 +2415,12 @@ abstract class _PropertyState implements PropertyState {
   TextEditingController get sizeController =>
       throw _privateConstructorUsedError;
   @override
+  Future<List<Category>>? get categories => throw _privateConstructorUsedError;
+  @override
+  String get categoryValue => throw _privateConstructorUsedError;
+  @override
+  String get desc => throw _privateConstructorUsedError;
+  @override // cat desc
   String get size => throw _privateConstructorUsedError;
   @override
   String get hostId => throw _privateConstructorUsedError;
@@ -2220,6 +2438,8 @@ abstract class _PropertyState implements PropertyState {
   String get listingId => throw _privateConstructorUsedError;
   @override // listing id aftr save
   bool get saved => throw _privateConstructorUsedError;
+  @override
+  bool get isedited => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PropertyStateCopyWith<_PropertyState> get copyWith =>

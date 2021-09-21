@@ -2,10 +2,10 @@ import 'package:nipange/domain/report/i_report_repo.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:nipange/utils/api_conn.dart';
 
 @LazySingleton(as: IReportRepo)
 class ReportRepo implements IReportRepo {
-  final String api = "http://172.20.10.11:5000";
   @override
   Future createReport({
     required String email,
@@ -14,7 +14,7 @@ class ReportRepo implements IReportRepo {
     required String comment,
   }) async {
     //create uri
-    final uri = Uri.parse('$api/api/report');
+    final uri = Uri.parse('$api/report');
     //http get req
     final response = await http.post(Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -30,7 +30,7 @@ class ReportRepo implements IReportRepo {
 
     // check if okay response
     if (response.statusCode == 201) {
-      return;
+      return null;
     }
 
     // bad response 400
@@ -43,7 +43,7 @@ class ReportRepo implements IReportRepo {
   // get flags
   Future<List<String>> getFlags() async {
     //create uri
-    final uri = Uri.parse('$api/api/flag');
+    final uri = Uri.parse('$api/flag');
     //http get req
     final response = await http.get(
       Uri.http(uri.authority, uri.path),

@@ -9,8 +9,6 @@ abstract class IUserRepo {
   // update user details
   Future<User> updateUser(
       {required String id,
-      required String fname,
-      required String lname,
       required String phone,
       required String email,
       required String username});

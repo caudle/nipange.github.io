@@ -4,21 +4,25 @@ class Category {
   String id;
   String name;
   String image;
+  String description;
   Category({
     required this.id,
     required this.name,
     required this.image,
+    required this.description,
   });
 
   Category copyWith({
     String? id,
     String? name,
     String? image,
+    String? description,
   }) {
     return Category(
       id: id ?? this.id,
       name: name ?? this.name,
       image: image ?? this.image,
+      description: description ?? this.description,
     );
   }
 
@@ -27,6 +31,7 @@ class Category {
       'id': id,
       'name': name,
       'image': image,
+      'description': description,
     };
   }
 
@@ -35,6 +40,7 @@ class Category {
       id: map['_id'],
       name: map['name'],
       image: map['image'],
+      description: map['description'],
     );
   }
 
@@ -44,7 +50,8 @@ class Category {
       Category.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Category(id: $id, name: $name, image: $image)';
+  String toString() =>
+      'Category(id: $id, name: $name, image: $image, description: $description)';
 
   @override
   bool operator ==(Object other) {
@@ -53,9 +60,11 @@ class Category {
     return other is Category &&
         other.id == id &&
         other.name == name &&
-        other.image == image;
+        other.image == image &&
+        other.description == description;
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ image.hashCode;
+  int get hashCode =>
+      id.hashCode ^ name.hashCode ^ image.hashCode ^ description.hashCode;
 }

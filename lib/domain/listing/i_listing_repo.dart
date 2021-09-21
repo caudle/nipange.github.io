@@ -19,6 +19,7 @@ abstract class IListingRepo {
     required String country,
     required String region,
     required String district,
+    required String ward,
     required String street,
   });
 
@@ -40,8 +41,8 @@ abstract class IListingRepo {
   Future addPrice(
       {required listingId,
       required String desc,
-      required int terms,
-      required double fee,
+      required Map<dynamic, dynamic> terms,
+      double? fee,
       required double price});
 
   Future getListingById(String id);
@@ -52,7 +53,20 @@ abstract class IListingRepo {
 
   Future update({required Listing listing});
 
-  Future delete({required Listing listing});
+  Future delete({required String listingId, required String userId});
 
   Future<List<Listing>> getAllByUser({required String userId});
+
+  Future<List<String>> getAmenities();
+
+  Future deleteImages(
+      {required String listingId, required List<String> images});
+
+  Future deleteVideos(
+      {required String listingId, required List<String> videos});
+
+  Future<List<Listing>> getMore(
+      {required String id, required String type, required String district});
+
+  Future<void> addViews(String listingId);
 }

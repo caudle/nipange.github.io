@@ -14,13 +14,15 @@ class AccountPage extends StatelessWidget {
       body: user != null
           ? BlocProvider(
               create: (context) =>
-                  getIt<AccountBloc>()..add(AccountEvent.started()),
+                  getIt<AccountBloc>()..add(AccountEvent.started(user.id)),
               child: AccountWidget())
           : SignUpWidget(
               gotoRoute: '/',
               title: 'account',
               caption: 'sign up for an account',
               icon: Icons.person,
+              isaction: true,
+              switchRoute: 'host',
             ),
     );
   }

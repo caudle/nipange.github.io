@@ -13,14 +13,14 @@ class AppColor {
   static const ksecondaryDarkColor = const Color(0xFFc40759);
 
   // text colors
-  static const kprimaryTexrColor = const Color(0xFF0000);
+  static const kprimaryTextColor = const Color(0xFF0000);
   static const ksecondaryTextColor = const Color(0xFF0000);
 }
 
 ThemeData lightTheme(BuildContext context) {
   final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: AppColor.kPrimaryColor,
-    primaryColorLight: AppColor.kprimaryDarkColor,
+    primaryColorLight: AppColor.kprimaryLightColor,
     primaryColorDark: AppColor.kprimaryDarkColor,
     accentColor: AppColor.ksecondaryColor,
     iconTheme: _iconTheme,

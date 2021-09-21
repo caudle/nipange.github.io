@@ -58,6 +58,18 @@ class _$PhotosEventTearOff {
     );
   }
 
+  _ImageDeleted imageDeleted(int index) {
+    return _ImageDeleted(
+      index,
+    );
+  }
+
+  _ImagesChanged imagesChanged(int index) {
+    return _ImagesChanged(
+      index,
+    );
+  }
+
   _Next next() {
     return const _Next();
   }
@@ -81,6 +93,8 @@ mixin _$PhotosEvent {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) =>
@@ -94,6 +108,8 @@ mixin _$PhotosEvent {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -108,6 +124,8 @@ mixin _$PhotosEvent {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) =>
@@ -121,6 +139,8 @@ mixin _$PhotosEvent {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -212,6 +232,8 @@ class _$_Add implements _Add {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -228,6 +250,8 @@ class _$_Add implements _Add {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -248,6 +272,8 @@ class _$_Add implements _Add {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -264,6 +290,8 @@ class _$_Add implements _Add {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -353,6 +381,8 @@ class _$_Image0Changed implements _Image0Changed {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -369,6 +399,8 @@ class _$_Image0Changed implements _Image0Changed {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -389,6 +421,8 @@ class _$_Image0Changed implements _Image0Changed {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -405,6 +439,8 @@ class _$_Image0Changed implements _Image0Changed {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -495,6 +531,8 @@ class _$_Image1Changed implements _Image1Changed {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -511,6 +549,8 @@ class _$_Image1Changed implements _Image1Changed {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -531,6 +571,8 @@ class _$_Image1Changed implements _Image1Changed {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -547,6 +589,8 @@ class _$_Image1Changed implements _Image1Changed {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -637,6 +681,8 @@ class _$_Image2Changed implements _Image2Changed {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -653,6 +699,8 @@ class _$_Image2Changed implements _Image2Changed {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -673,6 +721,8 @@ class _$_Image2Changed implements _Image2Changed {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -689,6 +739,8 @@ class _$_Image2Changed implements _Image2Changed {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -779,6 +831,8 @@ class _$_Image3Changed implements _Image3Changed {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -795,6 +849,8 @@ class _$_Image3Changed implements _Image3Changed {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -815,6 +871,8 @@ class _$_Image3Changed implements _Image3Changed {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -831,6 +889,8 @@ class _$_Image3Changed implements _Image3Changed {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -921,6 +981,8 @@ class _$_Image4Changed implements _Image4Changed {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -937,6 +999,8 @@ class _$_Image4Changed implements _Image4Changed {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -957,6 +1021,8 @@ class _$_Image4Changed implements _Image4Changed {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -973,6 +1039,8 @@ class _$_Image4Changed implements _Image4Changed {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1063,6 +1131,8 @@ class _$_Image5Changed implements _Image5Changed {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -1079,6 +1149,8 @@ class _$_Image5Changed implements _Image5Changed {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -1099,6 +1171,8 @@ class _$_Image5Changed implements _Image5Changed {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1115,6 +1189,8 @@ class _$_Image5Changed implements _Image5Changed {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1132,6 +1208,306 @@ abstract class _Image5Changed implements PhotosEvent {
   File get image5 => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$Image5ChangedCopyWith<_Image5Changed> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ImageDeletedCopyWith<$Res> {
+  factory _$ImageDeletedCopyWith(
+          _ImageDeleted value, $Res Function(_ImageDeleted) then) =
+      __$ImageDeletedCopyWithImpl<$Res>;
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$ImageDeletedCopyWithImpl<$Res> extends _$PhotosEventCopyWithImpl<$Res>
+    implements _$ImageDeletedCopyWith<$Res> {
+  __$ImageDeletedCopyWithImpl(
+      _ImageDeleted _value, $Res Function(_ImageDeleted) _then)
+      : super(_value, (v) => _then(v as _ImageDeleted));
+
+  @override
+  _ImageDeleted get _value => super._value as _ImageDeleted;
+
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_ImageDeleted(
+      index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_ImageDeleted implements _ImageDeleted {
+  const _$_ImageDeleted(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'PhotosEvent.imageDeleted(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ImageDeleted &&
+            (identical(other.index, index) ||
+                const DeepCollectionEquality().equals(other.index, index)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(index);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ImageDeletedCopyWith<_ImageDeleted> get copyWith =>
+      __$ImageDeletedCopyWithImpl<_ImageDeleted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Listing listing) add,
+    required TResult Function(File image0) image0changed,
+    required TResult Function(File image1) image1changed,
+    required TResult Function(File image2) image2changed,
+    required TResult Function(File image3) image3changed,
+    required TResult Function(File image4) image4changed,
+    required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
+    required TResult Function() next,
+    required TResult Function() save,
+  }) {
+    return imageDeleted(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Listing listing)? add,
+    TResult Function(File image0)? image0changed,
+    TResult Function(File image1)? image1changed,
+    TResult Function(File image2)? image2changed,
+    TResult Function(File image3)? image3changed,
+    TResult Function(File image4)? image4changed,
+    TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
+    TResult Function()? next,
+    TResult Function()? save,
+    required TResult orElse(),
+  }) {
+    if (imageDeleted != null) {
+      return imageDeleted(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Add value) add,
+    required TResult Function(_Image0Changed value) image0changed,
+    required TResult Function(_Image1Changed value) image1changed,
+    required TResult Function(_Image2Changed value) image2changed,
+    required TResult Function(_Image3Changed value) image3changed,
+    required TResult Function(_Image4Changed value) image4changed,
+    required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
+    required TResult Function(_Next value) next,
+    required TResult Function(_Save value) save,
+  }) {
+    return imageDeleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Add value)? add,
+    TResult Function(_Image0Changed value)? image0changed,
+    TResult Function(_Image1Changed value)? image1changed,
+    TResult Function(_Image2Changed value)? image2changed,
+    TResult Function(_Image3Changed value)? image3changed,
+    TResult Function(_Image4Changed value)? image4changed,
+    TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
+    TResult Function(_Next value)? next,
+    TResult Function(_Save value)? save,
+    required TResult orElse(),
+  }) {
+    if (imageDeleted != null) {
+      return imageDeleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ImageDeleted implements PhotosEvent {
+  const factory _ImageDeleted(int index) = _$_ImageDeleted;
+
+  int get index => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ImageDeletedCopyWith<_ImageDeleted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ImagesChangedCopyWith<$Res> {
+  factory _$ImagesChangedCopyWith(
+          _ImagesChanged value, $Res Function(_ImagesChanged) then) =
+      __$ImagesChangedCopyWithImpl<$Res>;
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$ImagesChangedCopyWithImpl<$Res> extends _$PhotosEventCopyWithImpl<$Res>
+    implements _$ImagesChangedCopyWith<$Res> {
+  __$ImagesChangedCopyWithImpl(
+      _ImagesChanged _value, $Res Function(_ImagesChanged) _then)
+      : super(_value, (v) => _then(v as _ImagesChanged));
+
+  @override
+  _ImagesChanged get _value => super._value as _ImagesChanged;
+
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_ImagesChanged(
+      index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_ImagesChanged implements _ImagesChanged {
+  const _$_ImagesChanged(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'PhotosEvent.imagesChanged(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ImagesChanged &&
+            (identical(other.index, index) ||
+                const DeepCollectionEquality().equals(other.index, index)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(index);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ImagesChangedCopyWith<_ImagesChanged> get copyWith =>
+      __$ImagesChangedCopyWithImpl<_ImagesChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Listing listing) add,
+    required TResult Function(File image0) image0changed,
+    required TResult Function(File image1) image1changed,
+    required TResult Function(File image2) image2changed,
+    required TResult Function(File image3) image3changed,
+    required TResult Function(File image4) image4changed,
+    required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
+    required TResult Function() next,
+    required TResult Function() save,
+  }) {
+    return imagesChanged(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Listing listing)? add,
+    TResult Function(File image0)? image0changed,
+    TResult Function(File image1)? image1changed,
+    TResult Function(File image2)? image2changed,
+    TResult Function(File image3)? image3changed,
+    TResult Function(File image4)? image4changed,
+    TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
+    TResult Function()? next,
+    TResult Function()? save,
+    required TResult orElse(),
+  }) {
+    if (imagesChanged != null) {
+      return imagesChanged(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Add value) add,
+    required TResult Function(_Image0Changed value) image0changed,
+    required TResult Function(_Image1Changed value) image1changed,
+    required TResult Function(_Image2Changed value) image2changed,
+    required TResult Function(_Image3Changed value) image3changed,
+    required TResult Function(_Image4Changed value) image4changed,
+    required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
+    required TResult Function(_Next value) next,
+    required TResult Function(_Save value) save,
+  }) {
+    return imagesChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Add value)? add,
+    TResult Function(_Image0Changed value)? image0changed,
+    TResult Function(_Image1Changed value)? image1changed,
+    TResult Function(_Image2Changed value)? image2changed,
+    TResult Function(_Image3Changed value)? image3changed,
+    TResult Function(_Image4Changed value)? image4changed,
+    TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
+    TResult Function(_Next value)? next,
+    TResult Function(_Save value)? save,
+    required TResult orElse(),
+  }) {
+    if (imagesChanged != null) {
+      return imagesChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ImagesChanged implements PhotosEvent {
+  const factory _ImagesChanged(int index) = _$_ImagesChanged;
+
+  int get index => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ImagesChangedCopyWith<_ImagesChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1178,6 +1554,8 @@ class _$_Next implements _Next {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -1194,6 +1572,8 @@ class _$_Next implements _Next {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -1214,6 +1594,8 @@ class _$_Next implements _Next {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1230,6 +1612,8 @@ class _$_Next implements _Next {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1288,6 +1672,8 @@ class _$_Save implements _Save {
     required TResult Function(File image3) image3changed,
     required TResult Function(File image4) image4changed,
     required TResult Function(File image5) image5changed,
+    required TResult Function(int index) imageDeleted,
+    required TResult Function(int index) imagesChanged,
     required TResult Function() next,
     required TResult Function() save,
   }) {
@@ -1304,6 +1690,8 @@ class _$_Save implements _Save {
     TResult Function(File image3)? image3changed,
     TResult Function(File image4)? image4changed,
     TResult Function(File image5)? image5changed,
+    TResult Function(int index)? imageDeleted,
+    TResult Function(int index)? imagesChanged,
     TResult Function()? next,
     TResult Function()? save,
     required TResult orElse(),
@@ -1324,6 +1712,8 @@ class _$_Save implements _Save {
     required TResult Function(_Image3Changed value) image3changed,
     required TResult Function(_Image4Changed value) image4changed,
     required TResult Function(_Image5Changed value) image5changed,
+    required TResult Function(_ImageDeleted value) imageDeleted,
+    required TResult Function(_ImagesChanged value) imagesChanged,
     required TResult Function(_Next value) next,
     required TResult Function(_Save value) save,
   }) {
@@ -1340,6 +1730,8 @@ class _$_Save implements _Save {
     TResult Function(_Image3Changed value)? image3changed,
     TResult Function(_Image4Changed value)? image4changed,
     TResult Function(_Image5Changed value)? image5changed,
+    TResult Function(_ImageDeleted value)? imageDeleted,
+    TResult Function(_ImagesChanged value)? imagesChanged,
     TResult Function(_Next value)? next,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -1366,11 +1758,12 @@ class _$PhotosStateTearOff {
       required File? image3,
       required File? image4,
       required File? image5,
-      required List<String>? images,
-      double? complete,
+      required List<String> images,
+      required List<String> imagestoDelete,
       required bool isSubmitting,
       required bool isSuccess,
       required bool saved,
+      required bool isedited,
       required String failureMessage,
       required Listing listing}) {
     return _PhotosState(
@@ -1381,10 +1774,11 @@ class _$PhotosStateTearOff {
       image4: image4,
       image5: image5,
       images: images,
-      complete: complete,
+      imagestoDelete: imagestoDelete,
       isSubmitting: isSubmitting,
       isSuccess: isSuccess,
       saved: saved,
+      isedited: isedited,
       failureMessage: failureMessage,
       listing: listing,
     );
@@ -1402,11 +1796,12 @@ mixin _$PhotosState {
   File? get image3 => throw _privateConstructorUsedError;
   File? get image4 => throw _privateConstructorUsedError;
   File? get image5 => throw _privateConstructorUsedError;
-  List<String>? get images => throw _privateConstructorUsedError;
-  double? get complete => throw _privateConstructorUsedError;
+  List<String> get images => throw _privateConstructorUsedError;
+  List<String> get imagestoDelete => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   bool get isSuccess => throw _privateConstructorUsedError;
   bool get saved => throw _privateConstructorUsedError;
+  bool get isedited => throw _privateConstructorUsedError;
   String get failureMessage => throw _privateConstructorUsedError;
   Listing get listing => throw _privateConstructorUsedError;
 
@@ -1427,11 +1822,12 @@ abstract class $PhotosStateCopyWith<$Res> {
       File? image3,
       File? image4,
       File? image5,
-      List<String>? images,
-      double? complete,
+      List<String> images,
+      List<String> imagestoDelete,
       bool isSubmitting,
       bool isSuccess,
       bool saved,
+      bool isedited,
       String failureMessage,
       Listing listing});
 }
@@ -1453,10 +1849,11 @@ class _$PhotosStateCopyWithImpl<$Res> implements $PhotosStateCopyWith<$Res> {
     Object? image4 = freezed,
     Object? image5 = freezed,
     Object? images = freezed,
-    Object? complete = freezed,
+    Object? imagestoDelete = freezed,
     Object? isSubmitting = freezed,
     Object? isSuccess = freezed,
     Object? saved = freezed,
+    Object? isedited = freezed,
     Object? failureMessage = freezed,
     Object? listing = freezed,
   }) {
@@ -1488,11 +1885,11 @@ class _$PhotosStateCopyWithImpl<$Res> implements $PhotosStateCopyWith<$Res> {
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      complete: complete == freezed
-          ? _value.complete
-          : complete // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as List<String>,
+      imagestoDelete: imagestoDelete == freezed
+          ? _value.imagestoDelete
+          : imagestoDelete // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -1504,6 +1901,10 @@ class _$PhotosStateCopyWithImpl<$Res> implements $PhotosStateCopyWith<$Res> {
       saved: saved == freezed
           ? _value.saved
           : saved // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isedited: isedited == freezed
+          ? _value.isedited
+          : isedited // ignore: cast_nullable_to_non_nullable
               as bool,
       failureMessage: failureMessage == freezed
           ? _value.failureMessage
@@ -1531,11 +1932,12 @@ abstract class _$PhotosStateCopyWith<$Res>
       File? image3,
       File? image4,
       File? image5,
-      List<String>? images,
-      double? complete,
+      List<String> images,
+      List<String> imagestoDelete,
       bool isSubmitting,
       bool isSuccess,
       bool saved,
+      bool isedited,
       String failureMessage,
       Listing listing});
 }
@@ -1559,10 +1961,11 @@ class __$PhotosStateCopyWithImpl<$Res> extends _$PhotosStateCopyWithImpl<$Res>
     Object? image4 = freezed,
     Object? image5 = freezed,
     Object? images = freezed,
-    Object? complete = freezed,
+    Object? imagestoDelete = freezed,
     Object? isSubmitting = freezed,
     Object? isSuccess = freezed,
     Object? saved = freezed,
+    Object? isedited = freezed,
     Object? failureMessage = freezed,
     Object? listing = freezed,
   }) {
@@ -1594,11 +1997,11 @@ class __$PhotosStateCopyWithImpl<$Res> extends _$PhotosStateCopyWithImpl<$Res>
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      complete: complete == freezed
-          ? _value.complete
-          : complete // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as List<String>,
+      imagestoDelete: imagestoDelete == freezed
+          ? _value.imagestoDelete
+          : imagestoDelete // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -1610,6 +2013,10 @@ class __$PhotosStateCopyWithImpl<$Res> extends _$PhotosStateCopyWithImpl<$Res>
       saved: saved == freezed
           ? _value.saved
           : saved // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isedited: isedited == freezed
+          ? _value.isedited
+          : isedited // ignore: cast_nullable_to_non_nullable
               as bool,
       failureMessage: failureMessage == freezed
           ? _value.failureMessage
@@ -1633,10 +2040,11 @@ class _$_PhotosState implements _PhotosState {
       required this.image4,
       required this.image5,
       required this.images,
-      this.complete,
+      required this.imagestoDelete,
       required this.isSubmitting,
       required this.isSuccess,
       required this.saved,
+      required this.isedited,
       required this.failureMessage,
       required this.listing});
 
@@ -1653,9 +2061,9 @@ class _$_PhotosState implements _PhotosState {
   @override
   final File? image5;
   @override
-  final List<String>? images;
+  final List<String> images;
   @override
-  final double? complete;
+  final List<String> imagestoDelete;
   @override
   final bool isSubmitting;
   @override
@@ -1663,13 +2071,15 @@ class _$_PhotosState implements _PhotosState {
   @override
   final bool saved;
   @override
+  final bool isedited;
+  @override
   final String failureMessage;
   @override
   final Listing listing;
 
   @override
   String toString() {
-    return 'PhotosState(image0: $image0, image1: $image1, image2: $image2, image3: $image3, image4: $image4, image5: $image5, images: $images, complete: $complete, isSubmitting: $isSubmitting, isSuccess: $isSuccess, saved: $saved, failureMessage: $failureMessage, listing: $listing)';
+    return 'PhotosState(image0: $image0, image1: $image1, image2: $image2, image3: $image3, image4: $image4, image5: $image5, images: $images, imagestoDelete: $imagestoDelete, isSubmitting: $isSubmitting, isSuccess: $isSuccess, saved: $saved, isedited: $isedited, failureMessage: $failureMessage, listing: $listing)';
   }
 
   @override
@@ -1690,9 +2100,9 @@ class _$_PhotosState implements _PhotosState {
                 const DeepCollectionEquality().equals(other.image5, image5)) &&
             (identical(other.images, images) ||
                 const DeepCollectionEquality().equals(other.images, images)) &&
-            (identical(other.complete, complete) ||
+            (identical(other.imagestoDelete, imagestoDelete) ||
                 const DeepCollectionEquality()
-                    .equals(other.complete, complete)) &&
+                    .equals(other.imagestoDelete, imagestoDelete)) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 const DeepCollectionEquality()
                     .equals(other.isSubmitting, isSubmitting)) &&
@@ -1701,6 +2111,9 @@ class _$_PhotosState implements _PhotosState {
                     .equals(other.isSuccess, isSuccess)) &&
             (identical(other.saved, saved) ||
                 const DeepCollectionEquality().equals(other.saved, saved)) &&
+            (identical(other.isedited, isedited) ||
+                const DeepCollectionEquality()
+                    .equals(other.isedited, isedited)) &&
             (identical(other.failureMessage, failureMessage) ||
                 const DeepCollectionEquality()
                     .equals(other.failureMessage, failureMessage)) &&
@@ -1718,10 +2131,11 @@ class _$_PhotosState implements _PhotosState {
       const DeepCollectionEquality().hash(image4) ^
       const DeepCollectionEquality().hash(image5) ^
       const DeepCollectionEquality().hash(images) ^
-      const DeepCollectionEquality().hash(complete) ^
+      const DeepCollectionEquality().hash(imagestoDelete) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(isSuccess) ^
       const DeepCollectionEquality().hash(saved) ^
+      const DeepCollectionEquality().hash(isedited) ^
       const DeepCollectionEquality().hash(failureMessage) ^
       const DeepCollectionEquality().hash(listing);
 
@@ -1739,11 +2153,12 @@ abstract class _PhotosState implements PhotosState {
       required File? image3,
       required File? image4,
       required File? image5,
-      required List<String>? images,
-      double? complete,
+      required List<String> images,
+      required List<String> imagestoDelete,
       required bool isSubmitting,
       required bool isSuccess,
       required bool saved,
+      required bool isedited,
       required String failureMessage,
       required Listing listing}) = _$_PhotosState;
 
@@ -1760,15 +2175,17 @@ abstract class _PhotosState implements PhotosState {
   @override
   File? get image5 => throw _privateConstructorUsedError;
   @override
-  List<String>? get images => throw _privateConstructorUsedError;
+  List<String> get images => throw _privateConstructorUsedError;
   @override
-  double? get complete => throw _privateConstructorUsedError;
+  List<String> get imagestoDelete => throw _privateConstructorUsedError;
   @override
   bool get isSubmitting => throw _privateConstructorUsedError;
   @override
   bool get isSuccess => throw _privateConstructorUsedError;
   @override
   bool get saved => throw _privateConstructorUsedError;
+  @override
+  bool get isedited => throw _privateConstructorUsedError;
   @override
   String get failureMessage => throw _privateConstructorUsedError;
   @override

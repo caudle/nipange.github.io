@@ -9,18 +9,19 @@ class ContentWidget extends StatefulWidget {
 
 class _ContentWidgetState extends State<ContentWidget> {
   int _currentIndex = 0;
-  static const List<Map<String, String>> content = [
+  static const List<Map<String, dynamic>> content = [
     {
-      "text": 'Easily search for places to live quickly',
-      "image": 'image goes here',
+      "text": 'search for a place to live easily and quickly',
+      "icon": Icons.search,
     },
     {
-      "text": 'Save all your favourite places and visit them later',
-      "image": 'image goes here',
+      "text":
+          'save your favourite places and share them with friends and family',
+      "icon": Icons.favorite_border,
     },
     {
-      "text": 'Easily add your places to get customers quickly',
-      "image": 'image goes here',
+      "text": 'easily become a host and get customers quickly',
+      "icon": Icons.house,
     },
   ];
   @override
@@ -38,7 +39,11 @@ class _ContentWidgetState extends State<ContentWidget> {
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
                     child: Text(
                       content[index]['text']!,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(fontSize: 19),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   // image
@@ -46,8 +51,11 @@ class _ContentWidgetState extends State<ContentWidget> {
                     child: Container(
                       margin: EdgeInsets.only(top: 30),
                       width: 300,
-                      color: Colors.red,
-                      child: Text(content[index]['image']!),
+                      child: Icon(
+                        content[index]['icon'],
+                        size: 130,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                 ],

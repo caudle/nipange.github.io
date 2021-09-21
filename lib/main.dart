@@ -1,3 +1,8 @@
+/* author: caudle-misfit
+   @2021
+*/
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nipange/domain/auth/i_auth.dart';
@@ -11,6 +16,7 @@ int? initScreen; // whether to show onbording screen
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   // depedency injection DI
   configureInjection(Environment.prod);
   // set value in shared pref

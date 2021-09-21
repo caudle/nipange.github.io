@@ -7,12 +7,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:nipange/domain/user/user.dart';
 import 'package:nipange/infrastructure/auth/node_api_auth.dart';
+import 'package:nipange/utils/api_conn.dart';
 import 'package:path/path.dart';
 
 @LazySingleton(as: IListingRepo)
 class ListingRepo implements IListingRepo {
   final NodeApiAuth auth = NodeApiAuth();
-  final String api = "http://172.20.10.11:5000";
   Future<String> getToken() async {
     final user = await auth.getCurrentUser();
     if (user is User) {
@@ -26,9 +26,10 @@ class ListingRepo implements IListingRepo {
     List<Listing> listings = <Listing>[];
 
     // craete uri
-    final uri = Uri.parse('$api/api/user/$userId/listing');
+    final uri = Uri.parse('$api/user/$userId/listing');
 
     //http get req
+
     final response = await http.get(
       Uri.http(uri.authority, uri.path),
       headers: <String, String>{
@@ -39,21 +40,17 @@ class ListingRepo implements IListingRepo {
 
     // check if okay response
     if (response.statusCode == 200) {
-      print(response.body);
       // decode response to list
       List bodyList = json.decode(response.body);
-      print("decoded body $bodyList");
+
       // add response to listings
       listings.addAll(
           bodyList.map((listing) => Listing.fromJson(json.encode(listing))));
-      print("listingS $listings");
       return listings;
     }
 
     // bad response 400
     else {
-      print(response.statusCode);
-      print(response.body);
       final map = json.decode(response.body);
       throw Exception(map['error']);
     }
@@ -73,7 +70,7 @@ class ListingRepo implements IListingRepo {
       //get token
       final token = await getToken();
       //make http post request
-      var uri = Uri.parse('$api/api/listing/property');
+      var uri = Uri.parse('$api/listing/property');
       final response = await http.post(
         Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -114,13 +111,15 @@ class ListingRepo implements IListingRepo {
     required String country,
     required String region,
     required String district,
+    required String ward,
     required String street,
   }) async {
     try {
+      print('listing id: $listingId');
       //get token
       final token = await getToken();
       //make http post request
-      var uri = Uri.parse('$api/api/listing/location/$listingId');
+      var uri = Uri.parse('$api/listing/location/$listingId');
       final response = await http.patch(
         Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -133,6 +132,7 @@ class ListingRepo implements IListingRepo {
             "country": country,
             "region": region,
             "district": district,
+            "ward": ward,
             "street": street
           }
         }),
@@ -160,7 +160,7 @@ class ListingRepo implements IListingRepo {
       //get token
       final token = await getToken();
       //make http post request
-      var uri = Uri.parse('$api/api/listing/amenities/$listingId');
+      var uri = Uri.parse('$api/listing/amenities/$listingId');
       final response = await http.patch(
         Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -193,7 +193,7 @@ class ListingRepo implements IListingRepo {
   }) async {
     try {
       // uri
-      var uri = Uri.parse('$api/api/listing/photos/$listingId');
+      var uri = Uri.parse('$api/listing/photos/$listingId');
       // create a multpart request
       http.MultipartRequest request = http.MultipartRequest('PATCH', uri);
       // create a multipartfile
@@ -233,7 +233,7 @@ class ListingRepo implements IListingRepo {
   }) async {
     try {
       // uri
-      var uri = Uri.parse('$api/api/listing/videos/$listingId');
+      var uri = Uri.parse('$api/listing/videos/$listingId');
       // create a multpart request
       http.MultipartRequest request = http.MultipartRequest('PATCH', uri);
       // create a multipartfile
@@ -270,14 +270,14 @@ class ListingRepo implements IListingRepo {
   Future addPrice(
       {required listingId,
       required String desc,
-      required int terms,
-      required double fee,
+      required Map<dynamic, dynamic> terms,
+      double? fee,
       required double price}) async {
     try {
       //get token
       final token = await getToken();
       //make http post request
-      var uri = Uri.parse('$api/api/listing/price/$listingId');
+      var uri = Uri.parse('$api/listing/price/$listingId');
       final response = await http.patch(
         Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -312,7 +312,7 @@ class ListingRepo implements IListingRepo {
     List<Listing> listings = <Listing>[];
 
     // craete uri
-    final uri = Uri.parse('$api/api/listing/property/$type');
+    final uri = Uri.parse('$api/listing/$type');
 
     //http get req
     final response = await http.get(
@@ -325,14 +325,13 @@ class ListingRepo implements IListingRepo {
 
     // check if okay response
     if (response.statusCode == 200) {
-      print(response.body);
       // decode response to list
       List bodyList = json.decode(response.body);
-      print("decoded body $bodyList");
+
       // add response to listings
       listings.addAll(
           bodyList.map((listing) => Listing.fromJson(json.encode(listing))));
-      print("listingS $listings");
+
       return listings;
     }
 
@@ -363,7 +362,179 @@ class ListingRepo implements IListingRepo {
     throw UnimplementedError;
   }
 
-  Future delete({required Listing listing}) {
-    throw UnimplementedError;
+  Future delete({required String listingId, required String userId}) async {
+    // craete uri
+    final uri = Uri.parse('$api/listing/$listingId');
+
+    // create response
+    final response = await http.delete(
+      Uri.http(uri.authority, uri.path),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        "Accept": "application/json",
+      },
+      body: jsonEncode(<String, dynamic>{"userId": userId}),
+    );
+
+    if (!(response.statusCode == 200)) {
+      print(response.statusCode);
+      print(response.body);
+      final map = json.decode(response.body);
+      throw Exception(map['error']);
+    }
+  }
+
+// get all amenities from api
+  @override
+  Future<List<String>> getAmenities() async {
+    // craete uri
+    final uri = Uri.parse('$api/amenity');
+
+    //http get req
+    final response = await http.get(
+      Uri.http(uri.authority, uri.path),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        "Accept": "application/json",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      // body
+      print(response.body);
+      print(jsonDecode(response.body));
+      List amenities = jsonDecode(response.body);
+      return amenities.map((e) => e['name'].toString()).toList();
+    } else {
+      print(response.statusCode);
+      print(response.body);
+      final map = json.decode(response.body);
+      throw Exception(map['error']);
+    }
+  }
+
+  @override
+  Future deleteImages(
+      {required String listingId, required List<String> images}) async {
+    try {
+// craete uri
+      var uri = Uri.parse('$api/listing/photos/$listingId');
+      //http get req
+      final response = await http.delete(
+        Uri.http(uri.authority, uri.path),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          "Accept": "application/json",
+        },
+        body: jsonEncode(<String, dynamic>{"images": images}),
+      );
+
+      if (response.statusCode == 200) {
+        // body
+        print(response.body);
+        print(jsonDecode(response.body));
+        return null;
+      }
+      print(response.statusCode);
+      print(response.body);
+      final map = json.decode(response.body);
+      return (map['error']);
+    } catch (e) {
+      return e;
+    }
+  }
+
+  @override
+  Future deleteVideos(
+      {required String listingId, required List<String> videos}) async {
+    try {
+// craete uri
+      var uri = Uri.parse('$api/listing/videos/$listingId');
+      //http get req
+      final response = await http.delete(
+        Uri.http(uri.authority, uri.path),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          "Accept": "application/json",
+        },
+        body: jsonEncode(<String, dynamic>{"videos": videos}),
+      );
+
+      if (response.statusCode == 200) {
+        // body
+        print(response.body);
+        print(jsonDecode(response.body));
+        return null;
+      }
+      print(response.statusCode);
+      print(response.body);
+      final map = json.decode(response.body);
+      return (map['error']);
+    } catch (e) {
+      return e;
+    }
+  }
+
+  @override
+  Future<List<Listing>> getMore(
+      {required String id,
+      required String type,
+      required String district}) async {
+    List<Listing> listings = <Listing>[];
+
+    // craete uri
+    final uri = Uri.parse('$api/listing/more');
+
+    //http get req
+    final response = await http.post(
+      Uri.http(uri.authority, uri.path),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        "Accept": "application/json",
+      },
+      body: jsonEncode(<String, dynamic>{
+        "id": id,
+        "type": type,
+        "district": district,
+      }),
+    );
+
+    // check if okay response
+    if (response.statusCode == 200) {
+      // decode response to list
+      List bodyList = json.decode(response.body);
+
+      // add response to listings
+      listings.addAll(
+          bodyList.map((listing) => Listing.fromJson(json.encode(listing))));
+
+      return listings;
+    }
+
+    // bad response 400
+    else {
+      final map = json.decode(response.body);
+      throw Exception(map['error']);
+    }
+  }
+
+// add views
+  @override
+  Future<void> addViews(String listingId) async {
+    try {
+      // craete uri
+      final uri = Uri.parse('$api/listing/views/$listingId');
+
+      //http get req
+      await http.patch(
+        Uri.http(uri.authority, uri.path),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          "Accept": "application/json",
+        },
+      );
+    } catch (e) {
+      return;
+    }
   }
 }

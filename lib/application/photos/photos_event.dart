@@ -9,6 +9,8 @@ class PhotosEvent with _$PhotosEvent {
   const factory PhotosEvent.image3changed(File image3) = _Image3Changed;
   const factory PhotosEvent.image4changed(File image4) = _Image4Changed;
   const factory PhotosEvent.image5changed(File image5) = _Image5Changed;
+  const factory PhotosEvent.imageDeleted(int index) = _ImageDeleted;
+  const factory PhotosEvent.imagesChanged(int index) = _ImagesChanged;
   const factory PhotosEvent.next() = _Next;
   const factory PhotosEvent.save() = _Save;
 }

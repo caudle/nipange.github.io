@@ -23,6 +23,12 @@ class _$ForgotPasswordEventTearOff {
   _TimeOut timeOut() {
     return const _TimeOut();
   }
+
+  _EmailChanged emailChanged(String email) {
+    return _EmailChanged(
+      email,
+    );
+  }
 }
 
 /// @nodoc
@@ -34,12 +40,14 @@ mixin _$ForgotPasswordEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() send,
     required TResult Function() timeOut,
+    required TResult Function(String email) emailChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? send,
     TResult Function()? timeOut,
+    TResult Function(String email)? emailChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,12 +55,14 @@ mixin _$ForgotPasswordEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Send value) send,
     required TResult Function(_TimeOut value) timeOut,
+    required TResult Function(_EmailChanged value) emailChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Send value)? send,
     TResult Function(_TimeOut value)? timeOut,
+    TResult Function(_EmailChanged value)? emailChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +123,7 @@ class _$_Send implements _Send {
   TResult when<TResult extends Object?>({
     required TResult Function() send,
     required TResult Function() timeOut,
+    required TResult Function(String email) emailChanged,
   }) {
     return send();
   }
@@ -122,6 +133,7 @@ class _$_Send implements _Send {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? send,
     TResult Function()? timeOut,
+    TResult Function(String email)? emailChanged,
     required TResult orElse(),
   }) {
     if (send != null) {
@@ -135,6 +147,7 @@ class _$_Send implements _Send {
   TResult map<TResult extends Object?>({
     required TResult Function(_Send value) send,
     required TResult Function(_TimeOut value) timeOut,
+    required TResult Function(_EmailChanged value) emailChanged,
   }) {
     return send(this);
   }
@@ -144,6 +157,7 @@ class _$_Send implements _Send {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Send value)? send,
     TResult Function(_TimeOut value)? timeOut,
+    TResult Function(_EmailChanged value)? emailChanged,
     required TResult orElse(),
   }) {
     if (send != null) {
@@ -196,6 +210,7 @@ class _$_TimeOut implements _TimeOut {
   TResult when<TResult extends Object?>({
     required TResult Function() send,
     required TResult Function() timeOut,
+    required TResult Function(String email) emailChanged,
   }) {
     return timeOut();
   }
@@ -205,6 +220,7 @@ class _$_TimeOut implements _TimeOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? send,
     TResult Function()? timeOut,
+    TResult Function(String email)? emailChanged,
     required TResult orElse(),
   }) {
     if (timeOut != null) {
@@ -218,6 +234,7 @@ class _$_TimeOut implements _TimeOut {
   TResult map<TResult extends Object?>({
     required TResult Function(_Send value) send,
     required TResult Function(_TimeOut value) timeOut,
+    required TResult Function(_EmailChanged value) emailChanged,
   }) {
     return timeOut(this);
   }
@@ -227,6 +244,7 @@ class _$_TimeOut implements _TimeOut {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Send value)? send,
     TResult Function(_TimeOut value)? timeOut,
+    TResult Function(_EmailChanged value)? emailChanged,
     required TResult orElse(),
   }) {
     if (timeOut != null) {
@@ -241,17 +259,136 @@ abstract class _TimeOut implements ForgotPasswordEvent {
 }
 
 /// @nodoc
+abstract class _$EmailChangedCopyWith<$Res> {
+  factory _$EmailChangedCopyWith(
+          _EmailChanged value, $Res Function(_EmailChanged) then) =
+      __$EmailChangedCopyWithImpl<$Res>;
+  $Res call({String email});
+}
+
+/// @nodoc
+class __$EmailChangedCopyWithImpl<$Res>
+    extends _$ForgotPasswordEventCopyWithImpl<$Res>
+    implements _$EmailChangedCopyWith<$Res> {
+  __$EmailChangedCopyWithImpl(
+      _EmailChanged _value, $Res Function(_EmailChanged) _then)
+      : super(_value, (v) => _then(v as _EmailChanged));
+
+  @override
+  _EmailChanged get _value => super._value as _EmailChanged;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+  }) {
+    return _then(_EmailChanged(
+      email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_EmailChanged implements _EmailChanged {
+  const _$_EmailChanged(this.email);
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'ForgotPasswordEvent.emailChanged(email: $email)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _EmailChanged &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(email);
+
+  @JsonKey(ignore: true)
+  @override
+  _$EmailChangedCopyWith<_EmailChanged> get copyWith =>
+      __$EmailChangedCopyWithImpl<_EmailChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() send,
+    required TResult Function() timeOut,
+    required TResult Function(String email) emailChanged,
+  }) {
+    return emailChanged(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? send,
+    TResult Function()? timeOut,
+    TResult Function(String email)? emailChanged,
+    required TResult orElse(),
+  }) {
+    if (emailChanged != null) {
+      return emailChanged(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Send value) send,
+    required TResult Function(_TimeOut value) timeOut,
+    required TResult Function(_EmailChanged value) emailChanged,
+  }) {
+    return emailChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Send value)? send,
+    TResult Function(_TimeOut value)? timeOut,
+    TResult Function(_EmailChanged value)? emailChanged,
+    required TResult orElse(),
+  }) {
+    if (emailChanged != null) {
+      return emailChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmailChanged implements ForgotPasswordEvent {
+  const factory _EmailChanged(String email) = _$_EmailChanged;
+
+  String get email => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$EmailChangedCopyWith<_EmailChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$ForgotPasswordStateTearOff {
   const _$ForgotPasswordStateTearOff();
 
   _ForgotPasswordState call(
-      {required TextEditingController emailController,
+      {required String email,
       required bool isLoading,
       required bool isSuccess,
       required String failureMessage,
       required int start}) {
     return _ForgotPasswordState(
-      emailController: emailController,
+      email: email,
       isLoading: isLoading,
       isSuccess: isSuccess,
       failureMessage: failureMessage,
@@ -265,8 +402,7 @@ const $ForgotPasswordState = _$ForgotPasswordStateTearOff();
 
 /// @nodoc
 mixin _$ForgotPasswordState {
-  TextEditingController get emailController =>
-      throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isSuccess => throw _privateConstructorUsedError;
   String get failureMessage => throw _privateConstructorUsedError;
@@ -283,7 +419,7 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
           ForgotPasswordState value, $Res Function(ForgotPasswordState) then) =
       _$ForgotPasswordStateCopyWithImpl<$Res>;
   $Res call(
-      {TextEditingController emailController,
+      {String email,
       bool isLoading,
       bool isSuccess,
       String failureMessage,
@@ -301,17 +437,17 @@ class _$ForgotPasswordStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? emailController = freezed,
+    Object? email = freezed,
     Object? isLoading = freezed,
     Object? isSuccess = freezed,
     Object? failureMessage = freezed,
     Object? start = freezed,
   }) {
     return _then(_value.copyWith(
-      emailController: emailController == freezed
-          ? _value.emailController
-          : emailController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -340,7 +476,7 @@ abstract class _$ForgotPasswordStateCopyWith<$Res>
       __$ForgotPasswordStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {TextEditingController emailController,
+      {String email,
       bool isLoading,
       bool isSuccess,
       String failureMessage,
@@ -360,17 +496,17 @@ class __$ForgotPasswordStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? emailController = freezed,
+    Object? email = freezed,
     Object? isLoading = freezed,
     Object? isSuccess = freezed,
     Object? failureMessage = freezed,
     Object? start = freezed,
   }) {
     return _then(_ForgotPasswordState(
-      emailController: emailController == freezed
-          ? _value.emailController
-          : emailController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -394,14 +530,14 @@ class __$ForgotPasswordStateCopyWithImpl<$Res>
 /// @nodoc
 class _$_ForgotPasswordState implements _ForgotPasswordState {
   const _$_ForgotPasswordState(
-      {required this.emailController,
+      {required this.email,
       required this.isLoading,
       required this.isSuccess,
       required this.failureMessage,
       required this.start});
 
   @override
-  final TextEditingController emailController;
+  final String email;
   @override
   final bool isLoading;
   @override
@@ -413,16 +549,15 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
 
   @override
   String toString() {
-    return 'ForgotPasswordState(emailController: $emailController, isLoading: $isLoading, isSuccess: $isSuccess, failureMessage: $failureMessage, start: $start)';
+    return 'ForgotPasswordState(email: $email, isLoading: $isLoading, isSuccess: $isSuccess, failureMessage: $failureMessage, start: $start)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ForgotPasswordState &&
-            (identical(other.emailController, emailController) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailController, emailController)) &&
+            (identical(other.email, email) ||
+                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
                     .equals(other.isLoading, isLoading)) &&
@@ -439,7 +574,7 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(emailController) ^
+      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(isSuccess) ^
       const DeepCollectionEquality().hash(failureMessage) ^
@@ -454,15 +589,14 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
 
 abstract class _ForgotPasswordState implements ForgotPasswordState {
   const factory _ForgotPasswordState(
-      {required TextEditingController emailController,
+      {required String email,
       required bool isLoading,
       required bool isSuccess,
       required String failureMessage,
       required int start}) = _$_ForgotPasswordState;
 
   @override
-  TextEditingController get emailController =>
-      throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   @override
   bool get isLoading => throw _privateConstructorUsedError;
   @override

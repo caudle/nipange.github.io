@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,7 @@ import 'package:nipange/core/theme.dart';
 import 'package:nipange/domain/listing/listing.dart';
 import 'package:nipange/domain/review/review.dart';
 import 'package:nipange/domain/user/user.dart';
+import 'package:nipange/utils/api_conn.dart';
 import 'package:nipange/utils/common.dart';
 
 import 'package:nipange/utils/extensions.dart';
@@ -32,6 +34,7 @@ class ListingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentIndex = context.watch<ItemBloc>().state.currentIndex;
     final user = context.watch<AuthBloc>().state.user;
+    //final authBloc = context.read<AuthBloc>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,8 +48,8 @@ class ListingItem extends StatelessWidget {
                 child: PageView.builder(
                   itemCount: listing.photos!.length,
                   itemBuilder: (context, position) {
-                    return Image.network(
-                      '$api/${listing.photos![position]}',
+                    return CachedNetworkImage(
+                      imageUrl: '$api/${listing.photos![position]}',
                       width: MediaQuery.of(context).size.width,
                       height: 250,
                       fit: BoxFit.fill,
@@ -69,19 +72,19 @@ class ListingItem extends StatelessWidget {
                   children: List.generate(
                       listing.photos!.length,
                       (index) => Container(
-                            width: index == currentIndex ? 12 : 8,
-                            height: index == currentIndex ? 12 : 8,
+                            width: index == currentIndex ? 8 : 5,
+                            height: index == currentIndex ? 8 : 5,
                             margin: EdgeInsets.only(right: 5),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: index == currentIndex
-                                  ? Theme.of(context).primaryColorDark
+                                  ? Theme.of(context).primaryColorLight
                                   : Colors.white,
                               border: Border.all(
                                 width: 0,
                                 color: index == currentIndex
-                                    ? Colors.white
-                                    : Theme.of(context).primaryColorDark,
+                                    ? Theme.of(context).primaryColorLight
+                                    : Colors.white,
                               ),
                             ),
                           )),
@@ -114,7 +117,9 @@ class ListingItem extends StatelessWidget {
                                 : () {
                                     // show alert
                                     showAlertDialog(
-                                        context: context, route: routeName);
+                                        context: context,
+                                        route: routeName,
+                                        bloc: context.read<AuthBloc>());
                                   },
                             icon: Icon(
                               exists
@@ -131,6 +136,31 @@ class ListingItem extends StatelessWidget {
                 },
               ),
             ),
+
+            // premium badge
+            if (listing.package!.key == 1)
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  margin: EdgeInsets.only(left: 3, top: 5),
+                  child: Row(children: [
+                    Expanded(child: Icon(Icons.star, color: Colors.white)),
+                    Flexible(
+                      flex: 2,
+                      child: Text('premium',
+                          style: Theme.of(context)
+                              .textTheme
+                              .caption!
+                              .copyWith(color: Colors.white)),
+                    ),
+                  ]),
+                  width: 100,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColorDark,
+                      borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
           ],
         ),
 
@@ -184,7 +214,7 @@ class ListingItem extends StatelessWidget {
             children: [
               Text(
                 "${listing.propertyType!.capitalize()}",
-                style: style,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -220,13 +250,13 @@ class ListingItem extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 5),
           child: RichText(
             text: TextSpan(
-                text: "Tsh ${currencyFormatter.format(listing.price!)}",
+                text: "TZS ${currencyFormatter.format(listing.price!)}",
                 style: GoogleFonts.montserrat(
                     textStyle: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold)),
                 children: [
                   TextSpan(
-                    text: " / month",
+                    text: " / ${listing.terms!['per']}",
                     style: GoogleFonts.montserrat(
                         textStyle: TextStyle(
                             color: Colors.black,
@@ -254,7 +284,10 @@ class ListingItem extends StatelessWidget {
     return state.reviewChannel.stream;
   }
 
-  showAlertDialog({required BuildContext context, required String route}) {
+  showAlertDialog(
+      {required BuildContext context,
+      required String route,
+      required AuthBloc bloc}) {
     // set up the buttons
     Widget cancelButton = TextButton(
       child: Text(
@@ -274,12 +307,12 @@ class ListingItem extends StatelessWidget {
             .pushNamed('signup', arguments: route)
             .then((_) {
           // fetch new user
-          context.read<AuthBloc>().add(AuthEvent.started());
+          bloc.add(AuthEvent.started());
         });
       },
       style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all(Theme.of(context).primaryColorLight),
+              MaterialStateProperty.all(Theme.of(context).primaryColorDark),
           shape: MaterialStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)))),
     );
@@ -290,7 +323,7 @@ class ListingItem extends StatelessWidget {
         "Log in",
       ),
       content: Text(
-          "Save your favourite places for later and share with friends and enjoy many more."),
+          "sign up or log in to save places that you like and visit them later."),
       actions: [
         cancelButton,
         SizedBox(
@@ -298,6 +331,7 @@ class ListingItem extends StatelessWidget {
         ),
         signUpButton,
       ],
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     );
 
     // show the dialog

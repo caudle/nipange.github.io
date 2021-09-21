@@ -2,8 +2,6 @@ import 'dart:convert';
 
 class User {
   String id; //unique id
-  String firstName;
-  String lastName;
   String phone;
   String email;
   String username;
@@ -18,8 +16,6 @@ class User {
 
   User({
     required this.id,
-    required this.firstName,
-    required this.lastName,
     required this.phone,
     required this.email,
     required this.username,
@@ -35,8 +31,6 @@ class User {
 
   User copyWith({
     String? id,
-    String? firstName,
-    String? lastName,
     String? phone,
     String? email,
     String? username,
@@ -51,8 +45,6 @@ class User {
   }) {
     return User(
       id: id ?? this.id,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
       phone: phone ?? this.phone,
       email: email ?? this.email,
       username: username ?? this.username,
@@ -70,8 +62,6 @@ class User {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'firstName': firstName,
-      'lastName': lastName,
       'phone': phone,
       'email': email,
       'username': username,
@@ -89,8 +79,6 @@ class User {
   Map<String, dynamic> toMapDb() {
     return {
       'id': id,
-      'firstName': firstName,
-      'lastName': lastName,
       'phone': phone,
       'email': email,
       'username': username,
@@ -108,8 +96,6 @@ class User {
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['user']['_id'],
-      firstName: map['user']['firstName'],
-      lastName: map['user']['lastName'],
       phone: map['user']['phone'],
       email: map['user']['email'],
       username: map['user']['username'],
@@ -127,8 +113,6 @@ class User {
   factory User.fromMapDb(Map<String, dynamic> map) {
     return User(
       id: map['id'],
-      firstName: map['firstName'],
-      lastName: map['lastName'],
       phone: map['phone'],
       email: map['email'],
       username: map['username'],
@@ -149,7 +133,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, username: $username, password: $password, dp: $dp, type: $type, token: $token, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, device: $device, createdAt: $createdAt)';
+    return 'User(id: $id,  phone: $phone, email: $email, username: $username, password: $password, dp: $dp, type: $type, token: $token, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, device: $device, createdAt: $createdAt)';
   }
 
   @override
@@ -158,8 +142,6 @@ class User {
 
     return other is User &&
         other.id == id &&
-        other.firstName == firstName &&
-        other.lastName == lastName &&
         other.phone == phone &&
         other.email == email &&
         other.username == username &&
@@ -176,8 +158,6 @@ class User {
   @override
   int get hashCode {
     return id.hashCode ^
-        firstName.hashCode ^
-        lastName.hashCode ^
         phone.hashCode ^
         email.hashCode ^
         username.hashCode ^

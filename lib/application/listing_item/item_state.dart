@@ -6,12 +6,11 @@ class ItemState with _$ItemState {
     required WebSocketChannel existsChannel,
     required WebSocketChannel reviewChannel,
     required int currentIndex,
+    // fav icon tappd
   }) = _ItemState;
   factory ItemState.initial() => ItemState(
-        existsChannel: IOWebSocketChannel.connect(
-            'ws://172.20.10.11:5000/api/user/saved/exists'),
-        reviewChannel:
-            IOWebSocketChannel.connect('ws://172.20.10.11:5000/api/review'),
+        existsChannel: IOWebSocketChannel.connect('$ws/api/user/saved/exists'),
+        reviewChannel: IOWebSocketChannel.connect('$ws/api/review'),
         currentIndex: 0,
       );
 }

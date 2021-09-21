@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nipange/application/auth/auth_check/auth_bloc.dart';
-import 'package:nipange/injector.dart';
+
 import 'package:nipange/presentation/listing/listing.dart';
 
 class ListingNavigator extends StatelessWidget {
@@ -25,20 +23,14 @@ Route _generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           settings: RouteSettings(name: '/'),
           builder: (context) {
-            return BlocProvider(
-              create: (context) => getIt<AuthBloc>()..add(AuthEvent.started()),
-              child: ListingPage(),
-            );
+            return ListingPage();
           });
 
     default:
       return MaterialPageRoute(
           settings: RouteSettings(name: '/'),
           builder: (context) {
-            return BlocProvider(
-              create: (context) => getIt<AuthBloc>()..add(AuthEvent.started()),
-              child: ListingPage(),
-            );
+            return ListingPage();
           });
   }
 }

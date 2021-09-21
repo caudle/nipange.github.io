@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nipange/application/explore/explore_bloc.dart';
-import 'package:nipange/application/saved/saved_bloc.dart';
+
 import 'package:nipange/presentation/account/account_navigator.dart';
 import 'package:nipange/presentation/saved/saved_navigator.dart';
-import 'package:nipange/presentation/saved/saved_page.dart';
 
-import '../injector.dart';
-import 'account/account_page.dart';
-import 'explore/explore.dart';
 import 'explore/explore_navigator.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,15 +55,13 @@ class _HomePageState extends State<HomePage> {
                 activeIcon: Icon(Icons.favorite)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.perm_identity_outlined),
-                label: 'Account',
+                label: 'Profile',
                 activeIcon: Icon(Icons.perm_identity)),
           ],
           currentIndex: currentIndex,
           onTap: _selectTab,
           selectedIconTheme: Theme.of(context).iconTheme,
-          //unselectedIconTheme: IconThemeData(color: null),
           selectedItemColor: Theme.of(context).primaryColorDark,
-          //unselectedItemColor: ,
         ),
       ),
     );
@@ -85,14 +77,18 @@ class _HomePageState extends State<HomePage> {
   Widget _buildOffstageSavedNavigator(TabItem tabItem) {
     return Offstage(
       offstage: currentTab != tabItem,
-      child: SavedNavigator(navigatorKeys[tabItem]!),
+      child: currentTab != tabItem
+          ? SizedBox()
+          : SavedNavigator(navigatorKeys[tabItem]!),
     );
   }
 
   Widget _buildOffstageAccountNavigator(TabItem tabItem) {
     return Offstage(
       offstage: currentTab != tabItem,
-      child: AccountNavigator(navigatorKeys[tabItem]!),
+      child: currentTab != tabItem
+          ? SizedBox()
+          : AccountNavigator(navigatorKeys[tabItem]!),
     );
   }
 }

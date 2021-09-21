@@ -6,11 +6,10 @@ class UserDatabase {
   Future<Database> createDb() async {
     return openDatabase(
       //set db path
-      join(await getDatabasesPath(), 'userz_database.db'),
+      join(await getDatabasesPath(), 'users_database.db'),
       onCreate: (db, version) {
-        return db
-            .execute("""CREATE TABLE users(id TEXT PRIMARY KEY, firstName TEXT, 
-          lastName TEXT, phone TEXT, email TEXT, username TEXT, password TEXT,
+        return db.execute("""CREATE TABLE users(id TEXT PRIMARY KEY, 
+            phone TEXT, email TEXT, username TEXT, password TEXT,
           isEmailVerified INTEGER, isPhoneVerified INTEGER, type TEXT, dp TEXT,
           device TEXT, token TEXT, createdAt TEXT)""");
       },

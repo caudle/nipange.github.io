@@ -21,6 +21,18 @@ class _$ResetpasswordEventTearOff {
       id,
     );
   }
+
+  _PasswordChanged passwordChanged(String value) {
+    return _PasswordChanged(
+      value,
+    );
+  }
+
+  _ConfirmChanged confirmChanged(String value) {
+    return _ConfirmChanged(
+      value,
+    );
+  }
 }
 
 /// @nodoc
@@ -28,33 +40,35 @@ const $ResetpasswordEvent = _$ResetpasswordEventTearOff();
 
 /// @nodoc
 mixin _$ResetpasswordEvent {
-  String get id => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id) reset,
+    required TResult Function(String value) passwordChanged,
+    required TResult Function(String value) confirmChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? reset,
+    TResult Function(String value)? passwordChanged,
+    TResult Function(String value)? confirmChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Reset value) reset,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmChanged value) confirmChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmChanged value)? confirmChanged,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ResetpasswordEventCopyWith<ResetpasswordEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,7 +77,6 @@ abstract class $ResetpasswordEventCopyWith<$Res> {
   factory $ResetpasswordEventCopyWith(
           ResetpasswordEvent value, $Res Function(ResetpasswordEvent) then) =
       _$ResetpasswordEventCopyWithImpl<$Res>;
-  $Res call({String id});
 }
 
 /// @nodoc
@@ -74,26 +87,12 @@ class _$ResetpasswordEventCopyWithImpl<$Res>
   final ResetpasswordEvent _value;
   // ignore: unused_field
   final $Res Function(ResetpasswordEvent) _then;
-
-  @override
-  $Res call({
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$ResetCopyWith<$Res>
-    implements $ResetpasswordEventCopyWith<$Res> {
+abstract class _$ResetCopyWith<$Res> {
   factory _$ResetCopyWith(_Reset value, $Res Function(_Reset) then) =
       __$ResetCopyWithImpl<$Res>;
-  @override
   $Res call({String id});
 }
 
@@ -152,6 +151,8 @@ class _$_Reset implements _Reset {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String id) reset,
+    required TResult Function(String value) passwordChanged,
+    required TResult Function(String value) confirmChanged,
   }) {
     return reset(id);
   }
@@ -160,6 +161,8 @@ class _$_Reset implements _Reset {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String id)? reset,
+    TResult Function(String value)? passwordChanged,
+    TResult Function(String value)? confirmChanged,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -172,6 +175,8 @@ class _$_Reset implements _Reset {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Reset value) reset,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmChanged value) confirmChanged,
   }) {
     return reset(this);
   }
@@ -180,6 +185,8 @@ class _$_Reset implements _Reset {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Reset value)? reset,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmChanged value)? confirmChanged,
     required TResult orElse(),
   }) {
     if (reset != null) {
@@ -192,11 +199,247 @@ class _$_Reset implements _Reset {
 abstract class _Reset implements ResetpasswordEvent {
   const factory _Reset(String id) = _$_Reset;
 
-  @override
   String get id => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$ResetCopyWith<_Reset> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$PasswordChangedCopyWith<$Res> {
+  factory _$PasswordChangedCopyWith(
+          _PasswordChanged value, $Res Function(_PasswordChanged) then) =
+      __$PasswordChangedCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$PasswordChangedCopyWithImpl<$Res>
+    extends _$ResetpasswordEventCopyWithImpl<$Res>
+    implements _$PasswordChangedCopyWith<$Res> {
+  __$PasswordChangedCopyWithImpl(
+      _PasswordChanged _value, $Res Function(_PasswordChanged) _then)
+      : super(_value, (v) => _then(v as _PasswordChanged));
+
+  @override
+  _PasswordChanged get _value => super._value as _PasswordChanged;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_PasswordChanged(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_PasswordChanged implements _PasswordChanged {
+  const _$_PasswordChanged(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'ResetpasswordEvent.passwordChanged(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _PasswordChanged &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$PasswordChangedCopyWith<_PasswordChanged> get copyWith =>
+      __$PasswordChangedCopyWithImpl<_PasswordChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) reset,
+    required TResult Function(String value) passwordChanged,
+    required TResult Function(String value) confirmChanged,
+  }) {
+    return passwordChanged(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? reset,
+    TResult Function(String value)? passwordChanged,
+    TResult Function(String value)? confirmChanged,
+    required TResult orElse(),
+  }) {
+    if (passwordChanged != null) {
+      return passwordChanged(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmChanged value) confirmChanged,
+  }) {
+    return passwordChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmChanged value)? confirmChanged,
+    required TResult orElse(),
+  }) {
+    if (passwordChanged != null) {
+      return passwordChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PasswordChanged implements ResetpasswordEvent {
+  const factory _PasswordChanged(String value) = _$_PasswordChanged;
+
+  String get value => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$PasswordChangedCopyWith<_PasswordChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ConfirmChangedCopyWith<$Res> {
+  factory _$ConfirmChangedCopyWith(
+          _ConfirmChanged value, $Res Function(_ConfirmChanged) then) =
+      __$ConfirmChangedCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$ConfirmChangedCopyWithImpl<$Res>
+    extends _$ResetpasswordEventCopyWithImpl<$Res>
+    implements _$ConfirmChangedCopyWith<$Res> {
+  __$ConfirmChangedCopyWithImpl(
+      _ConfirmChanged _value, $Res Function(_ConfirmChanged) _then)
+      : super(_value, (v) => _then(v as _ConfirmChanged));
+
+  @override
+  _ConfirmChanged get _value => super._value as _ConfirmChanged;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_ConfirmChanged(
+      value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_ConfirmChanged implements _ConfirmChanged {
+  const _$_ConfirmChanged(this.value);
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'ResetpasswordEvent.confirmChanged(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ConfirmChanged &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ConfirmChangedCopyWith<_ConfirmChanged> get copyWith =>
+      __$ConfirmChangedCopyWithImpl<_ConfirmChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id) reset,
+    required TResult Function(String value) passwordChanged,
+    required TResult Function(String value) confirmChanged,
+  }) {
+    return confirmChanged(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id)? reset,
+    TResult Function(String value)? passwordChanged,
+    TResult Function(String value)? confirmChanged,
+    required TResult orElse(),
+  }) {
+    if (confirmChanged != null) {
+      return confirmChanged(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_ConfirmChanged value) confirmChanged,
+  }) {
+    return confirmChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Reset value)? reset,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_ConfirmChanged value)? confirmChanged,
+    required TResult orElse(),
+  }) {
+    if (confirmChanged != null) {
+      return confirmChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConfirmChanged implements ResetpasswordEvent {
+  const factory _ConfirmChanged(String value) = _$_ConfirmChanged;
+
+  String get value => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ConfirmChangedCopyWith<_ConfirmChanged> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -204,14 +447,14 @@ class _$ResetpasswordStateTearOff {
   const _$ResetpasswordStateTearOff();
 
   _ResetpasswordState call(
-      {required TextEditingController passwordController,
-      required TextEditingController confirmController,
+      {required String password,
+      required String confirm,
       required bool isLoading,
       required bool isSuccess,
       required String failureMessage}) {
     return _ResetpasswordState(
-      passwordController: passwordController,
-      confirmController: confirmController,
+      password: password,
+      confirm: confirm,
       isLoading: isLoading,
       isSuccess: isSuccess,
       failureMessage: failureMessage,
@@ -224,10 +467,8 @@ const $ResetpasswordState = _$ResetpasswordStateTearOff();
 
 /// @nodoc
 mixin _$ResetpasswordState {
-  TextEditingController get passwordController =>
-      throw _privateConstructorUsedError;
-  TextEditingController get confirmController =>
-      throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  String get confirm => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isSuccess => throw _privateConstructorUsedError;
   String get failureMessage => throw _privateConstructorUsedError;
@@ -243,8 +484,8 @@ abstract class $ResetpasswordStateCopyWith<$Res> {
           ResetpasswordState value, $Res Function(ResetpasswordState) then) =
       _$ResetpasswordStateCopyWithImpl<$Res>;
   $Res call(
-      {TextEditingController passwordController,
-      TextEditingController confirmController,
+      {String password,
+      String confirm,
       bool isLoading,
       bool isSuccess,
       String failureMessage});
@@ -261,21 +502,21 @@ class _$ResetpasswordStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? passwordController = freezed,
-    Object? confirmController = freezed,
+    Object? password = freezed,
+    Object? confirm = freezed,
     Object? isLoading = freezed,
     Object? isSuccess = freezed,
     Object? failureMessage = freezed,
   }) {
     return _then(_value.copyWith(
-      passwordController: passwordController == freezed
-          ? _value.passwordController
-          : passwordController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      confirmController: confirmController == freezed
-          ? _value.confirmController
-          : confirmController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirm: confirm == freezed
+          ? _value.confirm
+          : confirm // ignore: cast_nullable_to_non_nullable
+              as String,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -300,8 +541,8 @@ abstract class _$ResetpasswordStateCopyWith<$Res>
       __$ResetpasswordStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {TextEditingController passwordController,
-      TextEditingController confirmController,
+      {String password,
+      String confirm,
       bool isLoading,
       bool isSuccess,
       String failureMessage});
@@ -320,21 +561,21 @@ class __$ResetpasswordStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? passwordController = freezed,
-    Object? confirmController = freezed,
+    Object? password = freezed,
+    Object? confirm = freezed,
     Object? isLoading = freezed,
     Object? isSuccess = freezed,
     Object? failureMessage = freezed,
   }) {
     return _then(_ResetpasswordState(
-      passwordController: passwordController == freezed
-          ? _value.passwordController
-          : passwordController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      confirmController: confirmController == freezed
-          ? _value.confirmController
-          : confirmController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirm: confirm == freezed
+          ? _value.confirm
+          : confirm // ignore: cast_nullable_to_non_nullable
+              as String,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -354,16 +595,16 @@ class __$ResetpasswordStateCopyWithImpl<$Res>
 /// @nodoc
 class _$_ResetpasswordState implements _ResetpasswordState {
   const _$_ResetpasswordState(
-      {required this.passwordController,
-      required this.confirmController,
+      {required this.password,
+      required this.confirm,
       required this.isLoading,
       required this.isSuccess,
       required this.failureMessage});
 
   @override
-  final TextEditingController passwordController;
+  final String password;
   @override
-  final TextEditingController confirmController;
+  final String confirm;
   @override
   final bool isLoading;
   @override
@@ -373,19 +614,19 @@ class _$_ResetpasswordState implements _ResetpasswordState {
 
   @override
   String toString() {
-    return 'ResetpasswordState(passwordController: $passwordController, confirmController: $confirmController, isLoading: $isLoading, isSuccess: $isSuccess, failureMessage: $failureMessage)';
+    return 'ResetpasswordState(password: $password, confirm: $confirm, isLoading: $isLoading, isSuccess: $isSuccess, failureMessage: $failureMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ResetpasswordState &&
-            (identical(other.passwordController, passwordController) ||
+            (identical(other.password, password) ||
                 const DeepCollectionEquality()
-                    .equals(other.passwordController, passwordController)) &&
-            (identical(other.confirmController, confirmController) ||
+                    .equals(other.password, password)) &&
+            (identical(other.confirm, confirm) ||
                 const DeepCollectionEquality()
-                    .equals(other.confirmController, confirmController)) &&
+                    .equals(other.confirm, confirm)) &&
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
                     .equals(other.isLoading, isLoading)) &&
@@ -400,8 +641,8 @@ class _$_ResetpasswordState implements _ResetpasswordState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(passwordController) ^
-      const DeepCollectionEquality().hash(confirmController) ^
+      const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(confirm) ^
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(isSuccess) ^
       const DeepCollectionEquality().hash(failureMessage);
@@ -414,18 +655,16 @@ class _$_ResetpasswordState implements _ResetpasswordState {
 
 abstract class _ResetpasswordState implements ResetpasswordState {
   const factory _ResetpasswordState(
-      {required TextEditingController passwordController,
-      required TextEditingController confirmController,
+      {required String password,
+      required String confirm,
       required bool isLoading,
       required bool isSuccess,
       required String failureMessage}) = _$_ResetpasswordState;
 
   @override
-  TextEditingController get passwordController =>
-      throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   @override
-  TextEditingController get confirmController =>
-      throw _privateConstructorUsedError;
+  String get confirm => throw _privateConstructorUsedError;
   @override
   bool get isLoading => throw _privateConstructorUsedError;
   @override

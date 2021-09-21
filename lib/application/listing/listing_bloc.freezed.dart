@@ -21,6 +21,13 @@ class _$ListingEventTearOff {
       userId,
     );
   }
+
+  _Deleted deleted({required String listingId, required String userId}) {
+    return _Deleted(
+      listingId: listingId,
+      userId: userId,
+    );
+  }
 }
 
 /// @nodoc
@@ -33,22 +40,26 @@ mixin _$ListingEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) fetching,
+    required TResult Function(String listingId, String userId) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? fetching,
+    TResult Function(String listingId, String userId)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetching value) fetching,
+    required TResult Function(_Deleted value) deleted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetching value)? fetching,
+    TResult Function(_Deleted value)? deleted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +161,7 @@ class _$_Fetching implements _Fetching {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) fetching,
+    required TResult Function(String listingId, String userId) deleted,
   }) {
     return fetching(userId);
   }
@@ -158,6 +170,7 @@ class _$_Fetching implements _Fetching {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? fetching,
+    TResult Function(String listingId, String userId)? deleted,
     required TResult orElse(),
   }) {
     if (fetching != null) {
@@ -170,6 +183,7 @@ class _$_Fetching implements _Fetching {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetching value) fetching,
+    required TResult Function(_Deleted value) deleted,
   }) {
     return fetching(this);
   }
@@ -178,6 +192,7 @@ class _$_Fetching implements _Fetching {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetching value)? fetching,
+    TResult Function(_Deleted value)? deleted,
     required TResult orElse(),
   }) {
     if (fetching != null) {
@@ -199,12 +214,146 @@ abstract class _Fetching implements ListingEvent {
 }
 
 /// @nodoc
+abstract class _$DeletedCopyWith<$Res> implements $ListingEventCopyWith<$Res> {
+  factory _$DeletedCopyWith(_Deleted value, $Res Function(_Deleted) then) =
+      __$DeletedCopyWithImpl<$Res>;
+  @override
+  $Res call({String listingId, String userId});
+}
+
+/// @nodoc
+class __$DeletedCopyWithImpl<$Res> extends _$ListingEventCopyWithImpl<$Res>
+    implements _$DeletedCopyWith<$Res> {
+  __$DeletedCopyWithImpl(_Deleted _value, $Res Function(_Deleted) _then)
+      : super(_value, (v) => _then(v as _Deleted));
+
+  @override
+  _Deleted get _value => super._value as _Deleted;
+
+  @override
+  $Res call({
+    Object? listingId = freezed,
+    Object? userId = freezed,
+  }) {
+    return _then(_Deleted(
+      listingId: listingId == freezed
+          ? _value.listingId
+          : listingId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_Deleted implements _Deleted {
+  const _$_Deleted({required this.listingId, required this.userId});
+
+  @override
+  final String listingId;
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'ListingEvent.deleted(listingId: $listingId, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Deleted &&
+            (identical(other.listingId, listingId) ||
+                const DeepCollectionEquality()
+                    .equals(other.listingId, listingId)) &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(listingId) ^
+      const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DeletedCopyWith<_Deleted> get copyWith =>
+      __$DeletedCopyWithImpl<_Deleted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) fetching,
+    required TResult Function(String listingId, String userId) deleted,
+  }) {
+    return deleted(listingId, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? fetching,
+    TResult Function(String listingId, String userId)? deleted,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(listingId, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetching value) fetching,
+    required TResult Function(_Deleted value) deleted,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetching value)? fetching,
+    TResult Function(_Deleted value)? deleted,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Deleted implements ListingEvent {
+  const factory _Deleted({required String listingId, required String userId}) =
+      _$_Deleted;
+
+  String get listingId => throw _privateConstructorUsedError;
+  @override
+  String get userId => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$DeletedCopyWith<_Deleted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$ListingStateTearOff {
   const _$ListingStateTearOff();
 
-  _ListingState call({required Future<List<Listing>>? listings}) {
+  _ListingState call(
+      {required Future<List<Listing>>? listings,
+      String? deletedmessage,
+      required bool isdeleted}) {
     return _ListingState(
       listings: listings,
+      deletedmessage: deletedmessage,
+      isdeleted: isdeleted,
     );
   }
 }
@@ -215,6 +364,8 @@ const $ListingState = _$ListingStateTearOff();
 /// @nodoc
 mixin _$ListingState {
   Future<List<Listing>>? get listings => throw _privateConstructorUsedError;
+  String? get deletedmessage => throw _privateConstructorUsedError;
+  bool get isdeleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ListingStateCopyWith<ListingState> get copyWith =>
@@ -226,7 +377,10 @@ abstract class $ListingStateCopyWith<$Res> {
   factory $ListingStateCopyWith(
           ListingState value, $Res Function(ListingState) then) =
       _$ListingStateCopyWithImpl<$Res>;
-  $Res call({Future<List<Listing>>? listings});
+  $Res call(
+      {Future<List<Listing>>? listings,
+      String? deletedmessage,
+      bool isdeleted});
 }
 
 /// @nodoc
@@ -240,12 +394,22 @@ class _$ListingStateCopyWithImpl<$Res> implements $ListingStateCopyWith<$Res> {
   @override
   $Res call({
     Object? listings = freezed,
+    Object? deletedmessage = freezed,
+    Object? isdeleted = freezed,
   }) {
     return _then(_value.copyWith(
       listings: listings == freezed
           ? _value.listings
           : listings // ignore: cast_nullable_to_non_nullable
               as Future<List<Listing>>?,
+      deletedmessage: deletedmessage == freezed
+          ? _value.deletedmessage
+          : deletedmessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isdeleted: isdeleted == freezed
+          ? _value.isdeleted
+          : isdeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -257,7 +421,10 @@ abstract class _$ListingStateCopyWith<$Res>
           _ListingState value, $Res Function(_ListingState) then) =
       __$ListingStateCopyWithImpl<$Res>;
   @override
-  $Res call({Future<List<Listing>>? listings});
+  $Res call(
+      {Future<List<Listing>>? listings,
+      String? deletedmessage,
+      bool isdeleted});
 }
 
 /// @nodoc
@@ -273,26 +440,41 @@ class __$ListingStateCopyWithImpl<$Res> extends _$ListingStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? listings = freezed,
+    Object? deletedmessage = freezed,
+    Object? isdeleted = freezed,
   }) {
     return _then(_ListingState(
       listings: listings == freezed
           ? _value.listings
           : listings // ignore: cast_nullable_to_non_nullable
               as Future<List<Listing>>?,
+      deletedmessage: deletedmessage == freezed
+          ? _value.deletedmessage
+          : deletedmessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isdeleted: isdeleted == freezed
+          ? _value.isdeleted
+          : isdeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 class _$_ListingState implements _ListingState {
-  const _$_ListingState({required this.listings});
+  const _$_ListingState(
+      {required this.listings, this.deletedmessage, required this.isdeleted});
 
   @override
   final Future<List<Listing>>? listings;
+  @override
+  final String? deletedmessage;
+  @override
+  final bool isdeleted;
 
   @override
   String toString() {
-    return 'ListingState(listings: $listings)';
+    return 'ListingState(listings: $listings, deletedmessage: $deletedmessage, isdeleted: $isdeleted)';
   }
 
   @override
@@ -301,12 +483,21 @@ class _$_ListingState implements _ListingState {
         (other is _ListingState &&
             (identical(other.listings, listings) ||
                 const DeepCollectionEquality()
-                    .equals(other.listings, listings)));
+                    .equals(other.listings, listings)) &&
+            (identical(other.deletedmessage, deletedmessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.deletedmessage, deletedmessage)) &&
+            (identical(other.isdeleted, isdeleted) ||
+                const DeepCollectionEquality()
+                    .equals(other.isdeleted, isdeleted)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(listings);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(listings) ^
+      const DeepCollectionEquality().hash(deletedmessage) ^
+      const DeepCollectionEquality().hash(isdeleted);
 
   @JsonKey(ignore: true)
   @override
@@ -315,11 +506,17 @@ class _$_ListingState implements _ListingState {
 }
 
 abstract class _ListingState implements ListingState {
-  const factory _ListingState({required Future<List<Listing>>? listings}) =
-      _$_ListingState;
+  const factory _ListingState(
+      {required Future<List<Listing>>? listings,
+      String? deletedmessage,
+      required bool isdeleted}) = _$_ListingState;
 
   @override
   Future<List<Listing>>? get listings => throw _privateConstructorUsedError;
+  @override
+  String? get deletedmessage => throw _privateConstructorUsedError;
+  @override
+  bool get isdeleted => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ListingStateCopyWith<_ListingState> get copyWith =>

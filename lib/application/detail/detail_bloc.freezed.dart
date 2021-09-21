@@ -16,9 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DetailEventTearOff {
   const _$DetailEventTearOff();
 
-  _Started started({required String userId}) {
+  _Started started(
+      {required String userId,
+      required String listingId,
+      required String type,
+      required String district}) {
     return _Started(
       userId: userId,
+      listingId: listingId,
+      type: type,
+      district: district,
     );
   }
 
@@ -52,9 +59,13 @@ const $DetailEvent = _$DetailEventTearOff();
 
 /// @nodoc
 mixin _$DetailEvent {
+  String get listingId => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) started,
+    required TResult Function(
+            String userId, String listingId, String type, String district)
+        started,
     required TResult Function(int star, String comment, String listingId)
         sendPressed,
     required TResult Function(String listingId, String userId) deleteListing,
@@ -63,7 +74,9 @@ mixin _$DetailEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? started,
+    TResult Function(
+            String userId, String listingId, String type, String district)?
+        started,
     TResult Function(int star, String comment, String listingId)? sendPressed,
     TResult Function(String listingId, String userId)? deleteListing,
     TResult Function(String listingId, String userId)? addListing,
@@ -87,6 +100,10 @@ mixin _$DetailEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $DetailEventCopyWith<DetailEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -94,6 +111,7 @@ abstract class $DetailEventCopyWith<$Res> {
   factory $DetailEventCopyWith(
           DetailEvent value, $Res Function(DetailEvent) then) =
       _$DetailEventCopyWithImpl<$Res>;
+  $Res call({String listingId});
 }
 
 /// @nodoc
@@ -103,13 +121,26 @@ class _$DetailEventCopyWithImpl<$Res> implements $DetailEventCopyWith<$Res> {
   final DetailEvent _value;
   // ignore: unused_field
   final $Res Function(DetailEvent) _then;
+
+  @override
+  $Res call({
+    Object? listingId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      listingId: listingId == freezed
+          ? _value.listingId
+          : listingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
+abstract class _$StartedCopyWith<$Res> implements $DetailEventCopyWith<$Res> {
   factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
       __$StartedCopyWithImpl<$Res>;
-  $Res call({String userId});
+  @override
+  $Res call({String userId, String listingId, String type, String district});
 }
 
 /// @nodoc
@@ -124,11 +155,26 @@ class __$StartedCopyWithImpl<$Res> extends _$DetailEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = freezed,
+    Object? listingId = freezed,
+    Object? type = freezed,
+    Object? district = freezed,
   }) {
     return _then(_Started(
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      listingId: listingId == freezed
+          ? _value.listingId
+          : listingId // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      district: district == freezed
+          ? _value.district
+          : district // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -136,14 +182,24 @@ class __$StartedCopyWithImpl<$Res> extends _$DetailEventCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Started with DiagnosticableTreeMixin implements _Started {
-  const _$_Started({required this.userId});
+  const _$_Started(
+      {required this.userId,
+      required this.listingId,
+      required this.type,
+      required this.district});
 
   @override
   final String userId;
+  @override
+  final String listingId;
+  @override
+  final String type;
+  @override
+  final String district;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailEvent.started(userId: $userId)';
+    return 'DetailEvent.started(userId: $userId, listingId: $listingId, type: $type, district: $district)';
   }
 
   @override
@@ -151,7 +207,10 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'DetailEvent.started'))
-      ..add(DiagnosticsProperty('userId', userId));
+      ..add(DiagnosticsProperty('userId', userId))
+      ..add(DiagnosticsProperty('listingId', listingId))
+      ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('district', district));
   }
 
   @override
@@ -159,12 +218,24 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     return identical(this, other) ||
         (other is _Started &&
             (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+                const DeepCollectionEquality().equals(other.userId, userId)) &&
+            (identical(other.listingId, listingId) ||
+                const DeepCollectionEquality()
+                    .equals(other.listingId, listingId)) &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.district, district) ||
+                const DeepCollectionEquality()
+                    .equals(other.district, district)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userId) ^
+      const DeepCollectionEquality().hash(listingId) ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(district);
 
   @JsonKey(ignore: true)
   @override
@@ -174,26 +245,30 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) started,
+    required TResult Function(
+            String userId, String listingId, String type, String district)
+        started,
     required TResult Function(int star, String comment, String listingId)
         sendPressed,
     required TResult Function(String listingId, String userId) deleteListing,
     required TResult Function(String listingId, String userId) addListing,
   }) {
-    return started(userId);
+    return started(userId, listingId, type, district);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? started,
+    TResult Function(
+            String userId, String listingId, String type, String district)?
+        started,
     TResult Function(int star, String comment, String listingId)? sendPressed,
     TResult Function(String listingId, String userId)? deleteListing,
     TResult Function(String listingId, String userId)? addListing,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(userId);
+      return started(userId, listingId, type, district);
     }
     return orElse();
   }
@@ -226,19 +301,30 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
 }
 
 abstract class _Started implements DetailEvent {
-  const factory _Started({required String userId}) = _$_Started;
+  const factory _Started(
+      {required String userId,
+      required String listingId,
+      required String type,
+      required String district}) = _$_Started;
 
   String get userId => throw _privateConstructorUsedError;
+  @override
+  String get listingId => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  String get district => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$StartedCopyWith<_Started> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SendPressedCopyWith<$Res> {
+abstract class _$SendPressedCopyWith<$Res>
+    implements $DetailEventCopyWith<$Res> {
   factory _$SendPressedCopyWith(
           _SendPressed value, $Res Function(_SendPressed) then) =
       __$SendPressedCopyWithImpl<$Res>;
+  @override
   $Res call({int star, String comment, String listingId});
 }
 
@@ -331,7 +417,9 @@ class _$_SendPressed with DiagnosticableTreeMixin implements _SendPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) started,
+    required TResult Function(
+            String userId, String listingId, String type, String district)
+        started,
     required TResult Function(int star, String comment, String listingId)
         sendPressed,
     required TResult Function(String listingId, String userId) deleteListing,
@@ -343,7 +431,9 @@ class _$_SendPressed with DiagnosticableTreeMixin implements _SendPressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? started,
+    TResult Function(
+            String userId, String listingId, String type, String district)?
+        started,
     TResult Function(int star, String comment, String listingId)? sendPressed,
     TResult Function(String listingId, String userId)? deleteListing,
     TResult Function(String listingId, String userId)? addListing,
@@ -390,17 +480,21 @@ abstract class _SendPressed implements DetailEvent {
 
   int get star => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
+  @override
   String get listingId => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$SendPressedCopyWith<_SendPressed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$DeleteListingCopyWith<$Res> {
+abstract class _$DeleteListingCopyWith<$Res>
+    implements $DetailEventCopyWith<$Res> {
   factory _$DeleteListingCopyWith(
           _DeleteListing value, $Res Function(_DeleteListing) then) =
       __$DeleteListingCopyWithImpl<$Res>;
+  @override
   $Res call({String listingId, String userId});
 }
 
@@ -480,7 +574,9 @@ class _$_DeleteListing with DiagnosticableTreeMixin implements _DeleteListing {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) started,
+    required TResult Function(
+            String userId, String listingId, String type, String district)
+        started,
     required TResult Function(int star, String comment, String listingId)
         sendPressed,
     required TResult Function(String listingId, String userId) deleteListing,
@@ -492,7 +588,9 @@ class _$_DeleteListing with DiagnosticableTreeMixin implements _DeleteListing {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? started,
+    TResult Function(
+            String userId, String listingId, String type, String district)?
+        started,
     TResult Function(int star, String comment, String listingId)? sendPressed,
     TResult Function(String listingId, String userId)? deleteListing,
     TResult Function(String listingId, String userId)? addListing,
@@ -535,18 +633,22 @@ abstract class _DeleteListing implements DetailEvent {
   const factory _DeleteListing(
       {required String listingId, required String userId}) = _$_DeleteListing;
 
+  @override
   String get listingId => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$DeleteListingCopyWith<_DeleteListing> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$AddListingCopyWith<$Res> {
+abstract class _$AddListingCopyWith<$Res>
+    implements $DetailEventCopyWith<$Res> {
   factory _$AddListingCopyWith(
           _AddListing value, $Res Function(_AddListing) then) =
       __$AddListingCopyWithImpl<$Res>;
+  @override
   $Res call({String listingId, String userId});
 }
 
@@ -626,7 +728,9 @@ class _$_AddListing with DiagnosticableTreeMixin implements _AddListing {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) started,
+    required TResult Function(
+            String userId, String listingId, String type, String district)
+        started,
     required TResult Function(int star, String comment, String listingId)
         sendPressed,
     required TResult Function(String listingId, String userId) deleteListing,
@@ -638,7 +742,9 @@ class _$_AddListing with DiagnosticableTreeMixin implements _AddListing {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? started,
+    TResult Function(
+            String userId, String listingId, String type, String district)?
+        started,
     TResult Function(int star, String comment, String listingId)? sendPressed,
     TResult Function(String listingId, String userId)? deleteListing,
     TResult Function(String listingId, String userId)? addListing,
@@ -681,8 +787,10 @@ abstract class _AddListing implements DetailEvent {
   const factory _AddListing(
       {required String listingId, required String userId}) = _$_AddListing;
 
+  @override
   String get listingId => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   _$AddListingCopyWith<_AddListing> get copyWith =>
       throw _privateConstructorUsedError;
@@ -698,6 +806,8 @@ class _$DetailStateTearOff {
       required IOWebSocketChannel reviewListChannel,
       required IOWebSocketChannel reviewChannel,
       required IOWebSocketChannel existsChannel,
+      required Future<List<Listing>>? moreListings,
+      required TextEditingController commentController,
       required User? currentUser,
       required bool isLoading,
       required bool isError,
@@ -708,6 +818,8 @@ class _$DetailStateTearOff {
       reviewListChannel: reviewListChannel,
       reviewChannel: reviewChannel,
       existsChannel: existsChannel,
+      moreListings: moreListings,
+      commentController: commentController,
       currentUser: currentUser,
       isLoading: isLoading,
       isError: isError,
@@ -728,6 +840,9 @@ mixin _$DetailState {
       throw _privateConstructorUsedError;
   IOWebSocketChannel get reviewChannel => throw _privateConstructorUsedError;
   IOWebSocketChannel get existsChannel => throw _privateConstructorUsedError;
+  Future<List<Listing>>? get moreListings => throw _privateConstructorUsedError;
+  TextEditingController get commentController =>
+      throw _privateConstructorUsedError;
   User? get currentUser => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
@@ -749,6 +864,8 @@ abstract class $DetailStateCopyWith<$Res> {
       IOWebSocketChannel reviewListChannel,
       IOWebSocketChannel reviewChannel,
       IOWebSocketChannel existsChannel,
+      Future<List<Listing>>? moreListings,
+      TextEditingController commentController,
       User? currentUser,
       bool isLoading,
       bool isError,
@@ -770,6 +887,8 @@ class _$DetailStateCopyWithImpl<$Res> implements $DetailStateCopyWith<$Res> {
     Object? reviewListChannel = freezed,
     Object? reviewChannel = freezed,
     Object? existsChannel = freezed,
+    Object? moreListings = freezed,
+    Object? commentController = freezed,
     Object? currentUser = freezed,
     Object? isLoading = freezed,
     Object? isError = freezed,
@@ -796,6 +915,14 @@ class _$DetailStateCopyWithImpl<$Res> implements $DetailStateCopyWith<$Res> {
           ? _value.existsChannel
           : existsChannel // ignore: cast_nullable_to_non_nullable
               as IOWebSocketChannel,
+      moreListings: moreListings == freezed
+          ? _value.moreListings
+          : moreListings // ignore: cast_nullable_to_non_nullable
+              as Future<List<Listing>>?,
+      commentController: commentController == freezed
+          ? _value.commentController
+          : commentController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
       currentUser: currentUser == freezed
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
@@ -829,6 +956,8 @@ abstract class _$DetailStateCopyWith<$Res>
       IOWebSocketChannel reviewListChannel,
       IOWebSocketChannel reviewChannel,
       IOWebSocketChannel existsChannel,
+      Future<List<Listing>>? moreListings,
+      TextEditingController commentController,
       User? currentUser,
       bool isLoading,
       bool isError,
@@ -852,6 +981,8 @@ class __$DetailStateCopyWithImpl<$Res> extends _$DetailStateCopyWithImpl<$Res>
     Object? reviewListChannel = freezed,
     Object? reviewChannel = freezed,
     Object? existsChannel = freezed,
+    Object? moreListings = freezed,
+    Object? commentController = freezed,
     Object? currentUser = freezed,
     Object? isLoading = freezed,
     Object? isError = freezed,
@@ -878,6 +1009,14 @@ class __$DetailStateCopyWithImpl<$Res> extends _$DetailStateCopyWithImpl<$Res>
           ? _value.existsChannel
           : existsChannel // ignore: cast_nullable_to_non_nullable
               as IOWebSocketChannel,
+      moreListings: moreListings == freezed
+          ? _value.moreListings
+          : moreListings // ignore: cast_nullable_to_non_nullable
+              as Future<List<Listing>>?,
+      commentController: commentController == freezed
+          ? _value.commentController
+          : commentController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
       currentUser: currentUser == freezed
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
@@ -906,6 +1045,8 @@ class _$_DetailState with DiagnosticableTreeMixin implements _DetailState {
       required this.reviewListChannel,
       required this.reviewChannel,
       required this.existsChannel,
+      required this.moreListings,
+      required this.commentController,
       required this.currentUser,
       required this.isLoading,
       required this.isError,
@@ -922,6 +1063,10 @@ class _$_DetailState with DiagnosticableTreeMixin implements _DetailState {
   @override
   final IOWebSocketChannel existsChannel;
   @override
+  final Future<List<Listing>>? moreListings;
+  @override
+  final TextEditingController commentController;
+  @override
   final User? currentUser;
   @override
   final bool isLoading;
@@ -932,7 +1077,7 @@ class _$_DetailState with DiagnosticableTreeMixin implements _DetailState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailState(hostUser: $hostUser, reviewController: $reviewController, reviewListChannel: $reviewListChannel, reviewChannel: $reviewChannel, existsChannel: $existsChannel, currentUser: $currentUser, isLoading: $isLoading, isError: $isError, issuccess: $issuccess)';
+    return 'DetailState(hostUser: $hostUser, reviewController: $reviewController, reviewListChannel: $reviewListChannel, reviewChannel: $reviewChannel, existsChannel: $existsChannel, moreListings: $moreListings, commentController: $commentController, currentUser: $currentUser, isLoading: $isLoading, isError: $isError, issuccess: $issuccess)';
   }
 
   @override
@@ -945,6 +1090,8 @@ class _$_DetailState with DiagnosticableTreeMixin implements _DetailState {
       ..add(DiagnosticsProperty('reviewListChannel', reviewListChannel))
       ..add(DiagnosticsProperty('reviewChannel', reviewChannel))
       ..add(DiagnosticsProperty('existsChannel', existsChannel))
+      ..add(DiagnosticsProperty('moreListings', moreListings))
+      ..add(DiagnosticsProperty('commentController', commentController))
       ..add(DiagnosticsProperty('currentUser', currentUser))
       ..add(DiagnosticsProperty('isLoading', isLoading))
       ..add(DiagnosticsProperty('isError', isError))
@@ -970,6 +1117,12 @@ class _$_DetailState with DiagnosticableTreeMixin implements _DetailState {
             (identical(other.existsChannel, existsChannel) ||
                 const DeepCollectionEquality()
                     .equals(other.existsChannel, existsChannel)) &&
+            (identical(other.moreListings, moreListings) ||
+                const DeepCollectionEquality()
+                    .equals(other.moreListings, moreListings)) &&
+            (identical(other.commentController, commentController) ||
+                const DeepCollectionEquality()
+                    .equals(other.commentController, commentController)) &&
             (identical(other.currentUser, currentUser) ||
                 const DeepCollectionEquality()
                     .equals(other.currentUser, currentUser)) &&
@@ -992,6 +1145,8 @@ class _$_DetailState with DiagnosticableTreeMixin implements _DetailState {
       const DeepCollectionEquality().hash(reviewListChannel) ^
       const DeepCollectionEquality().hash(reviewChannel) ^
       const DeepCollectionEquality().hash(existsChannel) ^
+      const DeepCollectionEquality().hash(moreListings) ^
+      const DeepCollectionEquality().hash(commentController) ^
       const DeepCollectionEquality().hash(currentUser) ^
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(isError) ^
@@ -1010,6 +1165,8 @@ abstract class _DetailState implements DetailState {
       required IOWebSocketChannel reviewListChannel,
       required IOWebSocketChannel reviewChannel,
       required IOWebSocketChannel existsChannel,
+      required Future<List<Listing>>? moreListings,
+      required TextEditingController commentController,
       required User? currentUser,
       required bool isLoading,
       required bool isError,
@@ -1027,6 +1184,11 @@ abstract class _DetailState implements DetailState {
   IOWebSocketChannel get reviewChannel => throw _privateConstructorUsedError;
   @override
   IOWebSocketChannel get existsChannel => throw _privateConstructorUsedError;
+  @override
+  Future<List<Listing>>? get moreListings => throw _privateConstructorUsedError;
+  @override
+  TextEditingController get commentController =>
+      throw _privateConstructorUsedError;
   @override
   User? get currentUser => throw _privateConstructorUsedError;
   @override

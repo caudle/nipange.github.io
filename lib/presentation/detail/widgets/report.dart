@@ -8,6 +8,8 @@ import 'package:nipange/widgets/progress_indicator.dart';
 class ReportWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final String regEx =
+        r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
     return Scaffold(
       body: BlocConsumer<ReportBloc, ReportState>(
         listener: (context, state) {
@@ -66,24 +68,40 @@ class ReportWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyText1),
                 ),
-
+                // loading
+                if (state.isloading) KCircularProgressIndicator(),
                 // email field
                 Padding(
                   padding: const EdgeInsets.all(18.0),
-                  child: TextField(
-                    controller: state.emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Email address',
-                      contentPadding: EdgeInsets.all(8),
-                      enabledBorder: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
+                  child: Form(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: TextFormField(
+                      controller: state.emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'Email address',
+                        contentPadding: EdgeInsets.all(8),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      onChanged: (value) {
+                        context
+                            .read<ReportBloc>()
+                            .add(ReportEvent.emailChanged(value));
+                      },
+                      validator: (email) {
+                        if (RegExp(regEx).hasMatch(email!))
+                          return null;
+                        else
+                          return "enter valid email";
+                      },
                     ),
-                    onChanged: (value) {
-                      context
-                          .read<ReportBloc>()
-                          .add(ReportEvent.emailChanged(value));
-                    },
                   ),
                 ),
 
@@ -111,8 +129,10 @@ class ReportWidget extends StatelessWidget {
                             decoration: InputDecoration(
                               labelText: 'What do you want to report?',
                               contentPadding: EdgeInsets.all(8),
-                              enabledBorder: OutlineInputBorder(),
-                              focusedBorder: OutlineInputBorder(),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8)),
                             ),
                             icon: Icon(
                               Icons.arrow_drop_down,
@@ -152,8 +172,10 @@ class ReportWidget extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'Who are you?',
                       contentPadding: EdgeInsets.all(8),
-                      enabledBorder: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8)),
                     ),
                     icon: Icon(
                       Icons.arrow_drop_down,
@@ -177,32 +199,40 @@ class ReportWidget extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: 'Enter your comment here',
                       contentPadding: EdgeInsets.all(8),
-                      enabledBorder: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8)),
                     ),
                     maxLines: 4,
                   ),
                 ),
-
-                if (state.isloading) KCircularProgressIndicator(),
 
                 // send bttn
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 18.0, vertical: 10),
                   child: ElevatedButton(
-                    onPressed: state.emailController.value.text.isNotEmpty
+                    onPressed: RegExp(regEx)
+                            .hasMatch(state.emailController.value.text)
                         ? () {
                             context.read<ReportBloc>().add(ReportEvent.send());
                           }
                         : null,
                     child: Text('send Report'),
                     style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            Size(MediaQuery.of(context).size.width, 45)),
-                        backgroundColor:
-                            MaterialStateProperty.all(Color(0xFFFC5185)),
-                        elevation: MaterialStateProperty.all(0)),
+                      minimumSize: MaterialStateProperty.all<Size>(
+                          Size(MediaQuery.of(context).size.width, 45)),
+                      backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context).accentColor),
+                      elevation: MaterialStateProperty.all(0),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                    ),
                   ),
                 ),
               ],

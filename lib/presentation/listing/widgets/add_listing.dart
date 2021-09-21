@@ -22,7 +22,6 @@ class AddListingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addBloc = context.read<AddListingBloc>();
-    print(addBloc.state.listing);
     return Scaffold(body: BlocBuilder<AddListingBloc, AddListingState>(
       builder: (context, state) {
         return CustomScrollView(
@@ -48,7 +47,8 @@ class AddListingPage extends StatelessWidget {
             SliverList(
                 delegate: SliverChildListDelegate([
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.only(
+                    left: 16.0, top: 40, right: 16, bottom: 16),
                 child: buildWidget(
                     context: context,
                     title: "Property type",
@@ -140,7 +140,10 @@ class AddListingPage extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(color: Colors.black38, fontSize: 16),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontSize: 16, color: Colors.black38),
               ),
             ],
           )
@@ -152,7 +155,10 @@ class AddListingPage extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: TextStyle(color: Colors.black38),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(fontSize: 16, color: Colors.black54),
                     ),
                     Icon(
                       Icons.done,
@@ -167,6 +173,7 @@ class AddListingPage extends StatelessWidget {
                         // propert type
                         case type.property:
                           return BlocProvider(
+                            lazy: false,
                             create: (context) => getIt<PropertyBloc>()
                               ..add(PropertyEvent.add(addBloc.state.listing)),
                             child: child,
@@ -175,6 +182,7 @@ class AddListingPage extends StatelessWidget {
                         // location
                         case type.location:
                           return BlocProvider(
+                            lazy: false,
                             create: (context) => getIt<LocationBloc>()
                               ..add(LocationEvent.add(addBloc.state.listing)),
                             child: child,
@@ -223,7 +231,11 @@ class AddListingPage extends StatelessWidget {
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(title, style: Theme.of(context).textTheme.headline6),
+                  Text(title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(fontSize: 17)),
                   TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(
@@ -232,16 +244,20 @@ class AddListingPage extends StatelessWidget {
                             // prop
                             case type.property:
                               return BlocProvider(
-                                create: (context) => getIt<LocationBloc>()
+                                lazy: false,
+                                create: (context) => getIt<PropertyBloc>()
                                   ..add(
-                                      LocationEvent.add(addBloc.state.listing)),
+                                      PropertyEvent.add(addBloc.state.listing)),
                                 child: child,
                               );
 
                             // loc
                             case type.location:
                               return BlocProvider(
-                                create: (context) => getIt<LocationBloc>(),
+                                lazy: false,
+                                create: (context) => getIt<LocationBloc>()
+                                  ..add(
+                                      LocationEvent.add(addBloc.state.listing)),
                                 child: child,
                               );
 
@@ -285,15 +301,16 @@ class AddListingPage extends StatelessWidget {
                       ));
                     },
                     child: Text(
-                      'Continue',
+                      'continue',
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          AppColor.kprimaryLightColor),
-                      minimumSize:
-                          MaterialStateProperty.all<Size>(Size(100, 45)),
-                    ),
+                        backgroundColor: MaterialStateProperty.all(
+                            AppColor.kprimaryDarkColor),
+                        minimumSize:
+                            MaterialStateProperty.all<Size>(Size(100, 40)),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)))),
                   )
                 ],
               );

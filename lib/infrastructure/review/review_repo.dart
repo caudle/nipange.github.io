@@ -3,16 +3,15 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:nipange/domain/review/i_review_repo.dart';
 import 'package:nipange/domain/review/review.dart';
+import 'package:nipange/utils/api_conn.dart';
 
 @LazySingleton(as: IReviewRepo)
 class ReviewRepo implements IReviewRepo {
-  final String api = "http://172.20.10.11:5000";
-
   // get all reviews
   Future<List<Review>> getAll(List ids) async {
     List<Review> reviews = <Review>[];
     //create uri
-    final uri = Uri.parse('$api/api/review');
+    final uri = Uri.parse('$api/review');
     //http post req
     final response = await http.post(Uri.http(uri.authority, uri.path),
         headers: <String, String>{
@@ -51,7 +50,7 @@ class ReviewRepo implements IReviewRepo {
       required String userId,
       required String listingId}) async {
     //create uri
-    final uri = Uri.parse('$api/api/review/$userId');
+    final uri = Uri.parse('$api/review/$userId');
     //make post req
     final response = await http.post(
       Uri.http(uri.authority, uri.path),

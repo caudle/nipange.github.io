@@ -10,7 +10,6 @@ import 'package:nipange/domain/category/category.dart';
 import 'package:nipange/domain/listing/listing.dart';
 import 'package:nipange/injector.dart';
 import 'package:nipange/presentation/detail/detail_page.dart';
-import 'package:nipange/presentation/explore/widgets/cat_item.dart';
 import 'package:nipange/presentation/explore/widgets/filter.dart';
 import 'package:nipange/presentation/explore/widgets/listing_item.dart';
 import 'package:nipange/presentation/explore/widgets/search.dart';
@@ -21,28 +20,33 @@ class ExplorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          // app bar
-          _buildAppbar(context),
+      body: RefreshIndicator(
+        onRefresh: () => _onRefresh(context),
+        color: Colors.white,
+        backgroundColor: Theme.of(context).primaryColorLight,
+        child: CustomScrollView(
+          slivers: [
+            // app bar
+            _buildAppbar(context),
 
-          // pick home txt
-          SliverToBoxAdapter(
-            child: Container(
-              padding: EdgeInsets.only(left: 18, top: 20, bottom: 10),
-              child: Text(
-                'Pick a home category',
-                style: TextStyle(fontSize: 20),
+            // pick home txt
+            SliverToBoxAdapter(
+              child: Container(
+                padding: EdgeInsets.only(left: 18, top: 20, bottom: 10),
+                child: Text(
+                  'Pick a home category',
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
             ),
-          ),
 
-          // cats
-          _buildCategories(context),
+            // cats
+            _buildCategories(context),
 
-          // listings
-          _buildListItems(context),
-        ],
+            // listings
+            _buildListItems(context),
+          ],
+        ),
       ),
     );
   }
@@ -58,71 +62,67 @@ Widget _buildAppbar(BuildContext context) {
         child: Row(
           children: [
             // search row
+
             Expanded(
               flex: 3,
-              child: Row(
-                children: [
-                  // search icn
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12),
-                    child: Icon(
-                      Icons.search,
-                    ),
-                  ),
-                  //  search txt
-                  GestureDetector(
-                    child: Text(
-                      'search by name or location',
-                      style: Theme.of(context).textTheme.caption,
-                    ),
-                    onTap: () {
-                      // navgt to search route
-                      Navigator.of(context, rootNavigator: true)
-                          .push(MaterialPageRoute(
-                              settings: RouteSettings(name: '/search'),
-                              builder: (context) {
-                                return BlocProvider(
-                                  create: (context) => getIt<SearchBloc>(),
-                                  child: SearchPage(),
-                                );
-                              }));
-                    },
-                  ),
-                ],
+              child: Icon(
+                Icons.search,
+              ),
+            ),
+
+            //  search txt
+            Expanded(
+              flex: 7,
+              child: GestureDetector(
+                child: Text(
+                  'tap here to search',
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                onTap: () {
+                  // navgt to search route
+                  Navigator.of(context, rootNavigator: true)
+                      .push(MaterialPageRoute(
+                          settings: RouteSettings(name: '/search'),
+                          builder: (context) {
+                            return BlocProvider(
+                              create: (context) => getIt<SearchBloc>(),
+                              child: SearchPage(),
+                            );
+                          }));
+                },
               ),
             ),
 
             // filter
-            Expanded(
-              child: Row(
-                children: [
-                  Text(
-                    'Filter',
-                    style: TextStyle(color: Colors.grey[500]),
-                  ),
-                  IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        // navgt to filter route
-                        Navigator.of(context, rootNavigator: true)
-                            .push(MaterialPageRoute(
-                                settings: RouteSettings(name: '/filter'),
-                                builder: (context) {
-                                  return BlocProvider(
-                                    create: (context) => getIt<FilterBloc>()
-                                      ..add(FilterEvent.started()),
-                                    child: FilterPage(),
-                                  );
-                                }));
-                      },
-                      icon: Icon(Icons.format_list_bulleted))
-                ],
+            Flexible(
+              flex: 2,
+              child: Text(
+                'Filter',
+                style: TextStyle(color: Colors.grey[500]),
               ),
+            ),
+            Expanded(
+              flex: 2,
+              child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    // navgt to filter route
+                    Navigator.of(context, rootNavigator: true)
+                        .push(MaterialPageRoute(
+                            settings: RouteSettings(name: '/filter'),
+                            builder: (context) {
+                              return BlocProvider(
+                                create: (context) => getIt<FilterBloc>()
+                                  ..add(FilterEvent.started()),
+                                child: FilterPage(),
+                              );
+                            }));
+                  },
+                  icon: Icon(Icons.menu)),
             )
           ],
         ),
-        elevation: 0,
+        elevation: 6,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
@@ -141,7 +141,7 @@ Widget _buildCategories(BuildContext context) {
     builder: (context, state) {
       return SliverToBoxAdapter(
         child: Container(
-          height: 45,
+          height: 54,
           child: FutureBuilder<List<Category>>(
               future: state.categories,
               builder: (context, snapshot) {
@@ -151,19 +151,12 @@ Widget _buildCategories(BuildContext context) {
                       itemCount: snapshot.data!.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.only(
-                              right: 18.0, left: index == 0 ? 18 : 0),
-                          child: GestureDetector(
-                            child: CatItem(
-                                category: snapshot.data![index], state: state),
-                            onTap: () {
-                              context.read<ExploreBloc>().add(
-                                  ExploreEvent.fetched(
-                                      snapshot.data![index].name));
-                            },
-                          ),
-                        );
+                        return Container(
+                            margin: EdgeInsets.only(bottom: 5, top: 5),
+                            padding: EdgeInsets.only(
+                                right: 18.0, left: index == 0 ? 18 : 0),
+                            child:
+                                _buildCatItem(context, snapshot.data![index]));
                       });
                 } else if (snapshot.hasError) {
                   return CustomErrorWidget(error: snapshot.error!.toString());
@@ -211,9 +204,11 @@ Widget _buildListItems(BuildContext context) {
           padding: EdgeInsets.only(left: 18, right: 18, top: 30),
           sliver: SliverToBoxAdapter(
             child: FutureBuilder<List<Listing>>(
+                key: UniqueKey(),
                 future: state.listings,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
+                    print(snapshot.data!.length);
                     return snapshot.data!.length > 0
                         ? Column(
                             children: List.generate(
@@ -242,10 +237,21 @@ Widget _buildListItems(BuildContext context) {
                                                     create: (context) => getIt<
                                                         DetailBloc>()
                                                       ..add(DetailEvent.started(
-                                                          userId: snapshot
-                                                              .data![index]
-                                                              .hostId!)),
+                                                        userId: snapshot
+                                                            .data![index]
+                                                            .hostId!,
+                                                        listingId: snapshot
+                                                            .data![index].id!,
+                                                        type: snapshot
+                                                            .data![index]
+                                                            .propertyType!,
+                                                        district: snapshot
+                                                                .data![index]
+                                                                .location![
+                                                            'district'],
+                                                      )),
                                                     child: BlocProvider(
+                                                      lazy: false,
                                                       create: (context) =>
                                                           getIt<ItemBloc>(),
                                                       child: DetailsPage(
@@ -276,6 +282,11 @@ Widget _buildListItems(BuildContext context) {
           ));
     },
   );
+}
+
+Future _onRefresh(BuildContext context) async {
+  final bloc = context.read<ExploreBloc>();
+  bloc.add(ExploreEvent.fetched(bloc.state.property));
 }
 
 Widget _buildListingShadow(BuildContext context) {
@@ -313,5 +324,28 @@ Widget _buildListingShadow(BuildContext context) {
         margin: const EdgeInsets.only(bottom: 5),
       ),
     ],
+  );
+}
+
+Widget _buildCatItem(BuildContext context, Category category) {
+  final bloc = context.read<ExploreBloc>();
+  return ElevatedButton(
+    onPressed: () {
+      bloc.add(ExploreEvent.fetched(category.name));
+    },
+    child: Text(
+      category.name.capitalize(),
+    ),
+    style: ButtonStyle(
+      fixedSize: MaterialStateProperty.all(Size(130, 43)),
+      shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+      backgroundColor: MaterialStateProperty.all(
+          category.name == bloc.state.property
+              ? Theme.of(context).accentColor
+              : Colors.grey),
+      elevation: MaterialStateProperty.all(
+          category.name == bloc.state.property ? 6 : 0),
+    ),
   );
 }

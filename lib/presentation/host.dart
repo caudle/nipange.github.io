@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nipange/presentation/premium/premium_navigator.dart';
+
 import 'package:nipange/presentation/stats/stats_navigator.dart';
 
-import 'account/account_navigator.dart';
+import 'host_account/host_account_navigator.dart';
 import 'listing/listing_navigator.dart';
 
 class HostPage extends StatefulWidget {
@@ -19,7 +19,6 @@ class _HostPageState extends State<HostPage> {
     TabItem.listing: GlobalKey<NavigatorState>(),
     TabItem.stats: GlobalKey<NavigatorState>(),
     TabItem.account: GlobalKey<NavigatorState>(),
-    TabItem.premium: GlobalKey<NavigatorState>(),
   };
   TabItem currentTab = TabItem.listing;
   int currentIndex = 0;
@@ -41,7 +40,6 @@ class _HostPageState extends State<HostPage> {
             _buildOffstageListingNavigator(TabItem.listing),
             _buildOffstageStatsNavigator(TabItem.stats),
             _buildOffstageAccountNavigator(TabItem.account),
-            _buildOffstagePremiumNavigator(TabItem.premium)
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -56,16 +54,14 @@ class _HostPageState extends State<HostPage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.perm_identity),
-              label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.payment),
-              label: 'Premium',
+              label: 'profile',
             ),
           ],
           currentIndex: currentIndex,
           onTap: _selectTab,
           type: BottomNavigationBarType.fixed,
+          selectedIconTheme: Theme.of(context).iconTheme,
+          selectedItemColor: Theme.of(context).primaryColorDark,
         ),
       ),
     );
@@ -81,21 +77,18 @@ class _HostPageState extends State<HostPage> {
   Widget _buildOffstageStatsNavigator(TabItem tabItem) {
     return Offstage(
       offstage: currentTab != tabItem,
-      child: StatsNavigator(navigatorKeys[tabItem]!),
+      child: currentTab != tabItem
+          ? SizedBox()
+          : StatsNavigator(navigatorKeys[tabItem]!),
     );
   }
 
   Widget _buildOffstageAccountNavigator(TabItem tabItem) {
     return Offstage(
       offstage: currentTab != tabItem,
-      child: AccountNavigator(navigatorKeys[tabItem]!),
-    );
-  }
-
-  Widget _buildOffstagePremiumNavigator(TabItem tabItem) {
-    return Offstage(
-      offstage: currentTab != tabItem,
-      child: PremiumNavigator(navigatorKeys[tabItem]!),
+      child: currentTab != tabItem
+          ? SizedBox()
+          : HostAccountNavigator(navigatorKeys[tabItem]!),
     );
   }
 }

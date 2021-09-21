@@ -84,8 +84,6 @@ class LoginDetailsBloc extends Bloc<LoginDetailsEvent, LoginDetailsState> {
   User createUserObj(_FinishWithEmailAndPasswordPressed e) {
     return User(
       id: '',
-      firstName: e.firstname,
-      lastName: e.lastname,
       phone: e.phone,
       email: e.email,
       username: state.username.trim(),
@@ -96,7 +94,7 @@ class LoginDetailsBloc extends Bloc<LoginDetailsEvent, LoginDetailsState> {
       device: Platform.operatingSystem,
       createdAt: DateTime.now().toString(),
       isEmailVerified: false,
-      isPhoneVerified: false,
+      isPhoneVerified: true,
     );
   }
 }

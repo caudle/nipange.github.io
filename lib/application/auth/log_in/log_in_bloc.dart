@@ -38,13 +38,11 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
       logInWithEmailAndPasswordPressed: (e) async* {
         yield state.copyWith(
             isSubmitting: true, failureMessage: '', isSuccess: false);
-        print(state.email.trim());
-        print(state.password.trim());
+
         // sign in method
         final result = await iAuth.signInWithEmailAndPassword(
             emailOrName: state.email.trim(), password: state.password.trim());
-        print(" runtime type: ${result.runtimeType}");
-        print(result);
+
         // check if sign in sucess
         if (result is User)
           yield state.copyWith(

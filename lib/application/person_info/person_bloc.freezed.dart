@@ -17,31 +17,15 @@ class _$PersonEventTearOff {
   const _$PersonEventTearOff();
 
   _Started started(
-      {required String fname,
-      required String lname,
-      required String phone,
+      {required String phone,
       required String username,
       required String email,
       required String id}) {
     return _Started(
-      fname: fname,
-      lname: lname,
       phone: phone,
       username: username,
       email: email,
       id: id,
-    );
-  }
-
-  _FnameChanged fnameChanged(String fname) {
-    return _FnameChanged(
-      fname,
-    );
-  }
-
-  _LnameChanged lnameChanged(String lname) {
-    return _LnameChanged(
-      lname,
     );
   }
 
@@ -68,6 +52,10 @@ class _$PersonEventTearOff {
       id,
     );
   }
+
+  _Discard discard() {
+    return const _Discard();
+  }
 }
 
 /// @nodoc
@@ -77,51 +65,46 @@ const $PersonEvent = _$PersonEventTearOff();
 mixin _$PersonEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String fname, String lname, String phone,
-            String username, String email, String id)
+    required TResult Function(
+            String phone, String username, String email, String id)
         started,
-    required TResult Function(String fname) fnameChanged,
-    required TResult Function(String lname) lnameChanged,
     required TResult Function(String phone) phoneChanged,
     required TResult Function(String username) usernameChanged,
     required TResult Function(String email) emailChanged,
     required TResult Function(String id) edit,
+    required TResult Function() discard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String fname, String lname, String phone, String username,
-            String email, String id)?
+    TResult Function(String phone, String username, String email, String id)?
         started,
-    TResult Function(String fname)? fnameChanged,
-    TResult Function(String lname)? lnameChanged,
     TResult Function(String phone)? phoneChanged,
     TResult Function(String username)? usernameChanged,
     TResult Function(String email)? emailChanged,
     TResult Function(String id)? edit,
+    TResult Function()? discard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_FnameChanged value) fnameChanged,
-    required TResult Function(_LnameChanged value) lnameChanged,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_UsernameChanged value) usernameChanged,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_Discard value) discard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_FnameChanged value)? fnameChanged,
-    TResult Function(_LnameChanged value)? lnameChanged,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_UsernameChanged value)? usernameChanged,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_Edit value)? edit,
+    TResult Function(_Discard value)? discard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,13 +130,7 @@ class _$PersonEventCopyWithImpl<$Res> implements $PersonEventCopyWith<$Res> {
 abstract class _$StartedCopyWith<$Res> {
   factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
       __$StartedCopyWithImpl<$Res>;
-  $Res call(
-      {String fname,
-      String lname,
-      String phone,
-      String username,
-      String email,
-      String id});
+  $Res call({String phone, String username, String email, String id});
 }
 
 /// @nodoc
@@ -167,22 +144,12 @@ class __$StartedCopyWithImpl<$Res> extends _$PersonEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? fname = freezed,
-    Object? lname = freezed,
     Object? phone = freezed,
     Object? username = freezed,
     Object? email = freezed,
     Object? id = freezed,
   }) {
     return _then(_Started(
-      fname: fname == freezed
-          ? _value.fname
-          : fname // ignore: cast_nullable_to_non_nullable
-              as String,
-      lname: lname == freezed
-          ? _value.lname
-          : lname // ignore: cast_nullable_to_non_nullable
-              as String,
       phone: phone == freezed
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -206,17 +173,11 @@ class __$StartedCopyWithImpl<$Res> extends _$PersonEventCopyWithImpl<$Res>
 /// @nodoc
 class _$_Started implements _Started {
   const _$_Started(
-      {required this.fname,
-      required this.lname,
-      required this.phone,
+      {required this.phone,
       required this.username,
       required this.email,
       required this.id});
 
-  @override
-  final String fname;
-  @override
-  final String lname;
   @override
   final String phone;
   @override
@@ -228,17 +189,13 @@ class _$_Started implements _Started {
 
   @override
   String toString() {
-    return 'PersonEvent.started(fname: $fname, lname: $lname, phone: $phone, username: $username, email: $email, id: $id)';
+    return 'PersonEvent.started(phone: $phone, username: $username, email: $email, id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Started &&
-            (identical(other.fname, fname) ||
-                const DeepCollectionEquality().equals(other.fname, fname)) &&
-            (identical(other.lname, lname) ||
-                const DeepCollectionEquality().equals(other.lname, lname)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.username, username) ||
@@ -253,8 +210,6 @@ class _$_Started implements _Started {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(fname) ^
-      const DeepCollectionEquality().hash(lname) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(email) ^
@@ -268,35 +223,32 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String fname, String lname, String phone,
-            String username, String email, String id)
+    required TResult Function(
+            String phone, String username, String email, String id)
         started,
-    required TResult Function(String fname) fnameChanged,
-    required TResult Function(String lname) lnameChanged,
     required TResult Function(String phone) phoneChanged,
     required TResult Function(String username) usernameChanged,
     required TResult Function(String email) emailChanged,
     required TResult Function(String id) edit,
+    required TResult Function() discard,
   }) {
-    return started(fname, lname, phone, username, email, id);
+    return started(phone, username, email, id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String fname, String lname, String phone, String username,
-            String email, String id)?
+    TResult Function(String phone, String username, String email, String id)?
         started,
-    TResult Function(String fname)? fnameChanged,
-    TResult Function(String lname)? lnameChanged,
     TResult Function(String phone)? phoneChanged,
     TResult Function(String username)? usernameChanged,
     TResult Function(String email)? emailChanged,
     TResult Function(String id)? edit,
+    TResult Function()? discard,
     required TResult orElse(),
   }) {
     if (started != null) {
-      return started(fname, lname, phone, username, email, id);
+      return started(phone, username, email, id);
     }
     return orElse();
   }
@@ -305,12 +257,11 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_FnameChanged value) fnameChanged,
-    required TResult Function(_LnameChanged value) lnameChanged,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_UsernameChanged value) usernameChanged,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_Discard value) discard,
   }) {
     return started(this);
   }
@@ -319,12 +270,11 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_FnameChanged value)? fnameChanged,
-    TResult Function(_LnameChanged value)? lnameChanged,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_UsernameChanged value)? usernameChanged,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_Edit value)? edit,
+    TResult Function(_Discard value)? discard,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -336,297 +286,17 @@ class _$_Started implements _Started {
 
 abstract class _Started implements PersonEvent {
   const factory _Started(
-      {required String fname,
-      required String lname,
-      required String phone,
+      {required String phone,
       required String username,
       required String email,
       required String id}) = _$_Started;
 
-  String get fname => throw _privateConstructorUsedError;
-  String get lname => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$StartedCopyWith<_Started> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$FnameChangedCopyWith<$Res> {
-  factory _$FnameChangedCopyWith(
-          _FnameChanged value, $Res Function(_FnameChanged) then) =
-      __$FnameChangedCopyWithImpl<$Res>;
-  $Res call({String fname});
-}
-
-/// @nodoc
-class __$FnameChangedCopyWithImpl<$Res> extends _$PersonEventCopyWithImpl<$Res>
-    implements _$FnameChangedCopyWith<$Res> {
-  __$FnameChangedCopyWithImpl(
-      _FnameChanged _value, $Res Function(_FnameChanged) _then)
-      : super(_value, (v) => _then(v as _FnameChanged));
-
-  @override
-  _FnameChanged get _value => super._value as _FnameChanged;
-
-  @override
-  $Res call({
-    Object? fname = freezed,
-  }) {
-    return _then(_FnameChanged(
-      fname == freezed
-          ? _value.fname
-          : fname // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_FnameChanged implements _FnameChanged {
-  const _$_FnameChanged(this.fname);
-
-  @override
-  final String fname;
-
-  @override
-  String toString() {
-    return 'PersonEvent.fnameChanged(fname: $fname)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _FnameChanged &&
-            (identical(other.fname, fname) ||
-                const DeepCollectionEquality().equals(other.fname, fname)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(fname);
-
-  @JsonKey(ignore: true)
-  @override
-  _$FnameChangedCopyWith<_FnameChanged> get copyWith =>
-      __$FnameChangedCopyWithImpl<_FnameChanged>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String fname, String lname, String phone,
-            String username, String email, String id)
-        started,
-    required TResult Function(String fname) fnameChanged,
-    required TResult Function(String lname) lnameChanged,
-    required TResult Function(String phone) phoneChanged,
-    required TResult Function(String username) usernameChanged,
-    required TResult Function(String email) emailChanged,
-    required TResult Function(String id) edit,
-  }) {
-    return fnameChanged(fname);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String fname, String lname, String phone, String username,
-            String email, String id)?
-        started,
-    TResult Function(String fname)? fnameChanged,
-    TResult Function(String lname)? lnameChanged,
-    TResult Function(String phone)? phoneChanged,
-    TResult Function(String username)? usernameChanged,
-    TResult Function(String email)? emailChanged,
-    TResult Function(String id)? edit,
-    required TResult orElse(),
-  }) {
-    if (fnameChanged != null) {
-      return fnameChanged(fname);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_FnameChanged value) fnameChanged,
-    required TResult Function(_LnameChanged value) lnameChanged,
-    required TResult Function(_PhoneChanged value) phoneChanged,
-    required TResult Function(_UsernameChanged value) usernameChanged,
-    required TResult Function(_EmailChanged value) emailChanged,
-    required TResult Function(_Edit value) edit,
-  }) {
-    return fnameChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_FnameChanged value)? fnameChanged,
-    TResult Function(_LnameChanged value)? lnameChanged,
-    TResult Function(_PhoneChanged value)? phoneChanged,
-    TResult Function(_UsernameChanged value)? usernameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-    TResult Function(_Edit value)? edit,
-    required TResult orElse(),
-  }) {
-    if (fnameChanged != null) {
-      return fnameChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FnameChanged implements PersonEvent {
-  const factory _FnameChanged(String fname) = _$_FnameChanged;
-
-  String get fname => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$FnameChangedCopyWith<_FnameChanged> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$LnameChangedCopyWith<$Res> {
-  factory _$LnameChangedCopyWith(
-          _LnameChanged value, $Res Function(_LnameChanged) then) =
-      __$LnameChangedCopyWithImpl<$Res>;
-  $Res call({String lname});
-}
-
-/// @nodoc
-class __$LnameChangedCopyWithImpl<$Res> extends _$PersonEventCopyWithImpl<$Res>
-    implements _$LnameChangedCopyWith<$Res> {
-  __$LnameChangedCopyWithImpl(
-      _LnameChanged _value, $Res Function(_LnameChanged) _then)
-      : super(_value, (v) => _then(v as _LnameChanged));
-
-  @override
-  _LnameChanged get _value => super._value as _LnameChanged;
-
-  @override
-  $Res call({
-    Object? lname = freezed,
-  }) {
-    return _then(_LnameChanged(
-      lname == freezed
-          ? _value.lname
-          : lname // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_LnameChanged implements _LnameChanged {
-  const _$_LnameChanged(this.lname);
-
-  @override
-  final String lname;
-
-  @override
-  String toString() {
-    return 'PersonEvent.lnameChanged(lname: $lname)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _LnameChanged &&
-            (identical(other.lname, lname) ||
-                const DeepCollectionEquality().equals(other.lname, lname)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(lname);
-
-  @JsonKey(ignore: true)
-  @override
-  _$LnameChangedCopyWith<_LnameChanged> get copyWith =>
-      __$LnameChangedCopyWithImpl<_LnameChanged>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String fname, String lname, String phone,
-            String username, String email, String id)
-        started,
-    required TResult Function(String fname) fnameChanged,
-    required TResult Function(String lname) lnameChanged,
-    required TResult Function(String phone) phoneChanged,
-    required TResult Function(String username) usernameChanged,
-    required TResult Function(String email) emailChanged,
-    required TResult Function(String id) edit,
-  }) {
-    return lnameChanged(lname);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String fname, String lname, String phone, String username,
-            String email, String id)?
-        started,
-    TResult Function(String fname)? fnameChanged,
-    TResult Function(String lname)? lnameChanged,
-    TResult Function(String phone)? phoneChanged,
-    TResult Function(String username)? usernameChanged,
-    TResult Function(String email)? emailChanged,
-    TResult Function(String id)? edit,
-    required TResult orElse(),
-  }) {
-    if (lnameChanged != null) {
-      return lnameChanged(lname);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_FnameChanged value) fnameChanged,
-    required TResult Function(_LnameChanged value) lnameChanged,
-    required TResult Function(_PhoneChanged value) phoneChanged,
-    required TResult Function(_UsernameChanged value) usernameChanged,
-    required TResult Function(_EmailChanged value) emailChanged,
-    required TResult Function(_Edit value) edit,
-  }) {
-    return lnameChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_FnameChanged value)? fnameChanged,
-    TResult Function(_LnameChanged value)? lnameChanged,
-    TResult Function(_PhoneChanged value)? phoneChanged,
-    TResult Function(_UsernameChanged value)? usernameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-    TResult Function(_Edit value)? edit,
-    required TResult orElse(),
-  }) {
-    if (lnameChanged != null) {
-      return lnameChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LnameChanged implements PersonEvent {
-  const factory _LnameChanged(String lname) = _$_LnameChanged;
-
-  String get lname => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$LnameChangedCopyWith<_LnameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -693,15 +363,14 @@ class _$_PhoneChanged implements _PhoneChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String fname, String lname, String phone,
-            String username, String email, String id)
+    required TResult Function(
+            String phone, String username, String email, String id)
         started,
-    required TResult Function(String fname) fnameChanged,
-    required TResult Function(String lname) lnameChanged,
     required TResult Function(String phone) phoneChanged,
     required TResult Function(String username) usernameChanged,
     required TResult Function(String email) emailChanged,
     required TResult Function(String id) edit,
+    required TResult Function() discard,
   }) {
     return phoneChanged(phone);
   }
@@ -709,15 +378,13 @@ class _$_PhoneChanged implements _PhoneChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String fname, String lname, String phone, String username,
-            String email, String id)?
+    TResult Function(String phone, String username, String email, String id)?
         started,
-    TResult Function(String fname)? fnameChanged,
-    TResult Function(String lname)? lnameChanged,
     TResult Function(String phone)? phoneChanged,
     TResult Function(String username)? usernameChanged,
     TResult Function(String email)? emailChanged,
     TResult Function(String id)? edit,
+    TResult Function()? discard,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -730,12 +397,11 @@ class _$_PhoneChanged implements _PhoneChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_FnameChanged value) fnameChanged,
-    required TResult Function(_LnameChanged value) lnameChanged,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_UsernameChanged value) usernameChanged,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_Discard value) discard,
   }) {
     return phoneChanged(this);
   }
@@ -744,12 +410,11 @@ class _$_PhoneChanged implements _PhoneChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_FnameChanged value)? fnameChanged,
-    TResult Function(_LnameChanged value)? lnameChanged,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_UsernameChanged value)? usernameChanged,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_Edit value)? edit,
+    TResult Function(_Discard value)? discard,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -833,15 +498,14 @@ class _$_UsernameChanged implements _UsernameChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String fname, String lname, String phone,
-            String username, String email, String id)
+    required TResult Function(
+            String phone, String username, String email, String id)
         started,
-    required TResult Function(String fname) fnameChanged,
-    required TResult Function(String lname) lnameChanged,
     required TResult Function(String phone) phoneChanged,
     required TResult Function(String username) usernameChanged,
     required TResult Function(String email) emailChanged,
     required TResult Function(String id) edit,
+    required TResult Function() discard,
   }) {
     return usernameChanged(username);
   }
@@ -849,15 +513,13 @@ class _$_UsernameChanged implements _UsernameChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String fname, String lname, String phone, String username,
-            String email, String id)?
+    TResult Function(String phone, String username, String email, String id)?
         started,
-    TResult Function(String fname)? fnameChanged,
-    TResult Function(String lname)? lnameChanged,
     TResult Function(String phone)? phoneChanged,
     TResult Function(String username)? usernameChanged,
     TResult Function(String email)? emailChanged,
     TResult Function(String id)? edit,
+    TResult Function()? discard,
     required TResult orElse(),
   }) {
     if (usernameChanged != null) {
@@ -870,12 +532,11 @@ class _$_UsernameChanged implements _UsernameChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_FnameChanged value) fnameChanged,
-    required TResult Function(_LnameChanged value) lnameChanged,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_UsernameChanged value) usernameChanged,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_Discard value) discard,
   }) {
     return usernameChanged(this);
   }
@@ -884,12 +545,11 @@ class _$_UsernameChanged implements _UsernameChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_FnameChanged value)? fnameChanged,
-    TResult Function(_LnameChanged value)? lnameChanged,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_UsernameChanged value)? usernameChanged,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_Edit value)? edit,
+    TResult Function(_Discard value)? discard,
     required TResult orElse(),
   }) {
     if (usernameChanged != null) {
@@ -971,15 +631,14 @@ class _$_EmailChanged implements _EmailChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String fname, String lname, String phone,
-            String username, String email, String id)
+    required TResult Function(
+            String phone, String username, String email, String id)
         started,
-    required TResult Function(String fname) fnameChanged,
-    required TResult Function(String lname) lnameChanged,
     required TResult Function(String phone) phoneChanged,
     required TResult Function(String username) usernameChanged,
     required TResult Function(String email) emailChanged,
     required TResult Function(String id) edit,
+    required TResult Function() discard,
   }) {
     return emailChanged(email);
   }
@@ -987,15 +646,13 @@ class _$_EmailChanged implements _EmailChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String fname, String lname, String phone, String username,
-            String email, String id)?
+    TResult Function(String phone, String username, String email, String id)?
         started,
-    TResult Function(String fname)? fnameChanged,
-    TResult Function(String lname)? lnameChanged,
     TResult Function(String phone)? phoneChanged,
     TResult Function(String username)? usernameChanged,
     TResult Function(String email)? emailChanged,
     TResult Function(String id)? edit,
+    TResult Function()? discard,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -1008,12 +665,11 @@ class _$_EmailChanged implements _EmailChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_FnameChanged value) fnameChanged,
-    required TResult Function(_LnameChanged value) lnameChanged,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_UsernameChanged value) usernameChanged,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_Discard value) discard,
   }) {
     return emailChanged(this);
   }
@@ -1022,12 +678,11 @@ class _$_EmailChanged implements _EmailChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_FnameChanged value)? fnameChanged,
-    TResult Function(_LnameChanged value)? lnameChanged,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_UsernameChanged value)? usernameChanged,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_Edit value)? edit,
+    TResult Function(_Discard value)? discard,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -1107,15 +762,14 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String fname, String lname, String phone,
-            String username, String email, String id)
+    required TResult Function(
+            String phone, String username, String email, String id)
         started,
-    required TResult Function(String fname) fnameChanged,
-    required TResult Function(String lname) lnameChanged,
     required TResult Function(String phone) phoneChanged,
     required TResult Function(String username) usernameChanged,
     required TResult Function(String email) emailChanged,
     required TResult Function(String id) edit,
+    required TResult Function() discard,
   }) {
     return edit(id);
   }
@@ -1123,15 +777,13 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String fname, String lname, String phone, String username,
-            String email, String id)?
+    TResult Function(String phone, String username, String email, String id)?
         started,
-    TResult Function(String fname)? fnameChanged,
-    TResult Function(String lname)? lnameChanged,
     TResult Function(String phone)? phoneChanged,
     TResult Function(String username)? usernameChanged,
     TResult Function(String email)? emailChanged,
     TResult Function(String id)? edit,
+    TResult Function()? discard,
     required TResult orElse(),
   }) {
     if (edit != null) {
@@ -1144,12 +796,11 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_FnameChanged value) fnameChanged,
-    required TResult Function(_LnameChanged value) lnameChanged,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_UsernameChanged value) usernameChanged,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_Edit value) edit,
+    required TResult Function(_Discard value) discard,
   }) {
     return edit(this);
   }
@@ -1158,12 +809,11 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_FnameChanged value)? fnameChanged,
-    TResult Function(_LnameChanged value)? lnameChanged,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_UsernameChanged value)? usernameChanged,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_Edit value)? edit,
+    TResult Function(_Discard value)? discard,
     required TResult orElse(),
   }) {
     if (edit != null) {
@@ -1182,15 +832,112 @@ abstract class _Edit implements PersonEvent {
 }
 
 /// @nodoc
+abstract class _$DiscardCopyWith<$Res> {
+  factory _$DiscardCopyWith(_Discard value, $Res Function(_Discard) then) =
+      __$DiscardCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$DiscardCopyWithImpl<$Res> extends _$PersonEventCopyWithImpl<$Res>
+    implements _$DiscardCopyWith<$Res> {
+  __$DiscardCopyWithImpl(_Discard _value, $Res Function(_Discard) _then)
+      : super(_value, (v) => _then(v as _Discard));
+
+  @override
+  _Discard get _value => super._value as _Discard;
+}
+
+/// @nodoc
+class _$_Discard implements _Discard {
+  const _$_Discard();
+
+  @override
+  String toString() {
+    return 'PersonEvent.discard()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Discard);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String phone, String username, String email, String id)
+        started,
+    required TResult Function(String phone) phoneChanged,
+    required TResult Function(String username) usernameChanged,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String id) edit,
+    required TResult Function() discard,
+  }) {
+    return discard();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String phone, String username, String email, String id)?
+        started,
+    TResult Function(String phone)? phoneChanged,
+    TResult Function(String username)? usernameChanged,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String id)? edit,
+    TResult Function()? discard,
+    required TResult orElse(),
+  }) {
+    if (discard != null) {
+      return discard();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_PhoneChanged value) phoneChanged,
+    required TResult Function(_UsernameChanged value) usernameChanged,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_Edit value) edit,
+    required TResult Function(_Discard value) discard,
+  }) {
+    return discard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_PhoneChanged value)? phoneChanged,
+    TResult Function(_UsernameChanged value)? usernameChanged,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_Discard value)? discard,
+    required TResult orElse(),
+  }) {
+    if (discard != null) {
+      return discard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Discard implements PersonEvent {
+  const factory _Discard() = _$_Discard;
+}
+
+/// @nodoc
 class _$PersonStateTearOff {
   const _$PersonStateTearOff();
 
   _PersonState call(
-      {required TextEditingController fnameController,
-      required String fname,
-      required TextEditingController lnameController,
-      required String lname,
-      required TextEditingController phoneController,
+      {required TextEditingController phoneController,
       required String phone,
       required TextEditingController usernameController,
       required String username,
@@ -1202,10 +949,6 @@ class _$PersonStateTearOff {
       required bool saved,
       required String failure}) {
     return _PersonState(
-      fnameController: fnameController,
-      fname: fname,
-      lnameController: lnameController,
-      lname: lname,
       phoneController: phoneController,
       phone: phone,
       usernameController: usernameController,
@@ -1226,12 +969,6 @@ const $PersonState = _$PersonStateTearOff();
 
 /// @nodoc
 mixin _$PersonState {
-  TextEditingController get fnameController =>
-      throw _privateConstructorUsedError;
-  String get fname => throw _privateConstructorUsedError;
-  TextEditingController get lnameController =>
-      throw _privateConstructorUsedError;
-  String get lname => throw _privateConstructorUsedError;
   TextEditingController get phoneController =>
       throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -1258,11 +995,7 @@ abstract class $PersonStateCopyWith<$Res> {
           PersonState value, $Res Function(PersonState) then) =
       _$PersonStateCopyWithImpl<$Res>;
   $Res call(
-      {TextEditingController fnameController,
-      String fname,
-      TextEditingController lnameController,
-      String lname,
-      TextEditingController phoneController,
+      {TextEditingController phoneController,
       String phone,
       TextEditingController usernameController,
       String username,
@@ -1285,10 +1018,6 @@ class _$PersonStateCopyWithImpl<$Res> implements $PersonStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? fnameController = freezed,
-    Object? fname = freezed,
-    Object? lnameController = freezed,
-    Object? lname = freezed,
     Object? phoneController = freezed,
     Object? phone = freezed,
     Object? usernameController = freezed,
@@ -1302,22 +1031,6 @@ class _$PersonStateCopyWithImpl<$Res> implements $PersonStateCopyWith<$Res> {
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
-      fnameController: fnameController == freezed
-          ? _value.fnameController
-          : fnameController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      fname: fname == freezed
-          ? _value.fname
-          : fname // ignore: cast_nullable_to_non_nullable
-              as String,
-      lnameController: lnameController == freezed
-          ? _value.lnameController
-          : lnameController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      lname: lname == freezed
-          ? _value.lname
-          : lname // ignore: cast_nullable_to_non_nullable
-              as String,
       phoneController: phoneController == freezed
           ? _value.phoneController
           : phoneController // ignore: cast_nullable_to_non_nullable
@@ -1374,11 +1087,7 @@ abstract class _$PersonStateCopyWith<$Res>
       __$PersonStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {TextEditingController fnameController,
-      String fname,
-      TextEditingController lnameController,
-      String lname,
-      TextEditingController phoneController,
+      {TextEditingController phoneController,
       String phone,
       TextEditingController usernameController,
       String username,
@@ -1403,10 +1112,6 @@ class __$PersonStateCopyWithImpl<$Res> extends _$PersonStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? fnameController = freezed,
-    Object? fname = freezed,
-    Object? lnameController = freezed,
-    Object? lname = freezed,
     Object? phoneController = freezed,
     Object? phone = freezed,
     Object? usernameController = freezed,
@@ -1420,22 +1125,6 @@ class __$PersonStateCopyWithImpl<$Res> extends _$PersonStateCopyWithImpl<$Res>
     Object? failure = freezed,
   }) {
     return _then(_PersonState(
-      fnameController: fnameController == freezed
-          ? _value.fnameController
-          : fnameController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      fname: fname == freezed
-          ? _value.fname
-          : fname // ignore: cast_nullable_to_non_nullable
-              as String,
-      lnameController: lnameController == freezed
-          ? _value.lnameController
-          : lnameController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      lname: lname == freezed
-          ? _value.lname
-          : lname // ignore: cast_nullable_to_non_nullable
-              as String,
       phoneController: phoneController == freezed
           ? _value.phoneController
           : phoneController // ignore: cast_nullable_to_non_nullable
@@ -1487,11 +1176,7 @@ class __$PersonStateCopyWithImpl<$Res> extends _$PersonStateCopyWithImpl<$Res>
 /// @nodoc
 class _$_PersonState implements _PersonState {
   const _$_PersonState(
-      {required this.fnameController,
-      required this.fname,
-      required this.lnameController,
-      required this.lname,
-      required this.phoneController,
+      {required this.phoneController,
       required this.phone,
       required this.usernameController,
       required this.username,
@@ -1503,14 +1188,6 @@ class _$_PersonState implements _PersonState {
       required this.saved,
       required this.failure});
 
-  @override
-  final TextEditingController fnameController;
-  @override
-  final String fname;
-  @override
-  final TextEditingController lnameController;
-  @override
-  final String lname;
   @override
   final TextEditingController phoneController;
   @override
@@ -1536,23 +1213,13 @@ class _$_PersonState implements _PersonState {
 
   @override
   String toString() {
-    return 'PersonState(fnameController: $fnameController, fname: $fname, lnameController: $lnameController, lname: $lname, phoneController: $phoneController, phone: $phone, usernameController: $usernameController, username: $username, emailController: $emailController, email: $email, id: $id, isSubmit: $isSubmit, isSuccess: $isSuccess, saved: $saved, failure: $failure)';
+    return 'PersonState(phoneController: $phoneController, phone: $phone, usernameController: $usernameController, username: $username, emailController: $emailController, email: $email, id: $id, isSubmit: $isSubmit, isSuccess: $isSuccess, saved: $saved, failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PersonState &&
-            (identical(other.fnameController, fnameController) ||
-                const DeepCollectionEquality()
-                    .equals(other.fnameController, fnameController)) &&
-            (identical(other.fname, fname) ||
-                const DeepCollectionEquality().equals(other.fname, fname)) &&
-            (identical(other.lnameController, lnameController) ||
-                const DeepCollectionEquality()
-                    .equals(other.lnameController, lnameController)) &&
-            (identical(other.lname, lname) ||
-                const DeepCollectionEquality().equals(other.lname, lname)) &&
             (identical(other.phoneController, phoneController) ||
                 const DeepCollectionEquality()
                     .equals(other.phoneController, phoneController)) &&
@@ -1586,10 +1253,6 @@ class _$_PersonState implements _PersonState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(fnameController) ^
-      const DeepCollectionEquality().hash(fname) ^
-      const DeepCollectionEquality().hash(lnameController) ^
-      const DeepCollectionEquality().hash(lname) ^
       const DeepCollectionEquality().hash(phoneController) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(usernameController) ^
@@ -1610,11 +1273,7 @@ class _$_PersonState implements _PersonState {
 
 abstract class _PersonState implements PersonState {
   const factory _PersonState(
-      {required TextEditingController fnameController,
-      required String fname,
-      required TextEditingController lnameController,
-      required String lname,
-      required TextEditingController phoneController,
+      {required TextEditingController phoneController,
       required String phone,
       required TextEditingController usernameController,
       required String username,
@@ -1626,16 +1285,6 @@ abstract class _PersonState implements PersonState {
       required bool saved,
       required String failure}) = _$_PersonState;
 
-  @override
-  TextEditingController get fnameController =>
-      throw _privateConstructorUsedError;
-  @override
-  String get fname => throw _privateConstructorUsedError;
-  @override
-  TextEditingController get lnameController =>
-      throw _privateConstructorUsedError;
-  @override
-  String get lname => throw _privateConstructorUsedError;
   @override
   TextEditingController get phoneController =>
       throw _privateConstructorUsedError;

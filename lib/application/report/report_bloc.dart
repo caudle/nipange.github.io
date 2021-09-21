@@ -53,17 +53,21 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
           yield state.copyWith(
               isloading: true, isSuccess: false, isError: false);
           // send report
-          await iReportRepo.createReport(
+          final result = await iReportRepo.createReport(
             email: state.emailController.value.text,
             type: state.flagDropdownValue,
             userType: state.userTypeDropdownValue,
             comment: state.commentController.value.text,
           );
-          yield state.copyWith(
-            isloading: false,
-            isSuccess: true,
-            isError: false,
-          );
+          if (result == null)
+            yield state.copyWith(
+              isloading: false,
+              isSuccess: true,
+              isError: false,
+            );
+          else
+            yield state.copyWith(
+                isloading: false, isSuccess: false, isError: true);
         } catch (e) {
           yield state.copyWith(
               isloading: false, isSuccess: false, isError: true);

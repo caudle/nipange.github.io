@@ -26,7 +26,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       },
       search: (e) async* {
         // send search req
-        print(state.search);
         final futureListings =
             iSearchRepo.search(state.search.toLowerCase().trim());
         // update state

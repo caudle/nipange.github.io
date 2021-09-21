@@ -7,29 +7,31 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Spacer(),
-          // app name
-          Expanded(
-            child: Container(
-              alignment: Alignment.topCenter,
-              child: Text(
-                'napanga',
-                style: Theme.of(context).textTheme.headline4!.copyWith(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Spacer(),
+            // app name
+            Expanded(
+              child: Container(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  'nipange',
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
               ),
             ),
-          ),
 
-          // pageview
-          Expanded(flex: 3, child: ContentWidget()),
+            // pageview
+            Expanded(flex: 3, child: ContentWidget()),
 
-          // buttons
-          _buildButtons(context),
-        ],
+            // buttons
+            _buildButtons(context),
+          ],
+        ),
       ),
     );
   }
@@ -48,7 +50,11 @@ class OnboardingPage extends StatelessWidget {
               child: Text('Skip'),
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                      Theme.of(context).primaryColorLight)),
+                      Theme.of(context).primaryColorLight),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  )),
+                  elevation: MaterialStateProperty.all(0)),
             ),
             Row(
               children: [

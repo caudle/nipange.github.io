@@ -8,6 +8,8 @@ class DetailState with _$DetailState {
     required IOWebSocketChannel reviewListChannel,
     required IOWebSocketChannel reviewChannel,
     required IOWebSocketChannel existsChannel,
+    required Future<List<Listing>>? moreListings,
+    required TextEditingController commentController,
     required User? currentUser,
     required bool isLoading,
     required bool isError,
@@ -16,13 +18,12 @@ class DetailState with _$DetailState {
   factory DetailState.initial() => DetailState(
         hostUser: null,
         reviewController: TextEditingController(),
-        reviewListChannel:
-            IOWebSocketChannel.connect('ws://172.20.10.11:5000/api/review'),
-        reviewChannel:
-            IOWebSocketChannel.connect('ws://172.20.10.11:5000/api/review'),
-        existsChannel: IOWebSocketChannel.connect(
-            'ws://172.20.10.11:5000/api/user/saved/exists'),
+        reviewListChannel: IOWebSocketChannel.connect('$ws/api/review'),
+        reviewChannel: IOWebSocketChannel.connect('$ws/api/review'),
+        existsChannel: IOWebSocketChannel.connect('$ws/api/user/saved/exists'),
+        moreListings: null,
         currentUser: null,
+        commentController: TextEditingController(),
         isLoading: true,
         isError: false,
         issuccess: false,

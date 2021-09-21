@@ -7,7 +7,6 @@ import 'package:nipange/application/auth/sign_up_form/bloc/sign_up_form_bloc.dar
 
 import 'package:nipange/application/filter/filter_bloc.dart';
 
-import 'package:nipange/application/search/search_bloc.dart';
 import 'package:nipange/core/theme.dart';
 import 'package:nipange/domain/listing/listing.dart';
 import 'package:nipange/injector.dart';
@@ -17,7 +16,7 @@ import 'package:nipange/presentation/auth/sign_up_form/sign_up_form.dart';
 
 import 'package:nipange/presentation/explore/widgets/filter.dart';
 import 'package:nipange/presentation/explore/widgets/filter_results.dart';
-import 'package:nipange/presentation/explore/widgets/search.dart';
+
 import 'package:nipange/presentation/home.dart';
 import 'package:nipange/presentation/host.dart';
 import 'package:nipange/presentation/onboarding/onboarding.dart';
@@ -75,8 +74,6 @@ Route _generateRoute(RouteSettings settings) {
           return BlocProvider(
               create: (context) => getIt<LoginDetailsBloc>(),
               child: LoginDetailsPage(
-                firstname: map['firstname'],
-                lastname: map['lastname'],
                 phone: map['phone'],
                 email: map['email'],
                 route: map['route'],
@@ -105,6 +102,6 @@ Route _generateRoute(RouteSettings settings) {
           });
 
     default:
-      return MaterialPageRoute(builder: (context) => Container());
+      return MaterialPageRoute(builder: (context) => HomePage());
   }
 }

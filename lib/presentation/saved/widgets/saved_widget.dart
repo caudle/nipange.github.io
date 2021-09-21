@@ -18,7 +18,6 @@ class SavedWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Saved'),
-        centerTitle: true,
         elevation: 0,
       ),
       body: SafeArea(
@@ -38,22 +37,33 @@ class SavedWidget extends StatelessWidget {
                           List bodyList = jsonDecode(snapshot.data);
                           listings.addAll(bodyList.map((listing) =>
                               Listing.fromJson(json.encode(listing))));
+                          listings.sort(
+                              (a, b) => a.createdAt!.compareTo(b.createdAt!));
 
-                          return ListView.builder(
-                              itemCount: listings.length,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                return BlocProvider(
-                                  create: (context) => getIt<ItemBloc>(),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 30.0),
-                                    child: ListingItem(
-                                        listing: listings[index],
-                                        routeName: '/'),
+                          return listings.length > 0
+                              ? ListView.builder(
+                                  itemCount: listings.length,
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                    return BlocProvider(
+                                      create: (context) => getIt<ItemBloc>(),
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 30.0),
+                                        child: ListingItem(
+                                            listing: listings[index],
+                                            routeName: '/'),
+                                      ),
+                                    );
+                                  })
+                              : Center(
+                                  child: Text(
+                                    'You have no saved listings yet. Start by pressing the like icon on your favourite listings.',
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
                                   ),
                                 );
-                              });
                         } else if (snapshot.hasError) {
                           return CustomErrorWidget(
                               error: snapshot.error.toString());

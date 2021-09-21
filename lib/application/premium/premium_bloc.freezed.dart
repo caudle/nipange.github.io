@@ -148,14 +148,9 @@ abstract class _Started implements PremiumEvent {
 class _$PremiumStateTearOff {
   const _$PremiumStateTearOff();
 
-  _PremiumState call(
-      {required User? user,
-      required Future<List<Package>>? futurePackages,
-      required Package? userPackage}) {
+  _PremiumState call({required Future<List<Package>>? futurePackages}) {
     return _PremiumState(
-      user: user,
       futurePackages: futurePackages,
-      userPackage: userPackage,
     );
   }
 }
@@ -165,10 +160,8 @@ const $PremiumState = _$PremiumStateTearOff();
 
 /// @nodoc
 mixin _$PremiumState {
-  User? get user => throw _privateConstructorUsedError;
   Future<List<Package>>? get futurePackages =>
       throw _privateConstructorUsedError;
-  Package? get userPackage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PremiumStateCopyWith<PremiumState> get copyWith =>
@@ -180,10 +173,7 @@ abstract class $PremiumStateCopyWith<$Res> {
   factory $PremiumStateCopyWith(
           PremiumState value, $Res Function(PremiumState) then) =
       _$PremiumStateCopyWithImpl<$Res>;
-  $Res call(
-      {User? user,
-      Future<List<Package>>? futurePackages,
-      Package? userPackage});
+  $Res call({Future<List<Package>>? futurePackages});
 }
 
 /// @nodoc
@@ -196,23 +186,13 @@ class _$PremiumStateCopyWithImpl<$Res> implements $PremiumStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? user = freezed,
     Object? futurePackages = freezed,
-    Object? userPackage = freezed,
   }) {
     return _then(_value.copyWith(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
       futurePackages: futurePackages == freezed
           ? _value.futurePackages
           : futurePackages // ignore: cast_nullable_to_non_nullable
               as Future<List<Package>>?,
-      userPackage: userPackage == freezed
-          ? _value.userPackage
-          : userPackage // ignore: cast_nullable_to_non_nullable
-              as Package?,
     ));
   }
 }
@@ -224,10 +204,7 @@ abstract class _$PremiumStateCopyWith<$Res>
           _PremiumState value, $Res Function(_PremiumState) then) =
       __$PremiumStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {User? user,
-      Future<List<Package>>? futurePackages,
-      Package? userPackage});
+  $Res call({Future<List<Package>>? futurePackages});
 }
 
 /// @nodoc
@@ -242,66 +219,42 @@ class __$PremiumStateCopyWithImpl<$Res> extends _$PremiumStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? user = freezed,
     Object? futurePackages = freezed,
-    Object? userPackage = freezed,
   }) {
     return _then(_PremiumState(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User?,
       futurePackages: futurePackages == freezed
           ? _value.futurePackages
           : futurePackages // ignore: cast_nullable_to_non_nullable
               as Future<List<Package>>?,
-      userPackage: userPackage == freezed
-          ? _value.userPackage
-          : userPackage // ignore: cast_nullable_to_non_nullable
-              as Package?,
     ));
   }
 }
 
 /// @nodoc
 class _$_PremiumState implements _PremiumState {
-  const _$_PremiumState(
-      {required this.user,
-      required this.futurePackages,
-      required this.userPackage});
+  const _$_PremiumState({required this.futurePackages});
 
   @override
-  final User? user;
-  @override
   final Future<List<Package>>? futurePackages;
-  @override
-  final Package? userPackage;
 
   @override
   String toString() {
-    return 'PremiumState(user: $user, futurePackages: $futurePackages, userPackage: $userPackage)';
+    return 'PremiumState(futurePackages: $futurePackages)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PremiumState &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.futurePackages, futurePackages) ||
                 const DeepCollectionEquality()
-                    .equals(other.futurePackages, futurePackages)) &&
-            (identical(other.userPackage, userPackage) ||
-                const DeepCollectionEquality()
-                    .equals(other.userPackage, userPackage)));
+                    .equals(other.futurePackages, futurePackages)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(futurePackages) ^
-      const DeepCollectionEquality().hash(userPackage);
+      const DeepCollectionEquality().hash(futurePackages);
 
   @JsonKey(ignore: true)
   @override
@@ -311,17 +264,11 @@ class _$_PremiumState implements _PremiumState {
 
 abstract class _PremiumState implements PremiumState {
   const factory _PremiumState(
-      {required User? user,
-      required Future<List<Package>>? futurePackages,
-      required Package? userPackage}) = _$_PremiumState;
+      {required Future<List<Package>>? futurePackages}) = _$_PremiumState;
 
-  @override
-  User? get user => throw _privateConstructorUsedError;
   @override
   Future<List<Package>>? get futurePackages =>
       throw _privateConstructorUsedError;
-  @override
-  Package? get userPackage => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PremiumStateCopyWith<_PremiumState> get copyWith =>

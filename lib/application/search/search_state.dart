@@ -8,6 +8,6 @@ class SearchState with _$SearchState {
   }) = _SearchState;
   factory SearchState.initial() => SearchState(
         search: '',
-        futureListings: Future.value(<Listing>[]),
+        futureListings: null,
       );
 }

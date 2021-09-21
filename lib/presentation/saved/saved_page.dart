@@ -21,6 +21,7 @@ class SavedPage extends StatelessWidget {
               title: 'saved',
               caption: 'Your favourite saved listings will appear here',
               icon: Icons.favorite,
+              isaction: false,
             ),
     );
   }

@@ -7,7 +7,6 @@ class SavedState with _$SavedState {
     required User? user,
   }) = _SavedState;
   factory SavedState.initial() => SavedState(
-      savedChannel:
-          IOWebSocketChannel.connect('ws://172.20.10.11:5000/api/user/saved'),
+      savedChannel: IOWebSocketChannel.connect('$ws/api/user/saved'),
       user: null);
 }

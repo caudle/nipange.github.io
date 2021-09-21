@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nipange/application/detail/detail_bloc.dart';
 import 'package:nipange/application/listing_item/item_bloc.dart';
 
 import 'package:nipange/domain/listing/listing.dart';
+import 'package:nipange/presentation/detail/detail_page.dart';
 import 'package:nipange/presentation/explore/widgets/listing_item.dart';
 import 'package:nipange/widgets/error.dart';
 
@@ -29,20 +31,45 @@ class FilterResultsPage extends StatelessWidget {
             if (snapshot.data!.isEmpty)
               return Center(
                 child: Container(
-                  child: Text('No listings found, try again'),
+                  child: Text('Oops no listings found, try different filters'),
                 ),
               );
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                return BlocProvider(
-                  create: (context) => getIt<ItemBloc>(),
-                  child: Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: ListingItem(
-                        listing: snapshot.data![index],
-                        routeName: '/filter/results'),
+                return GestureDetector(
+                  child: BlocProvider(
+                    create: (context) => getIt<ItemBloc>(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: ListingItem(
+                          listing: snapshot.data![index],
+                          routeName: '/filter/results'),
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            settings: RouteSettings(name: '/details'),
+                            builder: (context) {
+                              return BlocProvider(
+                                create: (context) => getIt<DetailBloc>()
+                                  ..add(DetailEvent.started(
+                                    userId: snapshot.data![index].hostId!,
+                                    listingId: snapshot.data![index].id!,
+                                    type: snapshot.data![index].propertyType!,
+                                    district: snapshot
+                                        .data![index].location!['district'],
+                                  )),
+                                child: BlocProvider(
+                                  create: (context) => getIt<ItemBloc>(),
+                                  child: DetailsPage(
+                                      listing: snapshot.data![index]),
+                                ),
+                              );
+                            }));
+                  },
                 );
               },
             );

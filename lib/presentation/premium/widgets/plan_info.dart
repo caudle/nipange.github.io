@@ -14,64 +14,128 @@ class PlanInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: ListView(
         children: [
-          // close icon
-          Container(
-            child: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-
           // title
+
+          SizedBox(height: (MediaQuery.of(context).size.height / 6)),
           Container(
-            child: Text('Current plan Information'),
+            padding: EdgeInsets.only(top: 0, bottom: 20),
+            alignment: Alignment.topCenter,
+            child: Text('Current plan Details',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .copyWith(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
           ),
 
           //details
-          Center(
-            child: Column(
-              children: [
-                // name
-                Row(
-                  children: [
-                    Text('package name'),
-                    Text(package.name),
-                  ],
-                ),
-                // amount
-                Row(
-                  children: [
-                    Text('Amount paid'),
-                    Text(package.amount.toString()),
-                  ],
-                ),
-                // created date
-                Row(
-                  children: [
-                    Text('created date'),
-                    Text(package.createdAt.toReadable()),
-                  ],
-                ),
-                // exp date
-                Row(
-                  children: [
-                    Text('expire date'),
-                    Text(package.expireAt!.toReadable()),
-                  ],
-                ),
-                // days remaining
-                Row(
-                  children: [
-                    Text('Days remaining'),
-                    Text(
-                        '${package.expireAt!.difference(package.createdAt).inDays.toString()} Days'),
-                  ],
-                ),
-              ],
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+            height: 250,
+            child: Material(
+              elevation: 3,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                              'package name',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            )),
+                        Expanded(flex: 4, child: Text(package.name)),
+                      ],
+                    ),
+                  ),
+
+                  // amount
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                              'Amount Paid',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            )),
+                        Expanded(
+                            flex: 4,
+                            child: Text('${package.amount.toString()} Tsh')),
+                      ],
+                    ),
+                  ),
+
+                  // created date
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                              'created date',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            )),
+                        Expanded(
+                            flex: 4,
+                            child:
+                                Text('${package.createdAt.toReadable()} Tsh')),
+                      ],
+                    ),
+                  ),
+
+                  // exp date
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                              'expire date',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            )),
+                        Expanded(
+                            flex: 4,
+                            child:
+                                Text('${package.expireAt!.toReadable()} Tsh')),
+                      ],
+                    ),
+                  ),
+
+                  // days remaining
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                              'Days remaining',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            )),
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                                '${package.expireAt!.difference(package.createdAt).inDays.toString()} Days')),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
         ],
